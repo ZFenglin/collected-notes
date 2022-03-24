@@ -1,5 +1,7 @@
 # render代码生成
 
+将处理的AST传入，生成对应的render函数
+
 ## render范例
 
 例如以下一个Vue的模板
@@ -9,28 +11,30 @@
     <li v-for="(item,index) in data" @click="clickItem(index)">{{item}}:{{index}}</li>
 </ul>
 ```
+
 而转化后的render的函数
 
 ```JS
-with(this){
-  return (isShow) ?
-    _c('ul', {
-        staticClass: "list",
-        class: bindCls
-      },
-      _l((data), function(item, index) {
-        return _c('li', {
-          on: {
-            "click": function($event) {
-              clickItem(index)
-            }
-          }
-        },
-        [_v(_s(item) + ":" + _s(index))])
-      })
-    ) : _e()
+with(this) {
+    return (isShow) ?
+        _c('ul', {
+                staticClass: "list",
+                class: bindCls
+            },
+            _l((data), function(item, index) {
+                return _c('li', {
+                        on: {
+                            "click": function($event) {
+                                clickItem(index)
+                            }
+                        }
+                    },
+                    [_v(_s(item) + ":" + _s(index))])
+            })
+        ) : _e()
 }
 ```
+
 这个_c等方法，在renderMixin时会调用installRenderHelpers时向Vue.prototype上增加对应的标签处理方法
 
 ## 代码生成入口

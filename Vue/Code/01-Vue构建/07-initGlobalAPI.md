@@ -1,28 +1,15 @@
-# GlobalAPI
-
-## 入口
-
-在构造函数的上一级，会对Vue调用initGlobalAPI
-
-```JS
-initGlobalAPI(Vue) /// 初始化Vue的全局API，封装静态方法
-Vue.version = '__VERSION__'
-export default Vue
-```
-
-## initGlobalAPI
+# initGlobalAPI
 
 增加Vue上的静态方法和属性
-01. Vue.config
-02. Vue.util（vue内部的工具方法）
-03. Vue.set、Vue.nextTick、Vue.delete
-04. Vue.observable
-05. Vue.options
-06.  keep-alive 处理
-07.  initUse设置Vue.use
-08.  initMixin设置Vue.mixin
-09.  initExtend设置Vue.extend
-10. initAssetRegisters处理Vue.options的components、filters和defaults
+1. Vue.config
+2. Vue.util（vue内部的工具方法）
+3. Vue.set、Vue.nextTick、Vue.delete
+4. Vue.observable
+5. Vue.options
+6. initUse设置Vue.use
+7. initMixin设置Vue.mixin
+8. initExtend设置Vue.extend
+9. initAssetRegisters处理Vue.options的components、filters和defaults
 
 ```JS
 export function initGlobalAPI(Vue) {
@@ -30,44 +17,43 @@ export function initGlobalAPI(Vue) {
     const configDef = {}
     configDef.get = () => config
     Object.defineProperty(Vue, 'config', configDef)
-    // 2. Vue.util（vue内部的工具方法）
+    // Vue.util（vue内部的工具方法）
     Vue.util = {
         warn,
         extend,
         mergeOptions, // 配置合并
         defineReactive // 响应式数据
     }
-    // 3. Vue.set、Vue.nextTick、Vue.delete
+    // Vue.set、Vue.nextTick、Vue.delete
     Vue.set = set
     Vue.delete = del
     Vue.nextTick = nextTick
-    // 4. Vue.observable（监控对象）
+    // Vue.observable（监控对象）
     Vue.observable = (obj) => {
         observe(obj)
         return obj
     }
-    // 5. Vue.options
+    // Vue.options
     Vue.options = Object.create(null)
     ASSET_TYPES.forEach(type => {
         Vue.options[type + 's'] = Object.create(null)
     })
     Vue.options._base = Vue
-    // 6. keep-alive 处理
-    extend(Vue.options.components, builtInComponents)
-    // 7. initUse设置Vue.use
+    // ...
+    // initUse设置Vue.use
     initUse(Vue)
-    // 8. initMixin设置Vue.mixin
+    // initMixin设置Vue.mixin
     initMixin(Vue)
-    // 9. initExtend设置Vue.extend
+    // initExtend设置Vue.extend
     initExtend(Vue)
-    // 10. initAssetRegisters处理Vue.options的components、filters和defaults
+    // initAssetRegisters处理Vue.options的components、filters和defaults
     initAssetRegisters(Vue)
 }
 ```
 
 ## Vue.config
 
-设置Vue默认的基础配置
+Vue默认的基础配置，用于控制vue默认的处理方式
 
 ```JS
 export default ({
@@ -109,14 +95,14 @@ export default ({
 
 ## Vue.util
 
- 存在warn、extend、mergeOptions和defineReactive
+存在warn、extend、mergeOptions和defineReactive
 
- vue.warn为Vue的报错log提示，生产模式下不可用，此处不详细说明
+vue.warn为Vue的报错log提示，生产模式下不可用，此处不详细说明
 
- Vue.defineReactive，就是响应式处理的对应方法，详细见03-响应式处理笔记
+Vue.defineReactive，就是响应式处理的对应方法
 
- ### Vue.util.extend
-  
+### Vue.util.extend
+
 源码中只是简单的对象的浅层拷贝，即方便后续使用的工具方法
 
 ```JS
@@ -128,11 +114,11 @@ export function extend(to, _from) {
 }
 ```
 
- ### Vue.util.mergeOptions
+### Vue.util.mergeOptions
 
-01. 孩子的属性获取和标准化为Object-based形式
-02. parent与child.extends和child.mixins的配置合并处理
-03. 配置合并处理（策略模式，并且优先parent，只会添加child中parent不存在的）
+1. 孩子的属性获取和标准化为Object-based形式
+2. parent与child.extends和child.mixins的配置合并处理
+3. 配置合并处理（策略模式，并且优先parent，只会添加child中parent不存在的）
  
 
 ```JS
@@ -141,25 +127,25 @@ export function extend(to, _from) {
      child,
      vm
  ) {
-     // 1. 孩子的属性获取和标准化为Object-based形式
+     // 孩子的属性获取和标准化为Object-based形式
      if (typeof child === 'function') {
          child = child.options
      }
      normalizeProps(child, vm)
      normalizeInject(child, vm)
      normalizeDirectives(child)
-     // 2. parent与child.extends和child.mixins的配置合并处理
+     // parent与child.extends和child.mixins的配置合并处理
      if (!child._base) {
          if (child.extends) {
              parent = mergeOptions(parent, child.extends, vm)
          }
          if (child.mixins) {
-             for (let i = 0, l = child.mixins.length; i < l; i++) {
+             for (let i = , l = child.mixins.length; i < l; i++) {
                  parent = mergeOptions(parent, child.mixins[i], vm)
              }
          }
      }
-     // 3. 配置合并处理
+     // 配置合并处理
      const options = {}
      let key
      for (key in parent) {
@@ -190,15 +176,7 @@ const defaultStrat = function(parentVal, childVal) {
 }
 ```
 
- ## Vue.set、Vue.delete、Vue.nextTick
-
- 这些就是Vue响应式和异步更新中对应的同名方法，原理不再详说
-
- ## Vue.observable
-
- 对传入对象使用响应式处理的observe，原理不再详说
-
- ## Vue.options
+## Vue.options
 
 ### Vue.options属性设置
 
@@ -248,13 +226,11 @@ export function initAssetRegisters(Vue) {
 }
 ```
 
-##  initUse
+## initUse
 
 设置Vue.use
 
 给Vue扩展功能，希望扩展的时候使用的vue版本一致
-
-插件使用方式
 
 ```JS
 // 为了给Vue扩展功能，希望扩展的时候使用的vue版本一致
@@ -266,32 +242,32 @@ Vue维护一个_installedPlugins数组，用于管理插件
 
 注册插件则时有以下步骤
 
-01. 获取installedPlugins
-02. 检查插件是否安装，安装过直接返回
-03. 获取参数（Array.from(arguments).slice(1)，取去除第一项的数组，并将Vue放至第一项）
-04. 插件注册
-05. 插件添加至installedPlugins数组
+1. 获取installedPlugins
+2. 检查插件是否安装，安装过直接返回
+3. 获取参数（Array.from(arguments).slice(1)，取去除第一项的数组，并将Vue放至第一项）
+4. 插件注册
+5. 插件添加至installedPlugins数组
 
 ```JS
 export function initUse(Vue) {
     // Vue.use注册
     Vue.use = function(plugin) {
-        // 01. 获取installedPlugins
+        // 获取installedPlugins
         const installedPlugins = (this._installedPlugins || (this._installedPlugins = []))
-        // 02. 检查插件是否安装，安装过直接返回
+        // 检查插件是否安装，安装过直接返回
         if (installedPlugins.indexOf(plugin) > -1) {
             return this
         }
-        // 03. 获取参数
+        // 获取参数
         const args = toArray(arguments, 1)
         args.unshift(this)
-        // 04. 插件注册
+        // 插件注册
         if (typeof plugin.install === 'function') { // 调用install方法
             plugin.install.apply(plugin, args)
         } else if (typeof plugin === 'function') { // 直接调用方法
             plugin.apply(null, args)
         }
-        // 05. 插件添加至installedPlugins数组
+        // 插件添加至installedPlugins数组
         installedPlugins.push(plugin) // 缓存插件
         return this
     }
@@ -300,9 +276,7 @@ export function initUse(Vue) {
 
 ## initMixin
 
-设置Vue.mixin
-
-只是简单的对当前Vue调用了mergeOptions
+对当前Vue调用了mergeOptions
 
 ```JS
 export function initMixin(Vue) {
@@ -313,6 +287,12 @@ export function initMixin(Vue) {
 }
 ```
 
-## initExtend
+## 其它
 
-设置Vue.extend，此处不详细说明，在10-组件实现进行解释
+Vue.set、Vue.delete、Vue.nextTick和Vue.observable
+
+这些就是Vue响应式和异步更新中对应的同名方法
+
+initExtend
+
+设置Vue.extend，用于组件创建部分，见（TODO）

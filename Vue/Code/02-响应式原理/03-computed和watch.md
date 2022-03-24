@@ -38,7 +38,6 @@ function createWatcher(
     if (typeof handler === 'string') {
         handler = vm[handler]
     }
-    // $watch的详情见01-构造函数
     // $watch创建的watcher都是用户自定义的
     return vm.$watch(expOrFn, handler, options)
 }

@@ -1,27 +1,58 @@
-# 初始化处理
-
-initMixin中注册的_init是vue实例初始化的方法
+# initMixin
+1. 相关标识属性添加
+2. options配置处理
+3. 实例初始化处理
+4. 组件挂载
 
 ```JS
-initLifecycle(vm)
-initEvents(vm)
-initRender(vm)
-callHook(vm, 'beforeCreate')
-initInjections(vm)
-initState(vm)
-initProvide(vm)
-callHook(vm, 'created')
+export function initMixin(Vue) {
+    //  Vue.prototype._init属性添加
+    Vue.prototype._init = function(options) {
+        const vm = this
+        // 1. 标识_uid和标识为Vue实例，是不会被观测的
+        vm._uid = uid++
+        // ...
+        vm._isVue = true
+        // 2. options处理
+        if (options && options._isComponent) {
+            // 如果是组件，则会对组件配置进处理
+            initInternalComponent(vm, options)
+        } else {
+            // Vue.options 和自己的属性合并
+            vm.$options = mergeOptions(
+                resolveConstructorOptions(vm.constructor),
+                options || {},
+                vm
+            )
+        }
+        // ...
+        // 3. 初始化处理
+        vm._self = vm
+        initLifecycle(vm)
+        initEvents(vm)
+        initRender(vm)
+        callHook(vm, 'beforeCreate')
+        initInjections(vm)
+        initState(vm)
+        initProvide(vm)
+        callHook(vm, 'created')
+        // ...
+        // 4. 组件挂载
+        if (vm.$options.el) {
+            vm.$mount(vm.$options.el)
+        }
+    }
+}
 ```
 
 ## initLifecycle
 
-初始化组件的父子关系
+寻找不是抽象组件的父组件，给父组件添加$children，并设置当前组件的$parent和$root
 
 ```JS
 export function initLifecycle(vm) {
     const options = vm.$options
     let parent = options.parent
-    // 寻找至不是抽象组件的上一级
     if (parent && !options.abstract) {
         while (parent.$options.abstract && parent.$parent) {
             parent = parent.$parent
@@ -33,17 +64,8 @@ export function initLifecycle(vm) {
     vm.$parent = parent
     // $root设置
     vm.$root = parent ? parent.$root : vm
-    // $children设置
-    vm.$children = []
-    // $refs设置
-    vm.$refs = {}
-    // 其他属性设置
-    vm._watcher = null
-    vm._inactive = null
-    vm._directInactive = false
-    vm._isMounted = false
-    vm._isDestroyed = false
-    vm._isBeingDestroyed = false
+    // 其他属性初始化
+    // ...
 }
 ```
 
@@ -66,25 +88,20 @@ export function initEvents(vm) {
 
 ## initRender
 
-渲染相关接口处理
 1. 初始化插槽
-2. _c和$createElement
+2. _c和$createElement（内部编译使用_c，外部编译使用$createElement）
 3. $attrs和$listeners
 
 ```JS
 export function initRender(vm) {
-    vm._vnode = null
-    // v-once的缓存树
-    vm._staticTrees = null
-    const options = vm.$options
-    const parentVnode = vm.$vnode = options._parentVnode
-    const renderContext = parentVnode && parentVnode.context
+    // 相关属性初始化
+    // ....
     // vm.$scopedSlots和 vm.$slots设置
     vm.$slots = resolveSlots(options._renderChildren, renderContext)
     vm.$scopedSlots = emptyObject
     // vm._c和vm.$createElement设置
-    vm._c = (a, b, c, d) => createElement(vm, a, b, c, d, false) // false 内部编译使用_c
-    vm.$createElement = (a, b, c, d) => createElement(vm, a, b, c, d, true) // true 外部编译使用$createElement
+    vm._c = (a, b, c, d) => createElement(vm, a, b, c, d, false)
+    vm.$createElement = (a, b, c, d) => createElement(vm, a, b, c, d, true)
     const parentData = parentVnode && parentVnode.data
     // 定义$attrs和$listeners
     defineReactive(vm, '$attrs', parentData && parentData.attrs || emptyObject, null, true)
@@ -94,9 +111,7 @@ export function initRender(vm) {
 
 ## initInjections
 
-inject处理
-
-隔代传输数据，不建议开发使用，因为值不清楚由谁提供、
+inject处理，隔代传输数据，不建议开发使用，因为值不清楚由谁提供
 
 ```JS
 export function initInjections(vm) {
@@ -125,7 +140,6 @@ export function resolveInject(inject, vm) {
         const keys = hasSymbol ?
             Reflect.ownKeys(inject) :
             Object.keys(inject)
-
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i]
             if (key === '__ob__') continue
@@ -151,7 +165,7 @@ export function resolveInject(inject, vm) {
 
 ## initState
 
-处理props和data等数据
+判断vue的options是否存在对应的属性，决定是否进行相关处理
 
 ```JS
 export function initState(vm) {
@@ -210,11 +224,7 @@ function initProps(vm, propsOptions) {
 
 ### initMethods
 
-methods初始化
-
-获取methods绑定this至vm的处理函数
-
-将函数赋值到vm对应的key上
+获取methods绑定this至vm的处理函数，将函数赋值到vm对应的key上
 
 ```JS
 function initMethods(vm, methods) {
@@ -224,53 +234,13 @@ function initMethods(vm, methods) {
 }
 ```
 
-### initData
+### initData、initComputed 和 initWatch
 
-data初始化处理
-1. 获取data
-2. data代理至vm
-3. data响应式处理
-
-```JS
-function initData(vm) {
-    let data = vm.$options.data
-    // 1. data获取处理
-    data = vm._data = typeof data === 'function' ?
-        getData(data, vm) :
-        data || {}
-    if (!isPlainObject(data)) {
-        data = {}
-    }
-    // proxy data on instance
-    const keys = Object.keys(data)
-    const props = vm.$options.props
-    const methods = vm.$options.methods
-    let i = keys.length
-    // 2. 代理data至vm
-    while (i--) {
-        const key = keys[i]
-        if (props && hasOwn(props, key)) {
-            // props冲突报错
-        } else if (!isReserved(key)) {
-            proxy(vm, `_data`, key)
-        }
-    }
-    // 3. data响应式处理
-    observe(data, true /* asRootData */ )
-}
-```
-
-### initComputed 和 initWatch
-
-初始化computed和watch
-
-详细见07-computed和watch笔记
+详细见（TODO）
 
 ## initProvide
 
-provider处理
-
-简单处理provider赋值，如果是function则获取执行结果
+简单处理provider赋值，如果是function则获取执行结果，将值设置到vm._provided上
 
 此处可以看出provider并不是响应式的数据
 

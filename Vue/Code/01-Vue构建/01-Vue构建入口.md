@@ -1,0 +1,35 @@
+# Vue构建入口
+
+## 构造函数
+
+位于src/core/instance/index.js
+
+```JS
+// vue的构造函数
+function Vue(options) {
+    //...
+    this._init(options) // 默认调用init方法
+}
+// 原型属性处理
+initMixin(Vue) // Vue.prototype._init
+stateMixin(Vue) // $data $props $set $delete $watch
+eventsMixin(Vue) // $on $emit $once 
+lifecycleMixin(Vue) // Vue.prototype._update/Vue.prototype.$forceUpdate
+renderMixin(Vue) // Vue.prototype.$nextTick/Vue.prototype._render
+```
+
+创建一个Vue函数用于处理vue实例的创建
+
+_init是在initMixin中设置的Vue.prototype._init
+
+## GlobalAPI添加
+
+位于src/core/index.js
+
+initGlobalAPI用于处理Vue上的静态属性和方法添加
+
+```JS
+initGlobalAPI(Vue) // 初始化Vue的全局API，封装静态方法
+Vue.version = '__VERSION__'
+export default Vue
+```

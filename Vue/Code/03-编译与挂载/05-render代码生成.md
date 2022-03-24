@@ -1,6 +1,41 @@
 # render代码生成
 
-将传入的ast对象树转化为嵌套方法
+## render范例
+
+例如以下一个Vue的模板
+
+```HTML
+<ul :class="bindCls" class="list" v-if="isShow">
+    <li v-for="(item,index) in data" @click="clickItem(index)">{{item}}:{{index}}</li>
+</ul>
+```
+而转化后的render的函数
+
+```JS
+with(this){
+  return (isShow) ?
+    _c('ul', {
+        staticClass: "list",
+        class: bindCls
+      },
+      _l((data), function(item, index) {
+        return _c('li', {
+          on: {
+            "click": function($event) {
+              clickItem(index)
+            }
+          }
+        },
+        [_v(_s(item) + ":" + _s(index))])
+      })
+    ) : _e()
+}
+```
+这个_c等方法，在renderMixin时会调用installRenderHelpers时向Vue.prototype上增加对应的标签处理方法
+
+## 代码生成入口
+
+generate将传入的ast对象树转化为嵌套方法
 
 ```JS
 export function generate(ast, options) {
@@ -15,6 +50,8 @@ export function generate(ast, options) {
     }
 }
 ```
+
+### genElement
 
 genElement用于处理渲染函数代码生成
 
@@ -49,14 +86,10 @@ export function genElement(el, state) {
             if (!el.plain || (el.pre && state.maybeComponent(el))) {
                 data = genData(el, state)
             }
-            // 1. 获取children代码
+            // 获取children代码
             const children = el.inlineTemplate ? null : genChildren(el, state, true)
-            // 2. 代码拼接
-            code = `_c('${el.tag}'${
-        data ? `,${data}` : '' // data
-      }${
-        children ? `,${children}` : '' // children
-      })`
+            // 代码拼接
+            code = `_c('${el.tag}'${ data ? `,${data}` : '' }${children ? `,${children}` : ''})`
         }
         // module transforms
         for (let i = 0; i < state.transforms.length; i++) {

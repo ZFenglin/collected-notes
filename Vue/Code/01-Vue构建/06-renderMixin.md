@@ -54,7 +54,7 @@ Vue.prototype.$nextTick = function(fn: Function) {
 }
 ```
 
-nextTick见后续（TODO）
+nextTick见响应式原理的异步更新
 
 ## _render原理
 

@@ -236,7 +236,7 @@ function initMethods(vm, methods) {
 
 ### initData、initComputed 和 initWatch
 
-详细见（TODO）
+详细见响应式原理中的响应式原理和computed和watch
 
 ## initProvide
 

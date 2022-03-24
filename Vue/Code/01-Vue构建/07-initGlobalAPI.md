@@ -295,4 +295,4 @@ Vue.set、Vue.delete、Vue.nextTick和Vue.observable
 
 initExtend
 
-设置Vue.extend，用于组件创建部分，见（TODO）
+设置Vue.extend，用于组件配置部分，详情见组件化

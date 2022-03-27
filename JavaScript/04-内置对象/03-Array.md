@@ -4,8 +4,6 @@
 
 ## 数组方法
 
- >[纯函数](https://cloud.tencent.com/developer/article/1857193?from=article.detail.1629653)：相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用
-
 ### 纯函数
 
 1. map

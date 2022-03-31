@@ -1,5 +1,11 @@
 # [SVG加载插件](https://juejin.cn/post/7051456476384559111#heading-5)
 
+## 注意
+
+vite的插件只能在src外部才能使用node的fs，path等模块
+
+以下的在src中的文件应当放到根目录来处理
+
 ## 配置TSnode支持
 
 不配置则插件代码会报fs找不到的错误

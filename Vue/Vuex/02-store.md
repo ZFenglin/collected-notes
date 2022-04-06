@@ -1,18 +1,16 @@
 # store
-01. constructor构建基本的store实例
-02. install安装处理
-03. state设置获取方法
-04. commit提交处理
-05. action提交处理
-06. 监听处理
-08. 模块化处理
-09.  其他处理
+1. constructor构建基本的store实例
+2. state设置获取方法
+3. commit提交处理
+4. action提交处理
+5. 监听处理
+6. 模块化处理（说模块化的时候在详细解释）
+7. 其他处理
 
 ```JS
 export class Store {
+    // constructor构建基本的store实例
     constructor(options = {}) {}
-    // install安装处理
-    install(app, injectKey) {}
     // state设置获取方法
     get state() {}
     set state(v) {}
@@ -26,7 +24,7 @@ export class Store {
     watch(getter, cb, options) {}
     // 替换状态
     replaceState(state) {}
-    // 模块化处理
+    // 模块化处理（说模块化的时候在详细解释）
     registerModule(path, rawModule, options = {}) {}
     unregisterModule(path) {}
     hasModule(path) {}
@@ -41,13 +39,15 @@ export class Store {
 
 ```JS
 constructor(options = {}) {
-    // 配置属性声明
+    // Vuex安装处理
+    if (!Vue && typeof window !== 'undefined' && window.Vue) {
+        install(window.Vue)
+    }
+    // store对应属性声明
     const {
         plugins = [],
-            strict = false,
-            devtools
+            strict = false
     } = options
-    // store对应属性声明
     this._committing = false
     this._actions = Object.create(null)
     this._actionSubscribers = []
@@ -56,6 +56,7 @@ constructor(options = {}) {
     this._modules = new ModuleCollection(options)
     this._modulesNamespaceMap = Object.create(null)
     this._subscribers = []
+    this._watcherVM = new Vue()
     this._makeLocalGettersCache = Object.create(null)
     // 绑定dispatch和commit的this指向为当前实例
     const store = this
@@ -71,13 +72,15 @@ constructor(options = {}) {
     }
     // 严格模式
     this.strict = strict
-    // 安装模块
     const state = this._modules.root.state
+    // 初始化根模块
     installModule(this, state, [], this._modules.root)
-    // 重新构建State
-    resetStoreState(this, state)
+    // 初始化store的vm实例
+    resetStoreVM(this, state)
     // 应用插件
     plugins.forEach(plugin => plugin(this))
+    // devtool处理
+    // ...
 }
 ```
 
@@ -85,7 +88,7 @@ constructor(options = {}) {
 
 ```JS
 get state() {
-    return this._state.data
+    return this._vm._data.$$state
 }
 
 set state(v) {
@@ -98,10 +101,10 @@ set state(v) {
 
 ## commit
 
-01. 参数处理
-02. 获取entry处理数组
-03. _withCommit包裹处理entry
-04. 订阅触发
+1. 参数处理
+2. 获取entry处理数组
+3. _withCommit包裹处理entry
+4. 订阅触发
 
 ```JS
 commit(_type, _payload, _options) {
@@ -136,11 +139,11 @@ commit(_type, _payload, _options) {
 
 ## dispatch
 
-01. 参数处理
-02. 获取entry处理数组
-03. actionSubscribers的before钩子触发
-04. entry按其长度使用Promise.all封装还是直接执行获取result
-05. 返回promise封装result的执行
+1. 参数处理
+2.  获取entry
+3.  actionSubscribers的before钩子触发
+4.  entry按其长度使用Promise.all封装还是直接执行获取result
+5.  返回promise封装result的执行
    1. 执行result，并用then处理后续
    2. 成功，actionSubscribers的after钩子触发，resolve(res)
    3. 失败，actionSubscribers的error钩子触发，reject(error)
@@ -156,14 +159,14 @@ dispatch(_type, _payload) {
         type,
         payload
     }
-    // 获取entry处理数组
+    // 获取entry
     const entry = this._actions[type]
     // 异常警告处理
     // ...
-    // actionSubscribers的before钩子触发
     try {
+        // actionSubscribers的before钩子触发
         this._actionSubscribers
-            .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
+            .slice()
             .filter(sub => sub.before)
             .forEach(sub => sub.before(action, this.state))
     } catch (e) {
@@ -217,10 +220,10 @@ subscribeAction(fn, options) {
     } : fn
     return genericSubscribe(subs, this._actionSubscribers, options)
 }
-// 使用vue的watch处理this.state, this.getters变动监听
+// this._watcherVM的watch处理this.state, this.getters变动监听
 watch(getter, cb, options) {
     // ...
-    return watch(() => getter(this.state, this.getters), cb, Object.assign({}, options))
+    return this._watcherVM.$watch(() => getter(this.state, this.getters), cb, options)
 }
 ```
 
@@ -230,7 +233,7 @@ watch(getter, cb, options) {
 // 替换状态
 replaceState(state) {
     this._withCommit(() => {
-        this._state.data = state
+        this._vm._data.$$state = state
     })
 }
 // ...

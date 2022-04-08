@@ -50,3 +50,59 @@ moudle.exports = class RunPlugin {
     }
 }
 ```
+
+## 事件流
+
+webpack类似一个生产线
+1. 经过一系列的处理流程后才能将源文件转化成输出结果
+2. 只有当前的处理完成后才能提交到下一个流程处理
+3. 插件类似插入生产线的某个功能，特定时机对线上资源进行处理
+
+### Tapable
+
+Webpack通过Tapable组织生产线
+1. 插件只需要监听它所关心的事件，就能加入到生产线中
+2. 保持了插件的有序性
+
+### 事件流监听和广播
+
+事件流应用了观察者模式，Compiler和Compilation都继承自Tapable，可以直接监听和广播
+
+```JS
+// 广播事件
+compiler.apply('event-name', params)
+// 监听事件
+compiler.plugin('event-name', function(params) {})
+```
+
+## 插件常用API
+
+### 读取资源，代码块，模块和依赖
+
+```JS
+// 遍历可以获取chunk（代码块）
+compilation.chunks // chunk
+
+// 遍历可以获取module（代码块的每个模块）
+chunk.forEachModule // module
+
+// 当前模块所依赖文件路径
+module.fileDependencies
+```
+
+### 监听文件变化
+
+```JS
+// 发生变化的文件列表
+compilation.compiler.watchFileSystem.watcher.mtimes
+
+// 监听文件列表
+compilation.fileDependencies
+```
+
+### 修改输出资源
+
+```JS
+// 输出资源
+compilation.assets
+```

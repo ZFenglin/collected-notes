@@ -53,9 +53,15 @@ Complier负责整个的构建流程（准备、编译、输出等）
 2. Compliation只代表一次编译，也就是说，每当文件有变动，就重新生成一个Compliation实例，即一个文件结构
 3. 一个Compilation对象包含了当前的模块资源、编译生成资源、变化的文件等
 
+## bundle，chunk，module是什么
+
 ## 运行流程
 
 ![webpack打包流程](assets/01-webpack打包流程.png)
+
+1. 对于一份同逻辑的代码，当我们手写下一个一个的文件，每个文件就是module
+2. module 源文件传到 webpack 进行打包时，webpack 会根据文件引用关系生成 chunk 文件
+3. webpack 处理好 chunk 文件后，最后会输出 bundle 文件，这个 bundle 文件包含了经过加载和编译的最终源文件
 
 ### 初始化参数
 

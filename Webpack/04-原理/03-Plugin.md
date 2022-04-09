@@ -8,8 +8,13 @@ Plugin监听Webpack运行周期中所广播的事件，利用Webpack提供的API
 
 ### loader和plugin的区别
 
-1. loader 用于webpack解析非js文件，比如css，图片等的能力
-2. plugin 用于拓展webpack的能力，比如htmlWebpackPlugin，可以在其生命周期中监听事件更改构建结果
+作用不同
+1. Loader的作⽤是让webpack拥有了加载和解析⾮JavaScript⽂件的能⼒
+2. Plugin 可以监听Webpack构建流程的事件，在合适的时机通过 Webpack 提供的 API 改变输出结果
+
+用法不同
+1. Loader在module.rules中配置，作为模块解析的规则存在
+2. 每个Plugin在plugins中创建实例并单独配置
 
 ## Plugin的基本结构
 

@@ -5,7 +5,6 @@
 4. action提交处理
 5. 监听处理
 6. 模块化处理（说模块化的时候在详细解释）
-7. 其他处理
 
 ```JS
 export class Store {
@@ -18,20 +17,8 @@ export class Store {
     commit(_type, _payload, _options) {}
     // action提交处理
     dispatch(_type, _payload) {}
-    // 监听处理
-    subscribe(fn, options) {}
-    subscribeAction(fn, options) {}
-    watch(getter, cb, options) {}
-    // 替换状态
-    replaceState(state) {}
-    // 模块化处理（说模块化的时候在详细解释）
-    registerModule(path, rawModule, options = {}) {}
-    unregisterModule(path) {}
-    hasModule(path) {}
-    // 热更新处理
-    hotUpdate(newOptions) {}
-    // 严格模式防止警报处理
-    _withCommit(fn) {}
+    // 以下的后续会提及当前不说明
+    // ...
 }
 ```
 
@@ -43,21 +30,11 @@ constructor(options = {}) {
     if (!Vue && typeof window !== 'undefined' && window.Vue) {
         install(window.Vue)
     }
-    // store对应属性声明
-    const {
-        plugins = [],
-            strict = false
-    } = options
-    this._committing = false
+    // 属性处理
+    // ...
     this._actions = Object.create(null)
-    this._actionSubscribers = []
     this._mutations = Object.create(null)
     this._wrappedGetters = Object.create(null)
-    this._modules = new ModuleCollection(options)
-    this._modulesNamespaceMap = Object.create(null)
-    this._subscribers = []
-    this._watcherVM = new Vue()
-    this._makeLocalGettersCache = Object.create(null)
     // 绑定dispatch和commit的this指向为当前实例
     const store = this
     const {
@@ -70,27 +47,67 @@ constructor(options = {}) {
     this.commit = function boundCommit(type, payload, options) {
         return commit.call(store, type, payload, options)
     }
-    // 严格模式
-    this.strict = strict
-    const state = this._modules.root.state
-    // 初始化根模块
-    installModule(this, state, [], this._modules.root)
-    // 初始化store的vm实例
+    // ...
+    // 初始化store的vm实例（处理state和getter）
     resetStoreVM(this, state)
-    // 应用插件
-    plugins.forEach(plugin => plugin(this))
-    // devtool处理
     // ...
 }
 ```
 
-## state设置获取方法
+## resetStoreVM
+
+resetStoreVM用于重置store处理的vm实例
+1. 相关属性声明和computed创建
+2. 创建新实例vm接收data和computed
+3. 严格模式启动
+4. 旧实例销毁
+
+```JS
+function resetStoreVM(store, state, hot) {
+    // 相关属性声明和computed创建
+    const oldVm = store._vm
+    store.getters = {}
+    store._makeLocalGettersCache = Object.create(null)
+    const wrappedGetters = store._wrappedGetters
+    const computed = {}
+    // getter定义到store上
+    forEachValue(wrappedGetters, (fn, key) => {
+        computed[key] = partial(fn, store)
+        Object.defineProperty(store.getters, key, {
+            get: () => store._vm[key],
+            enumerable: true
+        })
+    })
+    //  ...
+    // 创建新实例vm接收data和computed
+    store._vm = new Vue({
+        data: {
+            $$state: state
+        },
+        computed
+    })
+    // 严格模式启动（详细见严格模式）
+    if (store.strict) {
+        enableStrictMode(store)
+    }
+    // 旧实例销毁
+    if (oldVm) {
+        if (hot) {
+            store._withCommit(() => {
+                oldVm._data.$$state = null
+            })
+        }
+        Vue.nextTick(() => oldVm.$destroy())
+    }
+}
+```
+
+## state
 
 ```JS
 get state() {
     return this._vm._data.$$state
 }
-
 set state(v) {
     // 开发模式则有错误提示
     if (__DEV__) {
@@ -122,7 +139,7 @@ commit(_type, _payload, _options) {
     const entry = this._mutations[type]
     // 异常警告处理
     // ...
-    // _withCommit包裹处理entry 
+    // _withCommit包裹处理entry（与严格模式有关）
     this._withCommit(() => {
         entry.forEach(function commitIterator(handler) {
             handler(payload)
@@ -203,50 +220,5 @@ dispatch(_type, _payload) {
             reject(error)
         })
     })
-}
-```
-
-## 监听处理
-
-```JS
-// 监听订阅处理
-subscribe(fn, options) {
-    return genericSubscribe(fn, this._subscribers, options)
-}
-// action监听订阅处理
-subscribeAction(fn, options) {
-    const subs = typeof fn === 'function' ? {
-        before: fn
-    } : fn
-    return genericSubscribe(subs, this._actionSubscribers, options)
-}
-// this._watcherVM的watch处理this.state, this.getters变动监听
-watch(getter, cb, options) {
-    // ...
-    return this._watcherVM.$watch(() => getter(this.state, this.getters), cb, options)
-}
-```
-
-## 其他处理
-
-```JS
-// 替换状态
-replaceState(state) {
-    this._withCommit(() => {
-        this._vm._data.$$state = state
-    })
-}
-// ...
-// 热更新
-hotUpdate(newOptions) {
-    this._modules.update(newOptions)
-    resetStore(this, true)
-}
-// 严格模式方法执行
-_withCommit(fn) {
-    const committing = this._committing
-    this._committing = true
-    fn()
-    this._committing = committing
 }
 ```

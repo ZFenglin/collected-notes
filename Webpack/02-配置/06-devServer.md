@@ -9,16 +9,22 @@ module.exports = {
         host: '0.0.0.0',
         static: false,
         headers: {},
+        proxy: {},
+        before(app, server) {}
+        after() {}
+        // 热替换（详见优化/开发体验文档）
+        hot: true,
+        hotOnly: true
         // 配置DevServer HTTP服务器的文件根目录
         contentBase: path.join(__dirname, 'public'),
         // 是否开启Gzip压缩
         compress: true,
         // 是否开发html5 history api网页
         historyApiFallback: true,
-        // 是否开启模块热替换
-        hot: true,
         // 是否开启https模式
         https: false,
+        // 自动打开浏览器
+        open: true,
     },
 }
 ```
@@ -109,4 +115,44 @@ module.exports = {
         ],
     },
 }
+```
+
+## proxy
+
+代理接口，解决请求跨域问题
+
+```JS
+module.exports = {
+    devServer: {
+        // 添加代理解决跨域
+        proxy: {
+            "/api": {
+                target: "http://loaclhost:9092"
+            }
+        }
+    },
+};
+```
+
+## mock
+
+利用提供的钩子处理请求接口数据返回
+
+```JS
+module.exports = {
+    devServer: {
+        // 利用before钩子解决数据mock，其实是钩入了express服务
+        // before是中间件启动前
+        before(app, server) {
+            app.get('/api/mock', (req, res) => {
+                res.json({
+                    msg: 'hello'
+                })
+            });
+        }
+        // after是中间件启动后
+        after() {}
+    },
+
+};
 ```

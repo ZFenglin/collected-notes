@@ -67,7 +67,7 @@ module.exports.pitch = fuction() {}
 
 但是pitch可以中断，当pitch方法返回非undefined值时，则跳过剩余loader
 
-![pitch中断](assets/07-pitch中断.jpeg)
+![pitch中断](assets/02-pitch中断.jpeg)
 
 ## 编写Loader
 

@@ -1,5 +1,31 @@
 # HashHistory
 
+## 工具方法
+
+pushState用于处理最终浏览器路径变更，在HashHistory和HTML5History中都使用过了
+
+```JS
+export function pushState(url, replace) {
+    saveScrollPosition()
+    const history = window.history
+    try {
+        if (replace) {
+            const stateCopy = extend({}, history.state)
+            stateCopy.key = getStateKey()
+            history.replaceState(stateCopy, '', url)
+        } else {
+            history.pushState({
+                key: setStateKey(genStateKey())
+            }, '', url)
+        }
+    } catch (e) {
+        window.location[replace ? 'replace' : 'assign'](url)
+    }
+}
+```
+
+其中replaceState和pushState指挥更新路径，但是不会刷新页面
+
 ## 相关处理方法
 
 ```JS

@@ -9,7 +9,7 @@
 6. initUse设置Vue.use
 7. initMixin设置Vue.mixin
 8. initExtend设置Vue.extend
-9. initAssetRegisters处理Vue.options的components、filters和defaults
+9. initAssetRegisters处理Vue.options的components、filters和directive
 
 ```JS
 export function initGlobalAPI(Vue) {
@@ -46,7 +46,7 @@ export function initGlobalAPI(Vue) {
     initMixin(Vue)
     // initExtend设置Vue.extend
     initExtend(Vue)
-    // initAssetRegisters处理Vue.options的components、filters和defaults
+    // initAssetRegisters处理Vue.options的components、filters和directive
     initAssetRegisters(Vue)
 }
 ```
@@ -180,13 +180,13 @@ const defaultStrat = function(parentVal, childVal) {
 
 ### Vue.options属性设置
 
-上面设置了components、filters和defaults，外加_base
+上面设置了components、filters和directive，外加_base
 
 _base就是简单的Vue对象
 
-而components、filters和defaults用户自定义的全局属性，先设置号空对象
+而components、filters和directive用户自定义的全局属性，先设置号空对象
 
-### components、filters和defaults对应方法注册
+### components、filters和directive对应方法注册
 
 initAssetRegisters则是处理对应的方法注册
 

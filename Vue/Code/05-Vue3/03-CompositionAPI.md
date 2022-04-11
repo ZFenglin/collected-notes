@@ -2,28 +2,17 @@
 
 Composition API 可以让我们更好地组织代码结构
 
-简单使用
-
-```VUE
-<script setup>
-import { ref } from "vue";
-let count = ref(1)
-function add(){
-    count.value++
-}
-</script>
-```
-
 ## 设计动机
+
+![两种API比较](./assets/03-两种API比较.webp)
 
 ### Options API（vue2采用方式）
 
-1. 包含一个描述组件的选项（data，methods等）
-2. 开发复杂组件，同一功能逻辑拆分在不同地方，调试代码麻烦需要上下拖动
+包含一个描述组件的选项（data，methods等），具有以下缺陷：
+1. 开发复杂组件，同一功能逻辑拆分在不同地方，调试代码麻烦需要上下拖动
+2. Vue组件过于依赖this上下文，methods 中的this竟然指向组件实例来不指向methods所在的对象
 
 ### Composition API
-
-![两种API比较](./assets/03-两种API比较.webp)
 
 一组基于函数的API，它的使用没有位置的规范
 
@@ -153,3 +142,21 @@ watchEffect(async () => {
     data.value = await response.json()
 })
 ```
+
+## 与React Hook区别
+
+Compositon API思路借鉴React Hook
+
+但是React Hook存在一些限制
+1. 不能在循环、条件、嵌套函数中调用Hook
+2. 必须确保总是在你的React函数的顶层调用Hook
+3. useEffect、useMemo等函数必须手动确定依赖关系
+
+而两者区别主要如下：
+1. 渲染区别
+   1. 声明在setup函数内，一次组件实例化只调用一次setup
+   2. React Hook每次重渲染都需要调用Hook，使得React的GC比Vue更有压力
+2. 循环区别：Compositon API的调用不需要顾虑调用顺序，可以在循环、条件、嵌套函数中使用
+3. 依赖区别
+   1. 响应式系统自动实现了依赖收集，组件的部分的性能优化由Vue内部自己完成
+   2. React Hook需要手动传入依赖，而且必须必须保证依赖的顺序

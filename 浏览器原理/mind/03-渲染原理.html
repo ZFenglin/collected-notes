@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"渲染原理","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"渲染资源加载","c":[{"t":"heading","d":3,"p":{"lines":[4,5]},"v":"资源加载过程","c":[{"t":"list_item","d":5,"p":{"lines":[6,7],"index":1},"v":"1. 资源分类"},{"t":"list_item","d":5,"p":{"lines":[7,8],"index":2},"v":"2. 资源安全策略检查"},{"t":"list_item","d":5,"p":{"lines":[8,9],"index":3},"v":"3. 资源优先级计算"},{"t":"list_item","d":5,"p":{"lines":[9,10],"index":4},"v":"4. 按顺序利用加载器加载资源"}]},{"t":"heading","d":3,"p":{"lines":[11,12]},"v":"加载器","c":[{"t":"list_item","d":5,"p":{"lines":[13,14],"index":1},"v":"1. 特定资源加载器（ImageLoader，FontLoader...)"},{"t":"list_item","d":5,"p":{"lines":[14,15],"index":2},"v":"2. 缓存资源加载器（CachedResourceLoader）"},{"t":"list_item","d":5,"p":{"lines":[15,16],"index":3},"v":"3. 通用资源加载器（ResourceLoader) 从网络或者文件系统获取资源"}]},{"t":"heading","d":3,"p":{"lines":[19,20]},"v":"<a href=\"https://juejin.cn/post/6915204591730556935\">预加载</a>","c":[{"t":"list_item","d":5,"p":{"lines":[21,22],"index":1},"v":"1. Preload（提前加载）：提前加载用于当前页面的资源"},{"t":"list_item","d":5,"p":{"lines":[22,23],"index":2},"v":"2. Prefetch（预判加载）：用于加载未来（比如下一个页面）会用到的资源，并且空闲时处理，优先级最低"},{"t":"list_item","d":5,"p":{"lines":[23,24],"index":3},"v":"3. Preconnect（提前连接）：知道会和某个域通信，便提前连接"}]}]},{"t":"heading","d":2,"p":{"lines":[25,26]},"v":"渲染过程","c":[{"t":"heading","d":3,"p":{"lines":[31,32]},"v":"解析HTML"},{"t":"heading","d":3,"p":{"lines":[35,36]},"v":"解析CSS"},{"t":"heading","d":3,"p":{"lines":[39,40]},"v":"构建渲染树","c":[{"t":"list_item","d":5,"p":{"lines":[41,42],"index":1},"v":"1. 渲染对象：是一个包含有颜色和大小等属性的矩形，与DOM元素相对应"},{"t":"list_item","d":5,"p":{"lines":[42,43],"index":2},"v":"2. 不可见的DOM元素（display: none），该元素和其子节点不会被插入渲染树"}]},{"t":"heading","d":3,"p":{"lines":[44,45]},"v":"渲染树布局（回流或重排）"},{"t":"heading","d":3,"p":{"lines":[48,49]},"v":"渲染树绘制（重绘）"}]},{"t":"heading","d":2,"p":{"lines":[52,53]},"v":"回流和重绘","c":[{"t":"heading","d":3,"p":{"lines":[54,55]},"v":"回流","c":[{"t":"ordered_list","d":4,"p":{"lines":[56,59],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[56,57],"index":1},"v":"1. 当渲染树中元素的尺寸、结构或者属性发生变化时，浏览器会重新渲染部分或者全部文档的过程就称为回流"},{"t":"list_item","d":5,"p":{"lines":[57,58],"index":2},"v":"2. 回流开销大，应当减少使用"}]},{"t":"heading","d":4,"p":{"lines":[59,60]},"v":"触发回流方式","c":[{"t":"list_item","d":6,"p":{"lines":[61,62],"index":1},"v":"1. 首次渲染"},{"t":"list_item","d":6,"p":{"lines":[62,63],"index":2},"v":"2. 窗口尺寸变化"},{"t":"list_item","d":6,"p":{"lines":[63,64],"index":3},"v":"3. DOM元素的几何属性(width/height/padding/margin/border)发生变化"},{"t":"list_item","d":6,"p":{"lines":[64,65],"index":4},"v":"4. DOM元素移动或增删会触发回流"},{"t":"list_item","d":6,"p":{"lines":[65,66],"index":5},"v":"5. CSS伪类激活"},{"t":"list_item","d":6,"p":{"lines":[66,67],"index":6},"v":"6. 特殊属性读取（使用getComputedStyle或者读写offset/scroll/client等属性）"}]}]},{"t":"heading","d":3,"p":{"lines":[68,69]},"v":"重绘","c":[{"t":"list_item","d":5,"p":{"lines":[70,71],"index":1},"v":"1. 元素的样式发生变化，但不影响其在文档流中的位置时，浏览器就会对元素进行重绘"},{"t":"list_item","d":5,"p":{"lines":[71,72],"index":2},"v":"2. 触发重绘：DOM样式发生变化，但是页面整体布局和几何属性未变化"}]}]},{"t":"heading","d":2,"p":{"lines":[73,74]},"v":"渲染优化","c":[{"t":"heading","d":3,"p":{"lines":[75,76]},"v":"JavaScript","c":[{"t":"ordered_list","d":4,"p":{"lines":[78,81],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[78,79],"index":1},"v":"1. JS加载、解析与执行会阻塞文档的解析"},{"t":"list_item","d":5,"p":{"lines":[79,80],"index":2},"v":"2. 解析过程中请求样式信息，此时浏览器会优先解析CSSOM再执行JS，最后解析文档"}]},{"t":"heading","d":4,"p":{"lines":[81,82]},"v":"JavaScript优化方式","c":[{"t":"list_item","d":6,"p":{"lines":[83,84],"index":1},"v":"1. JS文件放在body后，最后加载"},{"t":"list_item","d":6,"p":{"lines":[84,85],"index":2},"v":"2. 使用async或defer异步引入"}]}]},{"t":"heading","d":3,"p":{"lines":[86,87]},"v":"CSS","c":[{"t":"ordered_list","d":4,"p":{"lines":[88,91],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[88,89],"index":1},"v":"1. CSSOM负责存储渲染信息，浏览器就必须保证在合成渲染树之前，CSSOM是完备的"},{"t":"list_item","d":5,"p":{"lines":[89,90],"index":2},"v":"2. CSSOM阻塞渲染时，页面会一直处于白屏阶段"}]},{"t":"heading","d":4,"p":{"lines":[91,92]},"v":"CSS优化方式","c":[{"t":"list_item","d":6,"p":{"lines":[93,94],"index":1},"v":"1. 样式放置在head中，优先加载"},{"t":"list_item","d":6,"p":{"lines":[94,95],"index":2},"v":"2. link 替代 @import 引入"},{"t":"list_item","d":6,"p":{"lines":[95,96],"index":3},"v":"3. 样式少，使用style"}]},{"t":"heading","d":4,"p":{"lines":[97,98]},"v":"link，style，@import三者渲染区别","c":[{"t":"list_item","d":6,"p":{"lines":[99,100],"index":1},"v":"1. link：派发新HTTP线程加载，不阻碍GUI渲染"},{"t":"list_item","d":6,"p":{"lines":[100,101],"index":2},"v":"2. @import：暂停GUI渲染，直到加载完文件"},{"t":"list_item","d":6,"p":{"lines":[101,102],"index":3},"v":"3. style：GUI直接渲染"}]}]},{"t":"heading","d":3,"p":{"lines":[103,104]},"v":"DOM树和CSSOM树","c":[{"t":"list_item","d":5,"p":{"lines":[105,106],"index":1},"v":"1. 减少代码层级"},{"t":"list_item","d":5,"p":{"lines":[106,107],"index":2},"v":"2. 使用HTML语义化标签"}]},{"t":"heading","d":3,"p":{"lines":[108,109]},"v":"回流和重绘","c":[{"t":"ordered_list","d":4,"p":{"lines":[112,121],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[112,113],"index":1},"v":"1. class替代style"},{"t":"list_item","d":5,"p":{"lines":[113,114],"index":2},"v":"2. visibility: hidden替代display:none"},{"t":"list_item","d":5,"p":{"lines":[114,115],"index":3},"v":"3. 元素操作前脱离文档流，在元素进行复杂动画或者批量修改元素使用","c":[{"t":"list_item","d":7,"p":{"lines":[115,116],"index":1},"v":"1. display:none"},{"t":"list_item","d":7,"p":{"lines":[116,117],"index":2},"v":"2. position为absolute或fixed"}]},{"t":"list_item","d":5,"p":{"lines":[117,118],"index":4},"v":"4. documentFragment：多次DOM修改操作时，先创建documentFragment处理然后在插入DOM中"},{"t":"list_item","d":5,"p":{"lines":[118,119],"index":5},"v":"5. 渲染队列机制：DOM的多次读操作（或写操作）放在一起，减少回流重绘次数"},{"t":"list_item","d":5,"p":{"lines":[119,120],"index":6},"v":"6. 属性备份：多次访问节点属性时，可以将节点属性备份，然后使用备份"}]},{"t":"blockquote","d":4,"p":{"lines":[121,122]},"v":"","c":[{"t":"paragraph","d":5,"p":{"lines":[121,122]},"v":"渲染队列：浏览器会将所有的回流、重绘的操作放在一个队列中，当队列到了一定的数量或者时间间隔，浏览器便会统一处理"}]}]},{"t":"heading","d":3,"p":{"lines":[123,124]},"v":"关键渲染路径（处理首屏渲染）","c":[{"t":"heading","d":4,"p":{"lines":[125,126]},"v":"关键渲染路径优化方向","c":[{"t":"list_item","d":6,"p":{"lines":[127,128],"index":1},"v":"1. 关键资源的数量：关键资源是可能阻止网页首次渲染的资源"},{"t":"list_item","d":6,"p":{"lines":[128,129],"index":2},"v":"2. 关键路径长度：某些资源只能在上一资源处理完毕之后才能开始下载，减少这种资源"},{"t":"list_item","d":6,"p":{"lines":[129,130],"index":3},"v":"3. 关键字节的数量：浏览器需要下载的关键字节越少，处理内容并让其出现在屏幕上的速度就越快，减少资源数或压缩资源"}]},{"t":"heading","d":4,"p":{"lines":[131,132]},"v":"关键渲染路径优化步骤","c":[{"t":"list_item","d":6,"p":{"lines":[134,135],"index":1},"v":"1. 最大限度减少关键资源的数量：删除它们，延迟它们的下载，将它们标记为异步等"},{"t":"list_item","d":6,"p":{"lines":[135,136],"index":2},"v":"2. 优化关键字节数以缩短下载时间（往返次数）"},{"t":"list_item","d":6,"p":{"lines":[136,137],"index":3},"v":"3. 优化其余关键资源的加载顺序：需要尽早下载所有关键资产，以缩短关键路径长度"}]}]},{"t":"heading","d":3,"p":{"lines":[138,139]},"v":"GPU加速","c":[{"t":"list_item","d":5,"p":{"lines":[140,141],"index":1},"v":"1. 动画实现过程中利用transform: translateZ(0)，欺骗浏览器开启GPU加速"},{"t":"list_item","d":5,"p":{"lines":[141,142],"index":2},"v":"2. will-change开启gpu加速，就是性能不太好"}]}]}]})</script>
+</body>
+</html>

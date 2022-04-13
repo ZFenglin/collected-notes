@@ -2,11 +2,6 @@
 
 async和await是ES2017添加，一种对Promise和generator封装的语法糖
 
-但是仍然具有区别
-
-1. async/await自带执行器，不需要手动调用next()
-2. async函数返回值是Promise对象，而Generator返回的是生成器对象
-
 ## 相互关系
 
 ### 与Promise关系
@@ -19,6 +14,11 @@ async和await是ES2017添加，一种对Promise和generator封装的语法糖
 
 1. await替代yield
 2. 自带生成器执行器
+
+#### 与generator的区别
+
+1. async/await自带执行器，不需要手动调用next()
+2. async函数返回值是Promise对象，而Generator返回的是生成器对象
 
 ## 是否支持await的遍历
 
@@ -37,15 +37,24 @@ Symbol.iterator可以获取迭代器，对迭代器调用next方法获取迭代�
 
 ### for...of
 
+#### 处理支持for...of
+
 目标具有Symbol.iterator属性，才可以被遍历
+
 1. 类数组对象则直接Array.from转成数组
 2. 给对象添加一个Symbol.iterator属性
 
 #### 与for...in差异
 
-1. 获取值：for…in 获取的是对象的键名，for…of 遍历获取的是对象的键值
-2. 遍历范围：for…in 会遍历对象的整个原型链，性能非常差不推荐使用，for…of 只遍历当前对象不会遍历原型链
-3. 数组遍历：for…in 会返回数组中所有可枚举的属性(包括原型链上可枚举的属性)，for…of 只返回数组的下标对应的属性值
+1. 获取值
+   1. for…in 获取的是对象的键名
+   2. for…of 遍历获取的是对象的键值
+2. 遍历范围
+   1. for…in 会遍历对象的整个原型链，性能非常差不推荐使用
+   2. for…of 只遍历当前对象不会遍历原型链
+3. 数组遍历
+   1. for…in 会返回数组中所有可枚举的属性(包括原型链上可枚举的属性)
+   2. for…of 只返回数组的下标对应的属性值
 
 ### 实现迭代器接口
 
@@ -70,9 +79,9 @@ function* generator()
 
 #### yield
 
-使用yield表达式，定义不同的内部状态，行完一条yield语句后函数就会自动停止执行，直到再次调用next()
-
-yield*，则可以Generator函数里面调用另一个Generator 函数
+1. 使用yield表达式，定义不同的内部状态
+2. 执行完一条yield语句后函数就会自动停止执行，直到再次调用next()
+3. yield*，则可以Generator函数里面调用另一个Generator 函数
 
 ### 生成器方法
 
@@ -101,7 +110,6 @@ function readFile(url) {
         })
     })
 }
-
 function* gen() {
     var f1 = yield readFile('./a.txt');
     console.log(f1)
@@ -109,7 +117,6 @@ function* gen() {
     console.log(f2)
 
 }
-
 function co(generator) {
     const iterator = generator();
     return new Promise(function(resolve, reject) {

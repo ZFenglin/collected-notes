@@ -8,9 +8,8 @@
 
 ### WebAPI与ES差异
 
-ES，规定语法并遵循ECMA 262 标准
-
-WebAPI，浏览器提供的操作API，遵从W3C标准，ES与其结合才能进行实际应用
+1. ES，规定语法并遵循ECMA 262 标准
+2. WebAPI，浏览器提供的操作API，遵从W3C标准，ES与其结合才能进行实际应用
 
 ### JavaScript组成
 

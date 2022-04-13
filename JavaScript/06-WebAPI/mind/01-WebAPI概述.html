@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"WebAPI概述","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"<a href=\"https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs\">WebAPI</a>","c":[{"t":"heading","d":3,"p":{"lines":[4,5]},"v":"API（Application Programming Interface）"},{"t":"heading","d":3,"p":{"lines":[8,9]},"v":"WebAPI与ES差异","c":[{"t":"list_item","d":5,"p":{"lines":[10,11],"index":1},"v":"1. ES，规定语法并遵循ECMA 262 标准"},{"t":"list_item","d":5,"p":{"lines":[11,12],"index":2},"v":"2. WebAPI，浏览器提供的操作API，遵从W3C标准，ES与其结合才能进行实际应用"}]},{"t":"heading","d":3,"p":{"lines":[13,14]},"v":"JavaScript组成","c":[{"t":"heading","d":4,"p":{"lines":[15,16]},"v":"JavaScript@web","c":[{"t":"list_item","d":6,"p":{"lines":[17,18],"index":1},"v":"1. ECMAScript"},{"t":"list_item","d":6,"p":{"lines":[18,19],"index":2},"v":"2. BOM"},{"t":"list_item","d":6,"p":{"lines":[19,20],"index":3},"v":"3. DOM"}]},{"t":"heading","d":4,"p":{"lines":[21,22]},"v":"JavaScript@node","c":[{"t":"list_item","d":6,"p":{"lines":[23,24],"index":1},"v":"1. ECMAScript"},{"t":"list_item","d":6,"p":{"lines":[24,25],"index":2},"v":"2. fs"},{"t":"list_item","d":6,"p":{"lines":[25,26],"index":3},"v":"3. net"},{"t":"list_item","d":6,"p":{"lines":[26,27],"index":4},"v":"4. etc"}]}]}]},{"t":"heading","d":2,"p":{"lines":[28,29]},"v":"WebAPI分类","c":[{"t":"ordered_list","d":3,"p":{"lines":[30,37],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[30,31],"index":1},"v":"1. BOM"},{"t":"list_item","d":4,"p":{"lines":[31,32],"index":2},"v":"2. DOM"},{"t":"list_item","d":4,"p":{"lines":[32,33],"index":3},"v":"3. AJAX"},{"t":"list_item","d":4,"p":{"lines":[33,34],"index":4},"v":"4. 事件绑定"},{"t":"list_item","d":4,"p":{"lines":[34,35],"index":5},"v":"5. 监听事件"},{"t":"list_item","d":4,"p":{"lines":[35,36],"index":6},"v":"6. 本地存储"}]},{"t":"heading","d":3,"p":{"lines":[37,38]},"v":"页面加载事件监听","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">// load\n// 页面全部资源加载完才会执行\nwindow.addEventListener('load', function() {})\n\n// DOM渲染完可执行\n// defer属性的JS标签在这之前执行\nducument.addEventListener('DOMContentLoaded', function() {})\n</code></pre>\n"}]}]}]})</script>
+</body>
+</html>

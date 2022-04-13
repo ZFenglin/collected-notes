@@ -1,8 +1,6 @@
 # [AJAX](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data#xmlhttprequest)
-
-Asynchronous JavaScript and XML，即异步的JS和XML
-
-不重新加载整个页面的情况下，与服务器交换数据并更新部分网页内容
+1. Asynchronous JavaScript and XML，即异步的JS和XML
+2. 不重新加载整个页面的情况下，与服务器交换数据并更新部分网页内容
 
 ## [XMLHttpRequest](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest)
 
@@ -49,12 +47,12 @@ function fetchUrl(url, method, params) {
 
 ### xhr.open的参数
 
-必填
+#### 必填
 
 1. method（HTTP方法）
 2. url（发送请求的URL）
 
-可选
+#### 可选
 
 1. async（是否异步执行操作，默认为true）
 2. user（可选用户名）
@@ -80,17 +78,15 @@ function fetchUrl(url, method, params) {
 4. 3（下载中）
 5. 4（下载操作已完成）
 
-#### xhr.status
+#### xhr.status（转台吗
 
 响应中的数字状态码
 
 ## [Fetch](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)
 
-一种替代XMLHttpRequest更简单的API
-
-fetch()返回一个Promise对象
-
-响应状态码的异常不会导致reject，需要在then中手动处理
+1. 一种替代XMLHttpRequest更简单的API
+2. fetch()返回一个Promise对象
+3. 响应状态码的异常不会导致reject，需要在then中手动处理
 
 ### Fetch参数
 

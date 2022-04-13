@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"BOM","c":[{"t":"heading","d":2,"p":{"lines":[4,5]},"v":"screen","c":[{"t":"list_item","d":4,"p":{"lines":[8,9],"index":1},"v":"1. screen.width"},{"t":"list_item","d":4,"p":{"lines":[9,10],"index":2},"v":"2. screen.height"},{"t":"list_item","d":4,"p":{"lines":[10,11],"index":3},"v":"3. screen.top"}]},{"t":"heading","d":2,"p":{"lines":[12,13]},"v":"location","c":[{"t":"list_item","d":4,"p":{"lines":[16,17],"index":1},"v":"1. location.href"},{"t":"list_item","d":4,"p":{"lines":[17,18],"index":2},"v":"2. location.protocol"},{"t":"list_item","d":4,"p":{"lines":[18,19],"index":3},"v":"3. location.host"},{"t":"list_item","d":4,"p":{"lines":[19,20],"index":4},"v":"4. location.pathname"},{"t":"list_item","d":4,"p":{"lines":[20,21],"index":5},"v":"5. location.search"},{"t":"list_item","d":4,"p":{"lines":[21,22],"index":6},"v":"6. location.hash"}]},{"t":"heading","d":2,"p":{"lines":[23,24]},"v":"history","c":[{"t":"list_item","d":4,"p":{"lines":[27,28],"index":1},"v":"1. history.back()"},{"t":"list_item","d":4,"p":{"lines":[28,29],"index":2},"v":"2. history.forward()"},{"t":"list_item","d":4,"p":{"lines":[29,30],"index":3},"v":"3. history.go(num)"}]},{"t":"heading","d":2,"p":{"lines":[33,34]},"v":"navigator","c":[{"t":"heading","d":3,"p":{"lines":[37,38]},"v":"navigator识别浏览器","c":[{"t":"heading","d":4,"p":{"lines":[39,40]},"v":"识别型号","c":[{"t":"list_item","d":6,"p":{"lines":[43,44],"index":1},"v":"1. chrome浏览器：Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36"},{"t":"list_item","d":6,"p":{"lines":[44,45],"index":2},"v":"2. IE11浏览器：Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; . NET4.0C; . NET4.0E; . NET CLR 2.0.50727; . NET CLR 3.0.30729; . NET CLR 3.5.30729; McAfee; rv:11.0) like Gecko"},{"t":"list_item","d":6,"p":{"lines":[45,46],"index":3},"v":"3. safari 5.1 – MAC：User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50"}]},{"t":"heading","d":4,"p":{"lines":[47,48]},"v":"移动端检测","c":[{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">// mobile 检测\nif (browser.android || browser.bb || browser.blackberry || browser.ipad || browser.iphone ||\n    browser.ipod || browser.kindle || browser.playbook || browser.silk || browser[&quot;windows phone&quot;]) {\n    browser.mobile = true;\n}\n// pc 检测\nif (browser.cros || browser.mac || browser.linux || browser.win) {\n    browser.desktop = true;\n}\n</code></pre>\n"}]}]}]}]})</script>
+</body>
+</html>

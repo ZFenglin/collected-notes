@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"<a href=\"https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data#xmlhttprequest\">AJAX</a>","c":[{"t":"ordered_list","d":2,"p":{"lines":[1,4],"start":1},"v":"","c":[{"t":"list_item","d":3,"p":{"lines":[1,2],"index":1},"v":"1. Asynchronous JavaScript and XML，即异步的JS和XML"},{"t":"list_item","d":3,"p":{"lines":[2,3],"index":2},"v":"2. 不重新加载整个页面的情况下，与服务器交换数据并更新部分网页内容"}]},{"t":"heading","d":2,"p":{"lines":[4,5]},"v":"<a href=\"https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest\">XMLHttpRequest</a>","c":[{"t":"heading","d":3,"p":{"lines":[6,7]},"v":"Promise封装XHR","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">/**\n * Promise封装AJAX\n * @param {String} url \n * @param {String} method \n * @param {any} params \n */\nfunction fetchUrl(url, method, params) {\n    if (!url || typeof url !== 'string') throw TypeError('url must be string')\n    let methods = ['get', 'put', 'post']\n    if (!methods.includes(method)) throw TypeError(`method must in ${methods.toString()}`)\n\n    return new Promise(function(resolve, reject) {\n        // 创建实例\n        let xhr = new XMLHttpRequest()\n        // 连接接口\n        xhr.open(method, url, true)\n        // 注册监听事件\n        xhr.onreadystatechange = function() {\n            if (xhr.readyState !== 4) {\n                return\n            }\n            if (xhr.status === 200) {\n                resolve(xhr.response)\n            } else {\n                reject(xhr.statusText)\n            }\n        }\n        xhr.onerror = function() {\n            console.log('onerror' + xhr.statusText)\n        }\n        xhr.responseType = &quot;json&quot;;\n        xhr.setRequestHeader(&quot;Accept&quot;, &quot;application/json&quot;);\n        // 发送数据\n        xhr.send(params)\n    })\n}\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[47,48]},"v":"xhr.open的参数","c":[{"t":"heading","d":4,"p":{"lines":[49,50]},"v":"必填","c":[{"t":"list_item","d":6,"p":{"lines":[51,52],"index":1},"v":"1. method（HTTP方法）"},{"t":"list_item","d":6,"p":{"lines":[52,53],"index":2},"v":"2. url（发送请求的URL）"}]},{"t":"heading","d":4,"p":{"lines":[54,55]},"v":"可选","c":[{"t":"list_item","d":6,"p":{"lines":[56,57],"index":1},"v":"1. async（是否异步执行操作，默认为true）"},{"t":"list_item","d":6,"p":{"lines":[57,58],"index":2},"v":"2. user（可选用户名）"},{"t":"list_item","d":6,"p":{"lines":[58,59],"index":3},"v":"3. password（可选的密码）"}]}]},{"t":"heading","d":3,"p":{"lines":[60,61]},"v":"xhr.send参数支持格式","c":[{"t":"list_item","d":5,"p":{"lines":[62,63],"index":1},"v":"1. ArrayBuffer"},{"t":"list_item","d":5,"p":{"lines":[63,64],"index":2},"v":"2. ArrayBufferView"},{"t":"list_item","d":5,"p":{"lines":[64,65],"index":3},"v":"3. Blob"},{"t":"list_item","d":5,"p":{"lines":[65,66],"index":4},"v":"4. Document"},{"t":"list_item","d":5,"p":{"lines":[66,67],"index":5},"v":"5. DOMString"},{"t":"list_item","d":5,"p":{"lines":[67,68],"index":6},"v":"6. FormData"}]},{"t":"heading","d":3,"p":{"lines":[69,70]},"v":"实例状态","c":[{"t":"heading","d":4,"p":{"lines":[71,72]},"v":"xhr.readyState","c":[{"t":"list_item","d":6,"p":{"lines":[74,75],"index":1},"v":"1. 0（代理被创建，但尚未调用open()方法）"},{"t":"list_item","d":6,"p":{"lines":[75,76],"index":2},"v":"2. 1（open()方法已经被调用）"},{"t":"list_item","d":6,"p":{"lines":[76,77],"index":3},"v":"3. 2（send()方法已经被调用，并且头部和状态已经可获得）"},{"t":"list_item","d":6,"p":{"lines":[77,78],"index":4},"v":"4. 3（下载中）"},{"t":"list_item","d":6,"p":{"lines":[78,79],"index":5},"v":"5. 4（下载操作已完成）"}]},{"t":"heading","d":4,"p":{"lines":[80,81]},"v":"xhr.status（转台吗"}]}]},{"t":"heading","d":2,"p":{"lines":[84,85]},"v":"<a href=\"https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch\">Fetch</a>","c":[{"t":"ordered_list","d":3,"p":{"lines":[86,90],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[86,87],"index":1},"v":"1. 一种替代XMLHttpRequest更简单的API"},{"t":"list_item","d":4,"p":{"lines":[87,88],"index":2},"v":"2. fetch()返回一个Promise对象"},{"t":"list_item","d":4,"p":{"lines":[88,89],"index":3},"v":"3. 响应状态码的异常不会导致reject，需要在then中手动处理"}]},{"t":"heading","d":3,"p":{"lines":[90,91]},"v":"Fetch参数","c":[{"t":"list_item","d":5,"p":{"lines":[92,93],"index":1},"v":"1. input（获取资源的 URL或者Request对象）"},{"t":"list_item","d":5,"p":{"lines":[93,94],"index":2},"v":"2. init（请求的设置，请求方式，请求数据等）"}]},{"t":"heading","d":3,"p":{"lines":[95,96]},"v":"Fetch封装类","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">/**\n * fetch封装类\n */\nclass HttpRequestUtil {\n    async get(url) {\n        const res = await fetch(url);\n        const data = await res.json();\n        return data;\n    }\n    async post(url, data) {\n        const res = await fetch(url, {\n            method: 'POST',\n            headers: {\n                'Content-Type': 'application/json'\n            },\n            body: JSON.stringify(data)\n        });\n        const result = await res.json();\n        return result;\n    }\n    async put(url, data) {\n        const res = await fetch(url, {\n            method: 'PUT',\n            headers: {\n                'Content-Type': 'application/json'\n            },\n            data: JSON.stringify(data)\n        });\n        const result = await res.json();\n        return result;\n    }\n    async delete(url, data) {\n        const res = await fetch(url, {\n            method: 'DELETE',\n            headers: {\n                'Content-Type': 'application/json'\n            },\n            data: JSON.stringify(data)\n        });\n        const result = await res.json();\n        return result;\n    }\n}\n</code></pre>\n"}]}]}]})</script>
+</body>
+</html>

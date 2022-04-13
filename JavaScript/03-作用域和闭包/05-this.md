@@ -168,3 +168,18 @@ bar.call(obj2); // 2, 不是 3 ！
 
 1. 创建箭头函数时，创建它的上下文的this就是箭头函数的this
 2. 箭头函数的this无法修改绑定（new也不可以）
+
+## 相关题目
+
+```js
+// 隐式绑定，只看方法从哪获取的
+var length = 1
+
+function foo() {
+    console.log(this.length)
+}
+var arr = [foo, 2, 3, 4]
+arr[0]() // 隐式绑定 this -> arr2 -> 4
+var fn = arr[0]
+fn() // 默认绑定 this -> window -> 1
+```

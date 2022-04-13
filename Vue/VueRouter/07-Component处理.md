@@ -11,7 +11,7 @@ VueRouter在install中注册RouterLink和RouterView两个组件在全局使用
 5. 标签增加对应属性和on事件
 6. 返回处理好的渲染函数
 
-```JS
+```js
 export default {
     name: 'RouterLink',
     props: {
@@ -75,7 +75,7 @@ export default {
 5. 缓存组件
 6. 返回处理好的渲染函数
 
-```JS
+```js
 export default {
     name: 'RouterView',
     functional: true,

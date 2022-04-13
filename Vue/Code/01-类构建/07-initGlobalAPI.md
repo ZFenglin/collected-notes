@@ -11,7 +11,7 @@
 8. initExtend设置Vue.extend
 9. initAssetRegisters处理Vue.options的components、filters和directive
 
-```JS
+```js
 export function initGlobalAPI(Vue) {
     // Vue.config
     const configDef = {}
@@ -55,7 +55,7 @@ export function initGlobalAPI(Vue) {
 
 Vue默认的基础配置，用于控制vue默认的处理方式
 
-```JS
+```js
 export default ({
     // 选项合并 (used in core/util/options)
     optionMergeStrategies: Object.create(null),
@@ -105,7 +105,7 @@ Vue.defineReactive，就是响应式处理的对应方法
 
 源码中只是简单的对象的浅层拷贝，即方便后续使用的工具方法
 
-```JS
+```js
 export function extend(to, _from) {
     for (const key in _from) {
         to[key] = _from[key]
@@ -121,7 +121,7 @@ export function extend(to, _from) {
 3. 配置合并处理（策略模式，并且优先parent，只会添加child中parent不存在的）
  
 
-```JS
+```js
  export function mergeOptions(
      parent,
      child,
@@ -168,7 +168,7 @@ export function extend(to, _from) {
 
 默认策略，优先childVal
 
-```JS
+```js
 const defaultStrat = function(parentVal, childVal) {
     return childVal === undefined ?
         parentVal :
@@ -194,7 +194,7 @@ Vue.component => Vue.options.components
 Vue.directive => Vue.options.directives
 Vue.filter => Vue.options.filters
 
-```JS
+```js
 export const ASSET_TYPES = [
     'component',
     'directive',
@@ -232,7 +232,7 @@ export function initAssetRegisters(Vue) {
 
 给Vue扩展功能，希望扩展的时候使用的vue版本一致
 
-```JS
+```js
 // 为了给Vue扩展功能，希望扩展的时候使用的vue版本一致
 plugin.install = function(Vue, optoins, a, b, c) {}
 Vue.use(plugin, options, a, b, c)
@@ -248,7 +248,7 @@ Vue维护一个_installedPlugins数组，用于管理插件
 4. 插件注册
 5. 插件添加至installedPlugins数组
 
-```JS
+```js
 export function initUse(Vue) {
     // Vue.use注册
     Vue.use = function(plugin) {
@@ -278,7 +278,7 @@ export function initUse(Vue) {
 
 对当前Vue调用了mergeOptions
 
-```JS
+```js
 export function initMixin(Vue) {
     Vue.mixin = function(mixin) {
         this.options = mergeOptions(this.options, mixin)

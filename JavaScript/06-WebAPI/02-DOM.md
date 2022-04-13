@@ -13,7 +13,7 @@ Document Object Model(DOM)，即HTML和XML文档的编程接口
 
 ### 节点获取
 
-```JS
+```js
 // id选择器
 document.getElementsByTagName('div')
 // 类选择器
@@ -29,7 +29,7 @@ div.childNodes
 
 ### 节点增删
 
-```JS
+```js
 // 创建元素
 document.createElemnt('p')
 // 创建文档片段

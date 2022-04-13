@@ -47,7 +47,7 @@ navigator.userAgent对于不同的浏览器有不同的值
 
 #### 移动端检测
 
-```JS
+```js
 // mobile 检测
 if (browser.android || browser.bb || browser.blackberry || browser.ipad || browser.iphone ||
     browser.ipod || browser.kindle || browser.playbook || browser.silk || browser["windows phone"]) {

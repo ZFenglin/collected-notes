@@ -4,7 +4,7 @@
 
 pushState用于处理最终浏览器路径变更，在HashHistory和HTML5History中都使用过了
 
-```JS
+```js
 export function pushState(url, replace) {
     saveScrollPosition()
     const history = window.history
@@ -28,7 +28,7 @@ export function pushState(url, replace) {
 
 ## 相关处理方法
 
-```JS
+```js
 // 处理当前的window.location.hre的路径，确保其是hash路径
 function ensureSlash() {
     const path = getHash()
@@ -79,7 +79,7 @@ function replaceHash(path) {
 2. 路由跳转hash模式下实现
 3. 其它方法实现
 
-```JS
+```js
 export class HashHistory extends History {
     constructor(router, base, fallback) {
         // 执行base基类实现
@@ -103,7 +103,7 @@ export class HashHistory extends History {
 
 向浏览器注册hash变动监听，变动后执行transitionTo切换组件并渲染
 
-```JS
+```js
 setupListeners() {
     // 已注册返回
     if (this.listeners.length > 0) {
@@ -141,7 +141,7 @@ setupListeners() {
 
 ### 路由跳转hash模式下实现
 
-```JS
+```js
 push(location, onComplete, onAbort) {
     const {
         current: fromRoute
@@ -180,7 +180,7 @@ go(n) {
 
 ### 其它方法实现
 
-```JS
+```js
 // 确保路径正确
 ensureURL(push) {
     const current = this.current.fullPath

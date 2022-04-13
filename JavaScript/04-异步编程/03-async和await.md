@@ -69,7 +69,7 @@ Symbol.iterator可以获取迭代器，对迭代器调用next方法获取迭代�
 
 #### 创建生成器
 
-```JS
+```js
 function* generator()
 ```
 
@@ -101,7 +101,7 @@ function* generator()
 
 ### 生成器执行器
 
-```JS
+```js
 function readFile(url) {
     return new Promise(function(resolve, reject) {
         fs.readFile(url, function(error, data) {

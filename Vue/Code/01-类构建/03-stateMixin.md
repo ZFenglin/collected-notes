@@ -3,7 +3,7 @@
 2. $set和$delete设置
 3. $watch设置
 
-```JS
+```js
 export function stateMixin(Vue) {
     // $data和$props设置
     // ...
@@ -23,7 +23,7 @@ export function stateMixin(Vue) {
 
 简单将this._data和this._props设置为get并定义到Vue.prototype上
 
-```JS
+```js
 const dataDef = {}
 dataDef.get = function() {
     return this._data
@@ -41,7 +41,7 @@ Object.defineProperty(Vue.prototype, '$props', propsDef)
 1. 如果是数组，则直接执行splice方法处理
 2. 如果是对象，先过滤不需要定义新属性的情形，否则使用defineReactive定义新值至ob.value，并通知更新
 
-```JS
+```js
 export function set(target, key, val) {
     // 如果是数组，则直接执行splice方法处理
     if (Array.isArray(target) && isValidArrayIndex(key)) {
@@ -77,7 +77,7 @@ export function set(target, key, val) {
 1. 如果是数组，则直接执行splice方法处理
 2. 如果是对象，先过滤异常和不存在情况，否则使用delete删除属性，并通知更新
 
-```JS
+```js
 export function del(target, key) {
     // 如果是数组，则直接执行splice方法处理
     if (Array.isArray(target) && isValidArrayIndex(key)) {
@@ -107,7 +107,7 @@ export function del(target, key) {
 
 创建对应Watcher，同时返回对应watcher实例的销毁方法
 
-```JS
+```js
 Vue.prototype.$watch = function(expOrFn, cb, options) {
     const vm = this
     // 如果回调为空，则直接创建默认Watcher

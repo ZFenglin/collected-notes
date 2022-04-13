@@ -2,7 +2,7 @@
 
 ## 相关处理方法
 
-```JS
+```js
 // 获取当前路径
 export function getLocation(base) {
     let path = window.location.pathname
@@ -20,7 +20,7 @@ export function getLocation(base) {
 
 处理h5下的路由跳转
 
-```JS
+```js
 export class HTML5History extends History {
     // ...
     constructor(router, base) {
@@ -41,7 +41,7 @@ export class HTML5History extends History {
 
 ### setupListeners注册变动监听
 
-```JS
+```js
   setupListeners() {
       if (this.listeners.length > 0) {
           return
@@ -70,7 +70,7 @@ export class HTML5History extends History {
 
 ### 路由跳转h5模式下实现
 
-```JS
+```js
 go(n) {
     window.history.go(n)
 }
@@ -100,7 +100,7 @@ replace(location, onComplete, onAbort) {
 
 ### 其它方法实现
 
-```JS
+```js
 // 确保路径正确
 ensureURL(push) {
     if (getLocation(this.base) !== this.current.fullPath) {

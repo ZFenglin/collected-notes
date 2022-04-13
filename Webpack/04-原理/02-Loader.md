@@ -19,7 +19,7 @@
 
 JavaScript模块导出的函数
 
-```JS
+```js
 module.exports = fuction() {}
 ```
 
@@ -51,7 +51,7 @@ enforce: "post",
 
 JavaScript模块导出的函数上增加的pitch属性
 
-```JS
+```js
 module.exports.pitch = fuction() {}
 ```
 
@@ -75,13 +75,13 @@ Loader只进行转义工作，对拿到的source进行处理后返回，提供lo
 
 配置获取
 
-```JS
+```js
 loaderUtils.getOptions(this)
 ```
 
 返回值
 
-```JS
+```js
 // 同步返回
 return value // 只能一个值
 this.callback(err, content, sourceMap, abstractSyntaxTree) // 可以多个值
@@ -92,7 +92,7 @@ var callback = this.async() //在异步回调中出发callback方法
 
 简单插件实现
 
-```JS
+```js
 const babel = require('babel-core');
 
 function loader(source, inputSourceMap, data) {

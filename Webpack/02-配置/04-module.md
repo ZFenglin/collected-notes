@@ -2,7 +2,7 @@
 
 配置模块相关
 
-```JS
+```js
 module.exports = {
     module: {
         rules: [],
@@ -15,7 +15,7 @@ module.exports = {
 
 配置lodader
 
-```JS
+```js
 module.exports = {
     module: {
         rules: [{
@@ -62,7 +62,7 @@ module.exports = {
 
 更加细粒度地配置那些模块语法被解析，可以精确到语法层面
 
-```JS
+```js
 module.exports = {
     module: {
         rules: [
@@ -88,7 +88,7 @@ module.exports = {
 
 用于忽略部分没有采用模块化的文件的递归解析和处理，提高构建性能
 
-```JS
+```js
 // 配置模块相关
 module.exports = {
     module: {

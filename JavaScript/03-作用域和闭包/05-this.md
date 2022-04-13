@@ -22,7 +22,7 @@
 2. 函数默认绑定时，this指向全局对象
 3. 严格模式下，默认模式不可用，this为undefined
 
-```JS
+```js
 function foo() {
     console.log(this.a);
 }
@@ -35,7 +35,7 @@ foo(); // 2
 1. 隐式绑定是调用位置是否有上下文对象，或者说是否被某个对象拥有或者包含
 2. 当函数引用有上下文对象时，隐式绑定规则会把函数调用中的 this 绑定到这个上下文对象
 
-```JS
+```js
 function foo() {
     console.log(this.a);
 }
@@ -48,7 +48,7 @@ obj.foo(); // 2
 
 #### 隐式丢失
 
-```JS
+```js
 // 隐式绑定只取决于是否存在有上下文对象，与函数无关
 function foo() {
     console.log(this.a);
@@ -73,7 +73,7 @@ doFoo(obj.foo); // "oops, global"
 3. 部分内置函数提供参数，支持上下文context绑定
 4. 显示绑定对象为null，或者undefined则执行默认绑定
 
-```JS
+```js
 function foo(el) {
     console.log(el, this.id);
 }
@@ -87,7 +87,7 @@ var obj = {
 
 #### 手写call，apply和bind
 
-```JS
+```js
 /**
  * @param {Object} context 
  * @param  {...any} args 
@@ -135,7 +135,7 @@ Function.prototype._bind = function(context, ...args) {
 3. 让函数的 this 指向这个对象，执行构造函数的代码（为这个新对象添加属性）
 4. 判断函数的返回值类型，如果是值类型，返回创建的对象。如果是引用类型，就返回这个引用类型的对象
 
-```JS
+```js
 function _new(fn, args) {
     if (typeof fn !== 'function') {
         throw TypeError('fn is not function')
@@ -149,7 +149,7 @@ function _new(fn, args) {
 
 ## 箭头函数
 
-```JS
+```js
 function foo() {
     return () => console.log(this.a);
 }

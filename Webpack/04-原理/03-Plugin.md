@@ -60,7 +60,7 @@ moudle.exports = class RunPlugin {
 
 事件流应用了观察者模式，Compiler和Compilation都继承自Tapable，可以直接监听和广播
 
-```JS
+```js
 // 广播事件
 compiler.apply('event-name', params)
 // 监听事件
@@ -71,7 +71,7 @@ compiler.plugin('event-name', function(params) {})
 
 ### 读取资源，代码块，模块和依赖
 
-```JS
+```js
 // 遍历可以获取chunk（代码块）
 compilation.chunks // chunk
 
@@ -84,7 +84,7 @@ module.fileDependencies
 
 ### 监听文件变化
 
-```JS
+```js
 // 发生变化的文件列表
 compilation.compiler.watchFileSystem.watcher.mtimes
 
@@ -94,7 +94,7 @@ compilation.fileDependencies
 
 ### 修改输出资源
 
-```JS
+```js
 // 输出资源
 compilation.assets
 ```

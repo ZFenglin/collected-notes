@@ -6,7 +6,7 @@
 
 ### Promise封装XHR
 
-```JS
+```js
 /**
  * Promise封装AJAX
  * @param {String} url 
@@ -95,7 +95,7 @@ function fetchUrl(url, method, params) {
 
 ### Fetch封装类
 
-```JS
+```js
 /**
  * fetch封装类
  */

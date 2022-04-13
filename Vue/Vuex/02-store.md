@@ -6,7 +6,7 @@
 5. 监听处理
 6. 模块化处理（说模块化的时候在详细解释）
 
-```JS
+```js
 export class Store {
     // constructor构建基本的store实例
     constructor(options = {}) {}
@@ -24,7 +24,7 @@ export class Store {
 
 ## constructor
 
-```JS
+```js
 constructor(options = {}) {
     // Vuex安装处理
     if (!Vue && typeof window !== 'undefined' && window.Vue) {
@@ -62,7 +62,7 @@ resetStoreVM用于重置store处理的vm实例
 3. 严格模式启动
 4. 旧实例销毁
 
-```JS
+```js
 function resetStoreVM(store, state, hot) {
     // 相关属性声明和computed创建
     const oldVm = store._vm
@@ -104,7 +104,7 @@ function resetStoreVM(store, state, hot) {
 
 ## state
 
-```JS
+```js
 get state() {
     return this._vm._data.$$state
 }
@@ -123,7 +123,7 @@ set state(v) {
 3. _withCommit包裹处理entry
 4. 订阅触发
 
-```JS
+```js
 commit(_type, _payload, _options) {
     // 参数处理
     const {
@@ -165,7 +165,7 @@ commit(_type, _payload, _options) {
    2. 成功，actionSubscribers的after钩子触发，resolve(res)
    3. 失败，actionSubscribers的error钩子触发，reject(error)
 
-```JS
+```js
 dispatch(_type, _payload) {
     // 参数处理
     const {

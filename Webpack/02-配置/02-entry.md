@@ -11,7 +11,7 @@ entry 表示入口
 
 类型可以是string，object，array
 
-```JS
+```js
 module.exports = {
     // string
     // 只有一个入口，入口只有一个文件

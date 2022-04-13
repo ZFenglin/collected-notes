@@ -18,7 +18,7 @@ Composition API 可以让我们更好地组织代码结构
 
 具有更加灵活的组件逻辑，甚至可以将组建的逻辑抽离到一个方法中导出，例如鼠标组件逻辑
 
-```JS
+```js
 // utils/mouse.js
 import {
     ref,
@@ -60,7 +60,7 @@ let {
 
 同时style中支持数据绑定
 
-```VUE
+```vue
 <script setup>
 let color = ref('red')
 function change() {
@@ -97,7 +97,7 @@ createApp用于创建组件
 
 计算属性，向computed中传入具有get和set的对象可以实现
 
-```JS
+```js
 const fullName = computed({
     get() {
         return firstName.value + ' ' + lastName.value
@@ -114,7 +114,7 @@ const fullName = computed({
 2. watch()是懒执行的，仅在侦听源变化时，才会执行回调
 3. 返回值为取消监听函数
 
-```JS
+```js
 watch(
     () => state.someObject,
     (newValue, oldValue) => {}, {
@@ -128,7 +128,7 @@ watch(
 1. watchEffect会在副作用发生期间追踪依赖，它会在同步执行过程中，自动追踪所有能访问到的响应式 property
 2. 返回值时取消监听函数
 
-```JS
+```js
 async function fetchData() {
     const response = await fetch(url.value)
     data.value = await response.json()

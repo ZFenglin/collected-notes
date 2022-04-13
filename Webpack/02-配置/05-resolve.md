@@ -2,7 +2,7 @@
 
 配置寻找模块的规则
 
-```JS
+```js
 module.exports = {
     resolve: {
         modules: [],
@@ -20,7 +20,7 @@ module.exports = {
 
 ## modules
 
-```JS
+```js
 module.exports = {
     resolve: {
         // 寻找模块的根目录，为array类型，默认以node_modules 为根目录
@@ -36,7 +36,7 @@ module.exports = {
 
 自动补充导入语句的文件后缀
 
-```JS
+```js
 module.exports = {
     resolve: {
         extensions: ['.js', '.json', '.jsx', '.css'],
@@ -56,7 +56,7 @@ module.exports = {
 
 对象模式只是简单的映射
 
-```JS
+```js
 module.exports = {
     resolve: {
         alias: {
@@ -72,7 +72,7 @@ module.exports = {
 
 alias还支持使用数组来更详细的进行配置
 
-```JS
+```js
 module.exports = {
     resolve: {
         alias: [{
@@ -91,7 +91,7 @@ module.exports = {
 
 模块的描述文件里描述入口的文件的字段名
 
-```JS
+```js
 module.exports = {
     resolve: {
         mainFields: ['browser', 'main'],
@@ -106,7 +106,7 @@ module.exports = {
 
 配置描述第三方模块的文件名称，即package.json名称
 
-```JS
+```js
 module.exports = {
     resolve: {
         descriptionFiles: ['package.json'],

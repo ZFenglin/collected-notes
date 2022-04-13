@@ -8,7 +8,7 @@
 3. 更新路由处理
 4. 注销路由
 
-```JS
+```js
 export class History {
     // 属性处理
     // ...
@@ -42,7 +42,7 @@ export class History {
 
 ## 回调注册
 
-```JS
+```js
 // 基本回调添加
 listen(cb) {
     this.cb = cb
@@ -72,7 +72,7 @@ onError(errorCb) {
 2. 记录先前的路由
 3. 执行confirmTransition处理路由跳转
 
-```JS
+```js
 transitionTo(location, onComplete, onAbort) {
     // 路由route获取
     let route
@@ -132,7 +132,7 @@ transitionTo(location, onComplete, onAbort) {
 
 真正负责路由跳转是实现的方法
 
-```JS
+```js
 confirmTransition(route, onComplete, onAbort) {
     // 相关属性设置
     const current = this.current
@@ -201,7 +201,7 @@ confirmTransition(route, onComplete, onAbort) {
 
 VueRoute使用的工具函数，将queue的不断取出并放在iterator中执行
 
-```JS
+```js
 export function runQueue(queue, fn, cb) {
     const step = index => {
         if (index >= queue.length) {
@@ -222,7 +222,7 @@ export function runQueue(queue, fn, cb) {
 
 ## 路由更新处理
 
-```JS
+```js
 updateRoute(route: Route) {
     this.current = route
     this.cb && this.cb(route)
@@ -231,7 +231,7 @@ updateRoute(route: Route) {
 
 ## 路由注销处理
 
-```JS
+```js
 teardown() {
     this.listeners.forEach(cleanupListener => {
         cleanupListener()

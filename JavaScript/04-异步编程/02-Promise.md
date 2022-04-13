@@ -54,7 +54,7 @@ resolve和reject都会触发
 
 ##### 手写Promise.all(iterable)
 
-```JS
+```js
 function promiseAll(promises) {
     return new Promise(function(resolve, reject) {
         // 类型判断
@@ -98,7 +98,7 @@ function promiseAll(promises) {
 
 ##### 手写Promise.race
 
-```JS
+```js
 function promiseRace(promises) {
     return new Promise((resolve, reject) => {
         // 类型判断
@@ -124,7 +124,7 @@ function promiseRace(promises) {
 
 Promise执行是不可以中断的，可以利用Promise.race实现伪中断
 
-```JS
+```js
 Promise.race([promise1, timeOutPromise(5000)]).then(res => {})
 ```
 
@@ -159,7 +159,7 @@ then和catch后续触发则是按照以下情况
 
 #### then与catch的注册时机
 
-```JS
+```js
 // 所有then同时注册
 // 1. 先创建Promise实例
 let p = new Promise()
@@ -169,7 +169,7 @@ p.then(() {})
 return new Promise().then(() {}).then(() {})
 ```
 
-```JS
+```js
 // 按照回调执行后注册
 // 会等待第一个then执行完后再注册第二个
 new Promise().then(() {}).then(() {})
@@ -183,7 +183,7 @@ new Promise().then(() {}).then(() {})
 4. then返回一个_Promise对象
 5. catch返回一个只注册onRejected的then的执行结果
 
-```JS
+```js
 class _Promise {
     static PENDING = '待定'
     static FULFILLED = '兑现'

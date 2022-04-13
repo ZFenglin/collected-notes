@@ -2,7 +2,7 @@
 
 如何输出结果，在webpack经过一系列处理后，如何输出最终想要的代码
 
-```JS
+```js
 module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -32,7 +32,7 @@ module.exports = {
 
 输出文件存放的目录，必须是string类型的绝对路径
 
-```JS
+```js
 module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -44,7 +44,7 @@ module.exports = {
 
 配置输出文件名称
 
-```JS
+```js
 module.exports = {
     output: {
         filename: 'bundle.js', // 完整的名称，单个文件可以设置为静态
@@ -66,7 +66,7 @@ module.exports = {
 
 没有配置入口的Chunk的输出名称，与filename类似
 
-```JS
+```js
 module.exports = {
     output: {
         chunkFilename: '[id].js',
@@ -83,7 +83,7 @@ module.exports = {
 
 但是使用需要注意，路径不一致会造成404
 
-```JS
+```js
 module.exports = {
     output: {
         publicPath: '/assets/', // 放到指定目录下
@@ -97,7 +97,7 @@ module.exports = {
 
 此时线上的HTML的地址需要改为
 
-```HTML
+```html
 <script src='https://cdn.example.com/assets/a_12345678.js'></script>
 ```
 
@@ -106,7 +106,7 @@ module.exports = {
 1. 导出库的名称，为string类型
 1. 不填它时，默认的输出格式是匿名的立即执行函数
 
-```JS
+```js
 module.exports = {
     output: {
         library: 'MyLibrary',
@@ -120,36 +120,36 @@ module.exports = {
 
 var（默认）
 
-```JS
+```js
 var LibraryName = lib_code
 ```
 
 commonjs
 
-```JS
+```js
 exports['LibraryName'] = lib_code
 ```
 
 commonjs2
 
-```JS
+```js
 module.exports = lib_code
 ```
 
 this
 
-```JS
+```js
 this['LibraryName'] = lib_code
 ```
 
 window
 
-```JS
+```js
 window['LibraryName'] = lib_code
 ```
 
 global
 
-```JS
+```js
 global['LibraryName'] = lib_code
 ```

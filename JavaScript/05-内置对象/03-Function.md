@@ -123,7 +123,7 @@ lodash中的组合函数为flow和flowRight
 2. 每个方法的结果就是下一个函数的结果
 3. 然后使用组合函数将传入函数组合
 
-```JS
+```js
 (...args) => value => args.reverse().reduce((acc, fn) => fn(acc), value)
 ```
 
@@ -135,7 +135,7 @@ lodash中的组合函数为flow和flowRight
 2. 函子：是一个特殊的容器，通过一个普通的对象来实现，该对象具有 map 方法，map方法可以运行一个函数对值进行处理(变形关系)
 3. 使用函子需要避免外部使用new
 
-```JS
+```js
 class Container {
     //使用类的静态方法，of替代了new Container的作用
     static of (value) {

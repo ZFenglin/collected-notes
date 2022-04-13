@@ -4,7 +4,7 @@
 
 一种标准通用标记语言的文档类型声明
 
-```HTML
+```html
 <!-- 必须声明在HTML⽂档的第⼀⾏ -->
 <!doctype html>
 ```
@@ -50,7 +50,7 @@
 
 用来描述 HTML 文档的编码类型
 
-```HTML
+```html
 <meta charset="UTF-8">
 ```
 
@@ -58,7 +58,7 @@
 
 页面关键词
 
-```HTML
+```html
 <meta name="keywords" content="关键词" />
 ```
 
@@ -66,7 +66,7 @@
 
 页面描述
 
-```HTML
+```html
 <meta name="description" content="页面描述内容" />
 ```
 
@@ -74,7 +74,7 @@
 
 页面重定向和刷新：
 
-```HTML
+```html
 <meta http-equiv="refresh" content="0; url=" />
 ```
 
@@ -82,7 +82,7 @@
 
 适配移动端，可以控制视口的大小和比例：
 
-```HTML
+```html
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 ```
 
@@ -97,7 +97,7 @@ content 参数有以下几种：
 
 ##### 搜索引擎索引方式
 
-```HTML
+```html
 <meta name="robots" content="index, follow" />
 ```
 
@@ -142,7 +142,7 @@ content 参数有以下几种：
 
 指定图片的地址和对应的图片质量
 
-```HTML
+```html
 <img src="image-128.png" srcset="image-256.png 2x" />
 ```
 
@@ -152,7 +152,7 @@ content 参数有以下几种：
 
 用来设置图片的尺寸临界点
 
-```HTML
+```html
 <img src="image-128.png" srcset="image-128.png 128w, image-256.png 256w, image-512.png 512w" sizes="(max-width: 360px) 340px, 128px" />
 ```
 
@@ -188,7 +188,7 @@ sizes="[media query] [length], [media query] [length] ... "
 
 选中label标签时，会自动将焦点转到和label标签相关的表单控件上
 
-```HTML
+```html
 <!-- 方法一 -->
 <label for="mobile">Number:</label>
 <input type="text" id="mobile" />

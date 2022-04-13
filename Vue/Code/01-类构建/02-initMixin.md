@@ -4,7 +4,7 @@
 3. 实例初始化处理
 4. 组件挂载
 
-```JS
+```js
 export function initMixin(Vue) {
     //  Vue.prototype._init属性添加
     Vue.prototype._init = function(options) {
@@ -49,7 +49,7 @@ export function initMixin(Vue) {
 
 寻找不是抽象组件的父组件，给父组件添加$children，并设置当前组件的$parent和$root
 
-```JS
+```js
 export function initLifecycle(vm) {
     const options = vm.$options
     let parent = options.parent
@@ -73,7 +73,7 @@ export function initLifecycle(vm) {
 
 处理组件间事件的发布订阅
 
-```JS
+```js
 export function initEvents(vm) {
     // 当前实例创建_events，作为发布订阅的收集
     vm._events = Object.create(null)
@@ -92,7 +92,7 @@ export function initEvents(vm) {
 2. _c和$createElement（内部编译使用_c，外部编译使用$createElement）
 3. $attrs和$listeners
 
-```JS
+```js
 export function initRender(vm) {
     // 相关属性初始化
     // ....
@@ -113,7 +113,7 @@ export function initRender(vm) {
 
 inject处理，隔代传输数据，不建议开发使用，因为值不清楚由谁提供
 
-```JS
+```js
 export function initInjections(vm) {
     const result = resolveInject(vm.$options.inject, vm)
     if (result) {
@@ -132,7 +132,7 @@ export function initInjections(vm) {
 
 inject的获取就是不断访问当前实例上的$parent，直到实例的provider有inject对应的key
 
-```JS
+```js
 export function resolveInject(inject, vm) {
     if (inject) {
         const result = Object.create(null)
@@ -167,7 +167,7 @@ export function resolveInject(inject, vm) {
 
 判断vue的options是否存在对应的属性，决定是否进行相关处理
 
-```JS
+```js
 export function initState(vm) {
     // 收集当前实例上的所有watcher，用于$forceUpdate使用
     vm._watchers = []
@@ -195,7 +195,7 @@ export function initState(vm) {
 
 props初始化，在当前实例的_props上设置传入值
 
-```JS
+```js
 function initProps(vm, propsOptions) {
     const propsData = vm.$options.propsData || {}
     // vm._props用于接收对应对象
@@ -226,7 +226,7 @@ function initProps(vm, propsOptions) {
 
 获取methods绑定this至vm的处理函数，将函数赋值到vm对应的key上
 
-```JS
+```js
 function initMethods(vm, methods) {
     for (const key in methods) {
         vm[key] = typeof methods[key] !== 'function' ? noop : bind(methods[key], vm)
@@ -244,7 +244,7 @@ function initMethods(vm, methods) {
 
 此处可以看出provider并不是响应式的数据
 
-```JS
+```js
 export function initProvide(vm) {
     const provide = vm.$options.provide
     if (provide) {

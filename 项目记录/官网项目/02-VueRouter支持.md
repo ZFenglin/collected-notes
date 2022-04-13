@@ -1,6 +1,6 @@
 # VueRouter支持
 
-```BASH
+```bash
 
 ## 安装
 
@@ -11,7 +11,7 @@ npm install vue-router@4
 
 配置路由记得RouteRecordRaw的类型设置
 
-```TS
+```ts
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import AppLayout from '@/layout/app-layout.vue'
 import NotFoundLayout from '@/layout/not-found-layout.vue'
@@ -52,7 +52,7 @@ export default router
 
 这是将路由拆分成多个文件，方便后续维护和开发
 
-```TS
+```ts
 import { RouteRecordRaw, RouterView } from 'vue-router'
 
 const routes: RouteRecordRaw =

@@ -4,7 +4,7 @@
 3. $off
 4. $emit
 
-```JS
+```js
 export function eventsMixin(Vue) {
     const hookRE = /^hook:/
     Vue.prototype.$on = function(event, fn) {
@@ -26,7 +26,7 @@ export function eventsMixin(Vue) {
 
 vm._events向key为event的数组push传入的fn
 
-```JS
+```js
 Vue.prototype.$on = function(event, fn) {
     const vm = this
     // 如果event是数组，则遍历每一项处理$on
@@ -49,7 +49,7 @@ Vue.prototype.$on = function(event, fn) {
 
 对传入的fn进行一次封装，在执行之前执行vm.$off移除监听
 
-```JS
+```js
 Vue.prototype.$once = function(event, fn) {
     const vm = this
     // 创建on方法
@@ -71,7 +71,7 @@ Vue.prototype.$once = function(event, fn) {
 1. 不传递参数则直接清空监听
 2. 不传fn，则event下的监听清空
 
-```JS
+```js
 Vue.prototype.$off = function(event, fn) {
     const vm = this
     // 1. 不传递参数则直接清空监听
@@ -115,7 +115,7 @@ Vue.prototype.$off = function(event, fn) {
 
 取出vm._events的key为event的cbs，遍历执行
 
-```JS
+```js
 Vue.prototype.$emit = function(event) {
     const vm = this
     let cbs = vm._events[event]

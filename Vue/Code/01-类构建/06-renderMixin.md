@@ -3,7 +3,7 @@
 2. $nextTick
 3. _render
 
-```JS
+```js
 export function renderMixin(Vue) {
     // 安装渲染函数helpers处理
     installRenderHelpers(Vue.prototype)
@@ -22,7 +22,7 @@ export function renderMixin(Vue) {
 
 将处理各种标签渲染的方法添加至Vue.prototype，供后续render方法执行时使用
 
-```JS
+```js
 export function installRenderHelpers(target: any) {
     target._o = markOnce
     target._n = toNumber
@@ -48,7 +48,7 @@ export function installRenderHelpers(target: any) {
 
 用于处理实例异步更新后执行的方法
 
-```JS
+```js
 Vue.prototype.$nextTick = function(fn: Function) {
     return nextTick(fn, this)
 }
@@ -60,7 +60,7 @@ nextTick见响应式原理的异步更新
 
 vnode相关属性设置和render函数的执行
 
-```JS
+```js
 Vue.prototype._render = function() {
     const vm = this
     const {

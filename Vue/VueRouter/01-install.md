@@ -6,7 +6,7 @@ install方法就是用于在当前的Vue的实例上增加路由插件的处理�
 
 router的index文件上声明了VueRouter类，并为其增加install等相关的静态属性
 
-```JS
+```js
 // vue-router/src/index.js
 export default class VueRouter {
     // ...
@@ -35,7 +35,7 @@ install的作用就是让Vue.use触发，并在Vue上安装Router
 6. RouterView和RouterLink组件注册
 7.  路由钩子合并策略设置（等价于created的合并策略，即借用生命周期的合并策略）
 
-```JS
+```js
 // vue-router/src/install.js
 export function install(Vue) {
     // 已安装拦截

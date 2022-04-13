@@ -11,7 +11,7 @@ watch的处理只是在当前的实例上利用$watch创建新的watcher
 initWatch：按照不同的handler，处理后调用createWatcher创建对应watcher
 createWatcher： 利用$watch创建watcher
 
-```JS
+```js
 function initWatch(vm, watch) {
     for (const key in watch) {
         const handler = watch[key]
@@ -51,7 +51,7 @@ function createWatcher(
 
 同时还会收集当前实例的所有computed产生的watcher，用于在get触发时获取对应watcher并更新
 
-```JS
+```js
 const computedWatcherOptions = {
     lazy: true
 }
@@ -91,7 +91,7 @@ createComputedGetter用于创建computed使用的get
 2. 判断是否时脏数据，从而决定是否执行evaluate更新
 3. 判断target是存在，进行depend收集处理
 
-```JS
+```js
 export function defineComputed(
     target,
     key,

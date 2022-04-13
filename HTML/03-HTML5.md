@@ -13,19 +13,19 @@
 
 ### audio
 
-```HTML
+```html
 <audio src='' controls autoplay loop='true'></audio>
 ```
 
 ### video
 
-```HTML
+```html
 <video src='' poster='imgs/aa.jpg' controls></video>
 ```
 
 ### source
 
-```HTML
+```html
 <video>
     <source src='aa.flv' type='video/flv'>
     </source>
@@ -92,7 +92,7 @@ IE、Safari 不支持
 
 拖放是一种常见的特性，即抓取对象以后拖到另一个位置
 
-```HTML
+```html
 <img draggable="true">
 ```
 
@@ -141,7 +141,7 @@ SVG属性发生变化就会重现图形，至于XML说明SVG DOM中的元素是�
 
 Geolocation（地理定位）用于定位用户的位置
 
-```JS
+```js
 navigator.geolocation.getCurrentPosition(showPosition)
 ```
 

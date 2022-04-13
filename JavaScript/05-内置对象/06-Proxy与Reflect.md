@@ -6,7 +6,7 @@
 
 ### Proxy使用
 
-```JS
+```js
 const p = new Proxy(target, handler)
 ```
 
@@ -38,7 +38,7 @@ const p = new Proxy(target, handler)
 04. 对于Vue，使用Proxy无需一层层递归为每个属性添加代理，性能更好
 05. 同时Proxy 可以完美监听到任何方式的数据改变，唯一缺陷就是浏览器的兼容性不好
 
-```JS
+```js
 let onWatch = (obj, setBind, getLogger) => {
     let handler = {
         get(target, property, receiver) {

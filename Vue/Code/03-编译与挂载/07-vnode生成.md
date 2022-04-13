@@ -6,7 +6,7 @@ render代码生成后，执行得到vnode
 
 _c是由initMixin的initRender时处理
 
-```JS
+```js
 export function initRender(vm) {
     // ...
     // vm._c和vm.$createElement设置
@@ -17,7 +17,7 @@ export function initRender(vm) {
 
 而其他的则是在renderMixin中installRenderHelpers设置
 
-```JS
+```js
 export function installRenderHelpers(target: any) {
     target._o = markOnce
     target._n = toNumber
@@ -43,7 +43,7 @@ export function installRenderHelpers(target: any) {
 
 ## createElement
 
-```JS
+```js
 export function createElement(
     context,
     tag,
@@ -137,7 +137,7 @@ export function _createElement(
 
 Vue.js 中 Virtual DOM 是借鉴了一个开源库 snabbdom，并增加了Vue的一些特殊属性
 
-```JS
+```js
 export default class VNode {
     tag: string | void;
     data: VNodeData | void;

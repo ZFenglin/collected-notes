@@ -2,7 +2,7 @@
 
 VueRouter类
 
-```JS
+```js
 export default class VueRouter {
     // 构造函数处理
     constructor(options) {}
@@ -44,7 +44,7 @@ export default class VueRouter {
 4. 模式mode判断
 5. 按照模式创建对应的history
 
-```JS
+```js
   constructor(options) {
       // 收集vue实例，初始化使用
       this.app = null
@@ -89,7 +89,7 @@ export default class VueRouter {
 
 匹配结果返回
 
-```JS
+```js
 match(raw, current, redirectedFrom) {
     return this.matcher.match(raw, current, redirectedFrom)
 }
@@ -99,7 +99,7 @@ match(raw, current, redirectedFrom) {
 
 当前路由获取
 
-```JS
+```js
 get currentRoute() {
     return this.history && this.history.current
 }
@@ -109,7 +109,7 @@ get currentRoute() {
 
 初始化处理，给vue实例注册对应的钩子
 
-```JS
+```js
   init(app) {
       // 当前实例入队
       this.apps.push(app)
@@ -160,7 +160,7 @@ get currentRoute() {
 
 用于注册对应的路由钩子
 
-```JS
+```js
 beforeEach(fn) {
     return registerHook(this.beforeHooks, fn)
 }
@@ -174,7 +174,7 @@ afterEach(fn) {
 
 执行钩子方法
 
-```JS
+```js
 function registerHook(list, fn) {
     list.push(fn)
     return () => {
@@ -186,7 +186,7 @@ function registerHook(list, fn) {
 
 ## history钩子注册
 
-```JS
+```js
 onReady(cb, errorCb) {
     this.history.onReady(cb, errorCb)
 }
@@ -199,7 +199,7 @@ onError(errorCb) {
 
 push和replace中onComplete与onAbort不存在的话则会放入Promise中并返回
 
-```JS
+```js
 push(location, onComplete, onAbort) {
     if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
         return new Promise((resolve, reject) => {
@@ -233,7 +233,7 @@ forward() {
 
 获取当前路径匹配的组件
 
-```JS
+```js
 getMatchedComponents(to) {
     // 获取to对应的route
     const route = to ?
@@ -258,7 +258,7 @@ getMatchedComponents(to) {
 
 ## resolve
 
-```JS
+```js
 resolve(to, current, append) {
     current = current || this.history.current
     const location = normalizeLocation(to, current, append, this)
@@ -278,7 +278,7 @@ resolve(to, current, append) {
 
 ## Route相关处理
 
-```JS
+```js
 getRoutes() {
     return this.matcher.getRoutes()
 }

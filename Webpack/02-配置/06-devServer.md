@@ -2,7 +2,7 @@
 
 DevServer相关的配置
 
-```JS
+```js
 module.exports = {
     devServer: {
         proxy: {},
@@ -35,7 +35,7 @@ module.exports = {
 
 代理到后端服务接口
 
-```JS
+```js
 module.exports = {
     devServer: {
         proxy: { // 代理到后端服务接口
@@ -49,7 +49,7 @@ module.exports = {
 
 配置服务监听地址
 
-```JS
+```js
 module.exports = {
     devServer: {
         host: '0.0.0.0',
@@ -59,7 +59,7 @@ module.exports = {
 
 也可以命令行使用
 
-```BASH
+```bash
 npx webpack serve --host 0.0.0.0
 ```
 
@@ -67,7 +67,7 @@ npx webpack serve --host 0.0.0.0
 
 配置项允许配置从目录提供静态文件的选项（默认是 'public' 文件夹）
 
-```JS
+```js
 module.exports = {
     devServer: {
         // 禁用
@@ -82,7 +82,7 @@ module.exports = {
 
 也可以命令行使用
 
-```BASH
+```bash
 # 启用
 npx webpack serve --static
 # 禁用
@@ -95,7 +95,7 @@ npx webpack serve --static assets --static css
 
 在HTTP响应中注入一些HTTP响应头
 
-```JS
+```js
 module.exports = {
     //...
     devServer: {
@@ -121,7 +121,7 @@ module.exports = {
 
 代理接口，解决请求跨域问题
 
-```JS
+```js
 module.exports = {
     devServer: {
         // 添加代理解决跨域
@@ -138,7 +138,7 @@ module.exports = {
 
 利用提供的钩子处理请求接口数据返回
 
-```JS
+```js
 module.exports = {
     devServer: {
         // 利用before钩子解决数据mock，其实是钩入了express服务

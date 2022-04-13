@@ -6,7 +6,7 @@
 
 例如以下一个Vue的模板
 
-```HTML
+```html
 <ul :class="bindCls" class="list" v-if="isShow">
     <li v-for="(item,index) in data" @click="clickItem(index)">{{item}}:{{index}}</li>
 </ul>
@@ -14,7 +14,7 @@
 
 而转化后的render的函数
 
-```JS
+```js
 with(this) {
     return (isShow) ?
         _c('ul', {
@@ -41,7 +41,7 @@ with(this) {
 
 generate将传入的ast对象树转化为嵌套方法
 
-```JS
+```js
 export function generate(ast, options) {
     // 获取state，存储相关状态
     const state = new CodegenState(options)
@@ -61,7 +61,7 @@ genElement用于处理渲染函数代码生成
 
 通过判断不同的ast类型，分别处理
 
-```JS
+```js
 export function genElement(el, state) {
     if (el.parent) {
         el.pre = el.pre || el.parent.pre

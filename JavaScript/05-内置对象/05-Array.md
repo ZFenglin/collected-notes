@@ -72,14 +72,14 @@
 
 利用Set可以快速去重
 
-```JS
+```js
 const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];
 Array.from(new Set(array)); // [1, 2, 3, 5, 9, 8]
 ```
 
 ### ES5
 
-```JS
+```js
 const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];
 uniqueArray(array); // [1, 2, 3, 5, 9, 8]
 function uniqueArray(array) {
@@ -101,7 +101,7 @@ function uniqueArray(array) {
 
 arr.flat可以传入设定展开深度作为参数，Infinity为全展开
 
-```JS
+```js
 function flatten(arr) {
     // Infinity为全展开
     return arr.flat(Infinity);
@@ -114,7 +114,7 @@ function flatten(arr) {
 
 #### split 和 toString
 
-```JS
+```js
 function flatten(arr) {
     return arr.toString().split(',');
 }
@@ -122,7 +122,7 @@ function flatten(arr) {
 
 #### 正则和 JSON 方法
 
-```JS
+```js
 function flatten(arr) {
     let str = JSON.stringify(arr);
     str = str.replace(/(\[|\])/g, '');
@@ -137,7 +137,7 @@ concat每次会展开一层
 
 #### 递归
 
-```JS
+```js
 function flatten(arr) {
     let result = [];
     for (let i = 0; i < arr.length; i++) {
@@ -153,7 +153,7 @@ function flatten(arr) {
 
 #### reduce
 
-```JS
+```js
 function flatten(arr) {
     return arr.reduce(function(prev, next) {
         return prev.concat(Array.isArray(next) ? flatten(next) : next)
@@ -165,7 +165,7 @@ function flatten(arr) {
 
 不断检测是否存在数组，然后使用拓展运算符不断展开
 
-```JS
+```js
 function flatten(arr) {
     while (arr.some(item => Array.isArray(item))) {
         arr = [].concat(...arr);
@@ -176,7 +176,7 @@ function flatten(arr) {
 
 ## 手写数组方法
 
-```JS
+```js
 /**
  * 手写flat
  * @param {Array} arr 

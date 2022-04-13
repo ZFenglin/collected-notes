@@ -14,7 +14,7 @@ vnode生成后，等待组件执行patch进行元素挂载
       3. 递归更新占位符
       4. 销毁旧组件
 
-```JS
+```js
 export function createPatchFunction(backend) {
     // 处理patch所需的方法和属性
     // ...
@@ -72,7 +72,7 @@ export function createPatchFunction(backend) {
 
 ## patchVnode
 
-```JS
+```js
   function patchVnode(
       oldVnode,
       vnode,
@@ -172,7 +172,7 @@ patchVnode中，当新旧节点不同，但是都具有子节点时，则会调�
    1. 新节点剩余，添加新节点
    2. 旧节点剩余，删除旧节点
 
-```JS
+```js
 function updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {
     let oldStartIdx = 0
     let newStartIdx = 0

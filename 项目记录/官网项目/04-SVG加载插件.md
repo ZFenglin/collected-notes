@@ -10,7 +10,7 @@ vite的插件只能在src外部才能使用node的fs，path等模块
 
 不配置则插件代码会报fs找不到的错误
 
-```JSON
+```json
 {
   "compilerOptions": {
     "composite": true,
@@ -29,7 +29,7 @@ vite的插件只能在src外部才能使用node的fs，path等模块
 
 /src/plugins/svg-loader.ts
 
-```TS
+```ts
 import { readFileSync, readdirSync } from 'fs'
 let idPerfix = ''
 const svgTitle = /<svg([^>+].*?)>/
@@ -98,7 +98,7 @@ export const svgLoader = (path: string, perfix = 'icon') => {
 
 ## vite配置
 
-```JS
+```js
 import {
     defineConfig
 } from 'vite'
@@ -129,7 +129,7 @@ export default defineConfig({
 
 ## 组件添加
 
-```VUE
+```vue
 <template>
   <svg
     :class="svgClass"

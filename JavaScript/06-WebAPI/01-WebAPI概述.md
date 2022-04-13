@@ -37,7 +37,7 @@
 
 ### 页面加载事件监听
 
-```JS
+```js
 // load
 // 页面全部资源加载完才会执行
 window.addEventListener('load', function() {})

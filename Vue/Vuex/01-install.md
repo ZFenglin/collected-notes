@@ -2,7 +2,7 @@
 
 Vuex在目录index中导出所有相关方法
 
-```JS
+```js
 export default {
     Store,
     install,
@@ -31,7 +31,7 @@ export {
 
 Store的constructor执行install
 
-```JS
+```js
 // vuex/src/store.js 
 export class Store {
     constructor(options = {}) {
@@ -56,7 +56,7 @@ export function install(_Vue) {
 
 负责在每个实例的beforeCreate时挂载vuex
 
-```JS
+```js
 // vuex/src/mixin.js
 export default function(Vue) {
     const version = Number(Vue.version.split('.')[0])
@@ -96,7 +96,7 @@ export default function(Vue) {
 
 在store的实例中使用install向app上注册对应的属性
 
-```JS
+```js
 export class Store {
     // ...
     install(app, injectKey) {

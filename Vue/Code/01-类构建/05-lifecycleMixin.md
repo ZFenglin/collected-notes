@@ -3,7 +3,7 @@
 2. $forceUpdate
 3. $destroy
 
-```JS
+```js
 export function lifecycleMixin(Vue) {
     Vue.prototype._update = function(vnode, hydrating) {
         // ...
@@ -25,7 +25,7 @@ vue内部使用，用于处理实例渲染更新方法
 
 prevVnode是否存在决定是执行初次渲染，还是更新渲染
 
-```JS
+```js
 Vue.prototype._update = function(vnode, hydrating) {
     const vm = this
     const prevEl = vm.$el
@@ -56,7 +56,7 @@ Vue.prototype._update = function(vnode, hydrating) {
 
 获取当前实例的_watcher，并调用其update
 
-```JS
+```js
 Vue.prototype.$forceUpdate = function() {
     const vm = this
     if (vm._watcher) {
@@ -67,7 +67,7 @@ Vue.prototype.$forceUpdate = function() {
 
 ## $destroy原理
 
-```JS
+```js
 Vue.prototype.$destroy = function() {
     const vm = this
     // 拦截重复处理

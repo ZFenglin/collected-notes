@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"构建工具","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"构建工具作用","c":[{"t":"ordered_list","d":3,"p":{"lines":[4,12],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[4,5],"index":1},"v":"1. 代码转换"},{"t":"list_item","d":4,"p":{"lines":[5,6],"index":2},"v":"2. 文件优化"},{"t":"list_item","d":4,"p":{"lines":[6,7],"index":3},"v":"3. 代码分割"},{"t":"list_item","d":4,"p":{"lines":[7,8],"index":4},"v":"4. 模块合并"},{"t":"list_item","d":4,"p":{"lines":[8,9],"index":5},"v":"5. 自动刷新"},{"t":"list_item","d":4,"p":{"lines":[9,10],"index":6},"v":"6. 代码校验"},{"t":"list_item","d":4,"p":{"lines":[10,11],"index":7},"v":"7. 自动发布"}]},{"t":"heading","d":3,"p":{"lines":[12,13]},"v":"前端为什么要进行打包和构建","c":[{"t":"heading","d":4,"p":{"lines":[14,15]},"v":"代码处理","c":[{"t":"list_item","d":6,"p":{"lines":[16,17],"index":1},"v":"1. 体积更小（Tree-Shaking、压缩，合并），加载更快"},{"t":"list_item","d":6,"p":{"lines":[17,18],"index":2},"v":"2. 编译高级语言或语法（TS,ES6+，模块化，SCSS）"},{"t":"list_item","d":6,"p":{"lines":[18,19],"index":3},"v":"3. 兼容性和错误检查（polyfill， postcss, eslint）"}]},{"t":"heading","d":4,"p":{"lines":[20,21]},"v":"前端工程化","c":[{"t":"list_item","d":6,"p":{"lines":[22,23],"index":1},"v":"1. 统一、高效的开发环境"},{"t":"list_item","d":6,"p":{"lines":[23,24],"index":2},"v":"2. 统一的构建和产出标准"},{"t":"list_item","d":6,"p":{"lines":[24,25],"index":3},"v":"3. 继承公司构建规范（提测、上线等）"}]}]}]},{"t":"heading","d":2,"p":{"lines":[26,27]},"v":"Grunt","c":[{"t":"heading","d":3,"p":{"lines":[30,31]},"v":"Grunt特点","c":[{"t":"heading","d":4,"p":{"lines":[32,33]},"v":"优点","c":[{"t":"list_item","d":6,"p":{"lines":[34,35],"index":1},"v":"1. 只执行我们定义的任务"},{"t":"list_item","d":6,"p":{"lines":[35,36],"index":2},"v":"2. 大量可复用插件封装好了常见的构建任务"}]},{"t":"heading","d":4,"p":{"lines":[37,38]},"v":"缺点","c":[{"t":"list_item","d":6,"p":{"lines":[39,40],"index":1},"v":"1. 集成度不高，配置麻烦"}]}]}]},{"t":"heading","d":2,"p":{"lines":[41,42]},"v":"Gulp","c":[{"t":"heading","d":3,"p":{"lines":[45,46]},"v":"Gulp使用","c":[{"t":"list_item","d":5,"p":{"lines":[47,48],"index":1},"v":"1. gulp.task注册一个任务"},{"t":"list_item","d":5,"p":{"lines":[48,49],"index":2},"v":"2. gulp.run执行任务"},{"t":"list_item","d":5,"p":{"lines":[49,50],"index":3},"v":"3. gulp.watch监听文件的变化"},{"t":"list_item","d":5,"p":{"lines":[50,51],"index":4},"v":"4. gulp.src读取文件"},{"t":"list_item","d":5,"p":{"lines":[51,52],"index":5},"v":"5. gulp.dest写文件"}]},{"t":"heading","d":3,"p":{"lines":[53,54]},"v":"Gulp特点","c":[{"t":"heading","d":4,"p":{"lines":[55,56]},"v":"优点","c":[{"t":"list_item","d":6,"p":{"lines":[57,58],"index":1},"v":"1. 流式写法简单直观"}]},{"t":"heading","d":4,"p":{"lines":[59,60]},"v":"缺点","c":[{"t":"list_item","d":6,"p":{"lines":[61,62],"index":1},"v":"1. 异常处理麻烦"},{"t":"list_item","d":6,"p":{"lines":[62,63],"index":2},"v":"2. 难精细控制"}]}]}]},{"t":"heading","d":2,"p":{"lines":[64,65]},"v":"Webpack","c":[{"t":"heading","d":3,"p":{"lines":[68,69]},"v":"Webpack特点","c":[{"t":"heading","d":4,"p":{"lines":[70,71]},"v":"优点","c":[{"t":"list_item","d":6,"p":{"lines":[72,73],"index":1},"v":"1. 处理模块化的项目，开箱即用"},{"t":"list_item","d":6,"p":{"lines":[73,74],"index":2},"v":"2. 通过Plugin扩展"},{"t":"list_item","d":6,"p":{"lines":[74,75],"index":3},"v":"3. 不止局限于Web开发"},{"t":"list_item","d":6,"p":{"lines":[75,76],"index":4},"v":"4. 社区庞大，资源多"}]},{"t":"heading","d":4,"p":{"lines":[77,78]},"v":"缺点","c":[{"t":"list_item","d":6,"p":{"lines":[79,80],"index":1},"v":"1. 只能模块化项目使用"},{"t":"list_item","d":6,"p":{"lines":[80,81],"index":2},"v":"2. 打包代码大，存在自己运行的代码"}]}]}]},{"t":"heading","d":2,"p":{"lines":[82,83]},"v":"Rollup","c":[{"t":"heading","d":3,"p":{"lines":[86,87]},"v":"Rollup特点","c":[{"t":"heading","d":4,"p":{"lines":[88,89]},"v":"优点","c":[{"t":"list_item","d":6,"p":{"lines":[90,91],"index":1},"v":"1. 利用tree-sharking处理ES6的代码进行简洁"},{"t":"list_item","d":6,"p":{"lines":[91,92],"index":2},"v":"2. 打包结果由于没有Webpack的模块加载，执行和缓存的代码，体积更小（推荐JS库）"}]},{"t":"heading","d":4,"p":{"lines":[93,94]},"v":"缺点","c":[{"t":"list_item","d":6,"p":{"lines":[95,96],"index":1},"v":"1. 生态不完善，功能不太完整"}]}]}]},{"t":"heading","d":2,"p":{"lines":[97,98]},"v":"Parcel（不推荐使用）","c":[{"t":"heading","d":3,"p":{"lines":[101,102]},"v":"Parcel特点","c":[{"t":"heading","d":4,"p":{"lines":[103,104]},"v":"优点","c":[{"t":"list_item","d":6,"p":{"lines":[105,106],"index":1},"v":"1. 内置常见场景的构建方案和依赖"},{"t":"list_item","d":6,"p":{"lines":[106,107],"index":2},"v":"2. 以HTML为入口，自动检测和打包依赖资源"},{"t":"list_item","d":6,"p":{"lines":[107,108],"index":3},"v":"3. 默认支持模块热替换"}]},{"t":"heading","d":4,"p":{"lines":[109,110]},"v":"缺点","c":[{"t":"list_item","d":6,"p":{"lines":[111,112],"index":1},"v":"1. 不支持SourceMap"},{"t":"list_item","d":6,"p":{"lines":[112,113],"index":2},"v":"2. 不支持剔除无效代码"}]}]}]}]})</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"简单使用","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"全局安装(不推荐)","c":[{"t":"fence","d":3,"v":"<pre class=\"language-BASH\"><code class=\"language-BASH\"># 安装webpack V4+版本时,需要额外安装webpack-cli\nnpm install webpack webpack-cli -g\n# 检查版本\nwebpack -v\n# 卸载\nnpm uninstall webpack webpack-cli -g\n</code></pre>\n"}]},{"t":"heading","d":2,"p":{"lines":[13,14]},"v":"局部安装","c":[{"t":"fence","d":3,"v":"<pre class=\"language-BASH\"><code class=\"language-BASH\"># 安装最新的稳定版本\nnpm i -D webpack\n# 安装指定版本\nnpm i -D webpack@&lt;version&gt;\n# 安装最新的体验版本 可能包含bug,不要用于生产环境\nnpm i -D webpack@beta\n# 安装webpack V4+版本时,需要额外安装webpack-cli\nnpm i -D webpack-cli\n</code></pre>\n"},{"t":"ordered_list","d":3,"p":{"lines":[26,30],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[26,27],"index":1},"v":"1. ^表示大版本不动，小版本自动更新"},{"t":"list_item","d":4,"p":{"lines":[27,28],"index":2},"v":"2. -D 开发依赖(--dev)"},{"t":"list_item","d":4,"p":{"lines":[28,29],"index":3},"v":"3. -S 生产依赖(--save)（线上环境会使用到的, 默认）"}]}]},{"t":"heading","d":2,"p":{"lines":[30,31]},"v":"检查安装","c":[{"t":"fence","d":3,"v":"<pre class=\"language-BASH\"><code class=\"language-BASH\"># 默认全局寻找\nwebpack -v \n# npx是在当前项目查找\nnpx webpack -v \n# 指定模块查找\n./node_modules/.bin/webpack -v\n</code></pre>\n"},{"t":"ordered_list","d":3,"p":{"lines":[41,44],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[41,42],"index":1},"v":"1. npx npm自带工具"},{"t":"list_item","d":4,"p":{"lines":[42,43],"index":2},"v":"2. 会软连接到./node_modules/webpack/bin/webpack.js"}]}]},{"t":"heading","d":2,"p":{"lines":[44,45]},"v":"执行构建","c":[{"t":"heading","d":3,"p":{"lines":[46,47]},"v":"执行命令","c":[{"t":"fence","d":4,"v":"<pre class=\"language-BASH\"><code class=\"language-BASH\"># npx方方式 (会提示指定模式，默认为production)\nnpx webpack\n# npm script\nnpm run test\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[55,56]},"v":"修改package.json","c":[{"t":"fence","d":4,"v":"<pre class=\"language-json\"><code class=\"language-json\"><span class=\"token property\">\"scripts\"</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token property\">\"test\"</span><span class=\"token operator\">:</span> <span class=\"token string\">\"webpack\"</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n</code></pre>\n"}]}]},{"t":"heading","d":2,"p":{"lines":[63,64]},"v":"配置文件","c":[{"t":"fence","d":3,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">const path = require(&quot;path&quot;);\nmodule.exports = {\n    // 必填, 打包构建入口，可以为数组用于多入口\n    entry: &quot;./src/index.js&quot;,\n    // 出口\n    output: {\n        filename: &quot;main.js&quot;,\n        // 构建文件资源地址，必须为绝对路径\n        // __dirname node.js的全局变量，当前文件的绝对路径\n        path: path.resolve(__dirname, &quot;./dist&quot;)\n    }\n};\n</code></pre>\n"}]}]})</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"entry","c":[{"t":"heading","d":2,"p":{"lines":[4,5]},"v":"entry特点","c":[{"t":"list_item","d":4,"p":{"lines":[6,7],"index":1},"v":"1. entry 是配置模块的入口，可抽象成输入"},{"t":"list_item","d":4,"p":{"lines":[7,8],"index":2},"v":"2. entry是必填的"}]},{"t":"heading","d":2,"p":{"lines":[9,10]},"v":"entry类型","c":[{"t":"fence","d":3,"v":"<pre class=\"language-js\"><code class=\"language-js\">module<span class=\"token punctuation\">.</span><span class=\"token property-access\">exports</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token comment\">// string</span>\n    <span class=\"token comment\">// 只有一个入口，入口只有一个文件</span>\n    <span class=\"token literal-property property\">entry</span><span class=\"token operator\">:</span> <span class=\"token string\">'./app/entry'</span><span class=\"token punctuation\">,</span>\n\n    <span class=\"token comment\">// array</span>\n    <span class=\"token comment\">// 只有一个入口，入口有两个文件</span>\n    <span class=\"token comment\">// 搭配output.library使用时，只有最后一个会被导出</span>\n    <span class=\"token literal-property property\">entry</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'./app/entry1'</span><span class=\"token punctuation\">,</span> <span class=\"token string\">'./app/entry1'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n\n    <span class=\"token comment\">// object</span>\n    <span class=\"token comment\">// 有两个入口</span>\n    <span class=\"token literal-property property\">entry</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n        <span class=\"token literal-property property\">a</span><span class=\"token operator\">:</span> <span class=\"token string\">'./app/entry-a'</span><span class=\"token punctuation\">,</span>\n        <span class=\"token literal-property property\">b</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'./app/entry-b1'</span><span class=\"token punctuation\">,</span> <span class=\"token string\">'./app/entry-b2'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n    <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n<span class=\"token punctuation\">}</span>\n</code></pre>\n"},{"t":"heading","d":3,"p":{"lines":[33,34]},"v":"entry对应的chunk名称","c":[{"t":"list_item","d":5,"p":{"lines":[35,36],"index":1},"v":"1. string和array：生成一个chunk，名称为main"},{"t":"list_item","d":5,"p":{"lines":[36,37],"index":2},"v":"2. object：可能生成多个chunk，名称为key值"}]}]}]})</script>
+</body>
+</html>

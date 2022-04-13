@@ -2,6 +2,8 @@
 
 如何输出结果，在webpack经过一系列处理后，如何输出最终想要的代码
 
+## 整体配置
+
 ```js
 module.exports = {
     output: {
@@ -28,9 +30,9 @@ module.exports = {
 }
 ```
 
-## path
+## path：输出文件存放的目录
 
-输出文件存放的目录，必须是string类型的绝对路径
+必须是string类型的绝对路径
 
 ```js
 module.exports = {
@@ -40,9 +42,7 @@ module.exports = {
 }
 ```
 
-## filename
-
-配置输出文件名称
+## filename：配置输出文件名称
 
 ```js
 module.exports = {
@@ -62,9 +62,9 @@ module.exports = {
 3. hash：chunk的唯一标识的Hash值
 4. chunkhash：Chunk内容的Hash值
 
-## chunkFilename
+## chunkFilename：没有配置入口的Chunk的输出名称
 
-没有配置入口的Chunk的输出名称，与filename类似
+与filename类似
 
 ```js
 module.exports = {
@@ -75,9 +75,7 @@ module.exports = {
 }
 ```
 
-## publicPath
-
-配置发布到线上资源的URL前缀
+## publicPath：配置发布到线上资源的URL前缀
 
 项目可能会构建一些需要异步加载的资源，这些资源的加载需要对应的URL地址
 
@@ -118,37 +116,37 @@ module.exports = {
 
 导出库的类型，为枚举类型，默认是var
 
-var（默认）
+### var（默认）
 
 ```js
 var LibraryName = lib_code
 ```
 
-commonjs
+### commonjs
 
 ```js
 exports['LibraryName'] = lib_code
 ```
 
-commonjs2
+### commonjs2
 
 ```js
 module.exports = lib_code
 ```
 
-this
+### this
 
 ```js
 this['LibraryName'] = lib_code
 ```
 
-window
+### window
 
 ```js
 window['LibraryName'] = lib_code
 ```
 
-global
+### global
 
 ```js
 global['LibraryName'] = lib_code

@@ -2,6 +2,8 @@
 
 DevServer相关的配置
 
+## 整体配置
+
 ```js
 module.exports = {
     devServer: {
@@ -29,25 +31,19 @@ module.exports = {
 }
 ```
 
-## port
+## port：服务监听端口
 
-服务监听端口，默认8080
-
-代理到后端服务接口
+默认8080
 
 ```js
 module.exports = {
     devServer: {
-        proxy: { // 代理到后端服务接口
-            '/api': 'http://localhost:3000',
-        },
+        port: 8080,
     },
 }
 ```
 
-## host
-
-配置服务监听地址
+## host：配置服务监听地址
 
 ```js
 module.exports = {
@@ -63,7 +59,7 @@ module.exports = {
 npx webpack serve --host 0.0.0.0
 ```
 
-## static
+## static：配置从目录提供静态文件的选项
 
 配置项允许配置从目录提供静态文件的选项（默认是 'public' 文件夹）
 
@@ -91,7 +87,7 @@ npx webpack serve --no-static
 npx webpack serve --static assets --static css
 ```
 
-## headers
+## headers：注入响应头
 
 在HTTP响应中注入一些HTTP响应头
 
@@ -105,21 +101,16 @@ module.exports = {
         },
         // 利用数组
         headers: [{
-                key: 'X-Custom',
-                value: 'foo',
-            },
-            {
-                key: 'Y-Custom',
-                value: 'bar',
-            },
-        ],
+            key: 'X-Custom',
+            value: 'foo',
+        }],
     },
 }
 ```
 
-## proxy
+## proxy：代理接口
 
-代理接口，解决请求跨域问题
+解决请求跨域问题
 
 ```js
 module.exports = {
@@ -134,7 +125,7 @@ module.exports = {
 };
 ```
 
-## mock
+## mock：before和after钩子实现数据模拟
 
 利用提供的钩子处理请求接口数据返回
 
@@ -153,6 +144,5 @@ module.exports = {
         // after是中间件启动后
         after() {}
     },
-
 };
 ```

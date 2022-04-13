@@ -70,7 +70,7 @@
 
 ### ES6
 
-#### Set
+利用Set可以快速去重
 
 ```JS
 const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];
@@ -79,13 +79,9 @@ Array.from(new Set(array)); // [1, 2, 3, 5, 9, 8]
 
 ### ES5
 
-#### object
-
 ```JS
 const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];
-
 uniqueArray(array); // [1, 2, 3, 5, 9, 8]
-
 function uniqueArray(array) {
     let map = {};
     let res = [];
@@ -107,6 +103,7 @@ arr.flat可以传入设定展开深度作为参数，Infinity为全展开
 
 ```JS
 function flatten(arr) {
+    // Infinity为全展开
     return arr.flat(Infinity);
 }
 ```
@@ -134,7 +131,7 @@ function flatten(arr) {
 }
 ```
 
-### 递归实现
+### concat递归实现
 
 concat每次会展开一层
 
@@ -192,7 +189,6 @@ Array.prototype._flat = function(depth = 1) {
         return pre.concat(Array.isArray(cur) ? Array.prototype._flat.call(cur, depth - 1) : cur)
     }, [])
 }
-
 /**
  * 手写push 
  */
@@ -202,7 +198,6 @@ Array.prototype._push = function() {
     }
     return this.length;
 }
-
 /**
  * 手写map
  * @param {Function} fn 
@@ -217,7 +212,6 @@ Array.prototype._map = function(fn) {
     }
     return res
 }
-
 /**
  * 手写filter
  * @param {Function} fn 

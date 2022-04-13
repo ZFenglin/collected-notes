@@ -10,9 +10,7 @@
 const p = new Proxy(target, handler)
 ```
 
-#### target
-
-要使用Proxy包装的目标对象
+#### target：要使用Proxy包装的目标对象
 
 #### handler
 
@@ -37,8 +35,8 @@ const p = new Proxy(target, handler)
 01. 能监视更多对象操作
 02. 更好的对数组进行监视
 03. 是以非侵入的方式对对象进行监视
-
-对于Vue，使用Proxy无需一层层递归为每个属性添加代理，性能更好，同时Proxy 可以完美监听到任何方式的数据改变，唯一缺陷就是浏览器的兼容性不好
+04. 对于Vue，使用Proxy无需一层层递归为每个属性添加代理，性能更好
+05. 同时Proxy 可以完美监听到任何方式的数据改变，唯一缺陷就是浏览器的兼容性不好
 
 ```JS
 let onWatch = (obj, setBind, getLogger) => {
@@ -54,18 +52,6 @@ let onWatch = (obj, setBind, getLogger) => {
     }
     return new Proxy(obj, handler)
 }
-let obj = {
-    a: 1
-}
-let p = onWatch(
-    obj,
-    (v, property) => {
-        console.log(`监听到属性${property}改变为${v}`)
-    },
-    (target, property) => {
-        console.log(`'${property}' = ${target[property]}`)
-    }
-)
 ```
 
 ## Reflect

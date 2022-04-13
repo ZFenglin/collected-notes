@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"Array","c":[{"t":"heading","d":2,"p":{"lines":[4,5]},"v":"数组方法","c":[{"t":"heading","d":3,"p":{"lines":[6,7]},"v":"纯函数","c":[{"t":"ordered_list","d":4,"p":{"lines":[8,13],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[8,9],"index":1},"v":"1. map"},{"t":"list_item","d":5,"p":{"lines":[9,10],"index":2},"v":"2. filter"},{"t":"list_item","d":5,"p":{"lines":[10,11],"index":3},"v":"3. concat（数组浅拷贝）"},{"t":"list_item","d":5,"p":{"lines":[11,12],"index":4},"v":"4. slice"}]},{"t":"heading","d":4,"p":{"lines":[13,14]},"v":"slice","c":[{"t":"list_item","d":6,"p":{"lines":[18,19],"index":1},"v":"1. start"},{"t":"list_item","d":6,"p":{"lines":[19,20],"index":2},"v":"2. end"},{"t":"list_item","d":6,"p":{"lines":[20,21],"index":3},"v":"3. 参数值为负数则表示从右边开始"}]}]},{"t":"heading","d":3,"p":{"lines":[22,23]},"v":"非纯函数","c":[{"t":"heading","d":4,"p":{"lines":[24,25]},"v":"修改原数组","c":[{"t":"ordered_list","d":5,"p":{"lines":[26,34],"start":1},"v":"","c":[{"t":"list_item","d":6,"p":{"lines":[26,27],"index":1},"v":"1. pop"},{"t":"list_item","d":6,"p":{"lines":[27,28],"index":2},"v":"2. push"},{"t":"list_item","d":6,"p":{"lines":[28,29],"index":3},"v":"3. shift"},{"t":"list_item","d":6,"p":{"lines":[29,30],"index":4},"v":"4. unshift"},{"t":"list_item","d":6,"p":{"lines":[30,31],"index":5},"v":"5. sort"},{"t":"list_item","d":6,"p":{"lines":[31,32],"index":6},"v":"6. splice"},{"t":"list_item","d":6,"p":{"lines":[32,33],"index":7},"v":"7. flat"}]},{"t":"heading","d":5,"p":{"lines":[34,35]},"v":"splice","c":[{"t":"list_item","d":7,"p":{"lines":[39,40],"index":1},"v":"1. start"},{"t":"list_item","d":7,"p":{"lines":[40,41],"index":2},"v":"2. count"},{"t":"list_item","d":7,"p":{"lines":[41,42],"index":3},"v":"3. 之后是添加进数组的数值"}]}]},{"t":"heading","d":4,"p":{"lines":[45,46]},"v":"返回结果不正确","c":[{"t":"list_item","d":6,"p":{"lines":[47,48],"index":1},"v":"1. forEach"},{"t":"list_item","d":6,"p":{"lines":[48,49],"index":2},"v":"2. some"},{"t":"list_item","d":6,"p":{"lines":[49,50],"index":3},"v":"3. every"},{"t":"list_item","d":6,"p":{"lines":[50,51],"index":4},"v":"4. reduce"}]}]}]},{"t":"heading","d":2,"p":{"lines":[52,53]},"v":"类数组对象","c":[{"t":"heading","d":3,"p":{"lines":[56,57]},"v":"常见类数组对象","c":[{"t":"list_item","d":5,"p":{"lines":[58,59],"index":1},"v":"1. arguments"},{"t":"list_item","d":5,"p":{"lines":[59,60],"index":2},"v":"2. DOM方法返回值"}]},{"t":"heading","d":3,"p":{"lines":[61,62]},"v":"转化方式","c":[{"t":"list_item","d":5,"p":{"lines":[63,64],"index":1},"v":"1. Array.from(arrayLike);"},{"t":"list_item","d":5,"p":{"lines":[64,65],"index":2},"v":"2. Array.prototype.slice.call(arrayLike);"},{"t":"list_item","d":5,"p":{"lines":[65,66],"index":3},"v":"3. Array.prototype.concat.apply([], arrayLike);"},{"t":"list_item","d":5,"p":{"lines":[66,67],"index":4},"v":"4. Array.prototype.splice.call(arrayLike, 0);"}]}]},{"t":"heading","d":2,"p":{"lines":[68,69]},"v":"数组去重","c":[{"t":"heading","d":3,"p":{"lines":[70,71]},"v":"ES6","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];\nArray.from(new Set(array)); // [1, 2, 3, 5, 9, 8]\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[79,80]},"v":"ES5","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];\nuniqueArray(array); // [1, 2, 3, 5, 9, 8]\nfunction uniqueArray(array) {\n    let map = {};\n    let res = [];\n    for (var i = 0; i &lt; array.length; i++) {\n        if (!map.hasOwnProperty([array[i]])) {\n            map[array[i]] = 1;\n            res.push(array[i]);\n        }\n    }\n    return res;\n}\n</code></pre>\n"}]}]},{"t":"heading","d":2,"p":{"lines":[97,98]},"v":"数组扁平化","c":[{"t":"heading","d":3,"p":{"lines":[99,100]},"v":"flat","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function flatten(arr) {\n    // Infinity为全展开\n    return arr.flat(Infinity);\n}\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[110,111]},"v":"字符串","c":[{"t":"heading","d":4,"p":{"lines":[114,115]},"v":"split 和 toString","c":[{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function flatten(arr) {\n    return arr.toString().split(',');\n}\n</code></pre>\n"}]},{"t":"heading","d":4,"p":{"lines":[122,123]},"v":"正则和 JSON 方法","c":[{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function flatten(arr) {\n    let str = JSON.stringify(arr);\n    str = str.replace(/(\\[|\\])/g, '');\n    str = '[' + str + ']';\n    return JSON.parse(str);\n}\n</code></pre>\n"}]}]},{"t":"heading","d":3,"p":{"lines":[133,134]},"v":"concat递归实现","c":[{"t":"heading","d":4,"p":{"lines":[137,138]},"v":"递归","c":[{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function flatten(arr) {\n    let result = [];\n    for (let i = 0; i &lt; arr.length; i++) {\n        if (Array.isArray(arr[i])) {\n            result = result.concat(flatten(arr[i]));\n        } else {\n            result.push(arr[i]);\n        }\n    }\n    return result;\n}\n</code></pre>\n"}]},{"t":"heading","d":4,"p":{"lines":[153,154]},"v":"reduce","c":[{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function flatten(arr) {\n    return arr.reduce(function(prev, next) {\n        return prev.concat(Array.isArray(next) ? flatten(next) : next)\n    }, [])\n}\n</code></pre>\n"}]}]},{"t":"heading","d":3,"p":{"lines":[163,164]},"v":"扩展运算符","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function flatten(arr) {\n    while (arr.some(item =&gt; Array.isArray(item))) {\n        arr = [].concat(...arr);\n    }\n    return arr;\n}\n</code></pre>\n"}]}]},{"t":"heading","d":2,"p":{"lines":[176,177]},"v":"手写数组方法","c":[{"t":"fence","d":3,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">/**\n * 手写flat\n * @param {Array} arr \n * @param {Number} depth \n * @returns \n */\nArray.prototype._flat = function(depth = 1) {\n    if (!Array.isArray(this) || depth &lt;= 0) return this\n    return this.reduce(function(pre, cur) {\n        return pre.concat(Array.isArray(cur) ? Array.prototype._flat.call(cur, depth - 1) : cur)\n    }, [])\n}\n/**\n * 手写push \n */\nArray.prototype._push = function() {\n    for (let i = 0; i &lt; arguments.length; i++) {\n        this[this.length] = arguments[i];\n    }\n    return this.length;\n}\n/**\n * 手写map\n * @param {Function} fn \n */\nArray.prototype._map = function(fn) {\n    if (typeof fn !== 'function') {\n        throw TypeError('fn must be function')\n    }\n    let res = []\n    for (let index = 0; index &lt; this.length; index++) {\n        res.push(fn.call(this, this[index], index))\n    }\n    return res\n}\n/**\n * 手写filter\n * @param {Function} fn \n */\nArray.prototype._filter = function(fn) {\n    if (typeof fn !== &quot;function&quot;) {\n        throw Error('参数必须是一个函数');\n    }\n    const res = [];\n    for (let i = 0, len = this.length; i &lt; len; i++) {\n        fn(this[i]) &amp;&amp; res.push(this[i]);\n    }\n    return res;\n}\n</code></pre>\n"}]}]})</script>
+</body>
+</html>

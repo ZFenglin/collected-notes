@@ -17,12 +17,24 @@
 
 ### Map与Object区别
 
-1. 意外的键：Map默认情况不包含任何键，只有显式插入的键，Object有原型可能与插入的键冲突
-2. 键的类型：Map的键可以为任意值，Object的键必须为String或Symbol（传入其他格式则是会调用它自身的toString方法）
-3. 键的顺序：Map的键按照插入顺序，Object的键是无序的
-4. Size：Map的键值对数量可以通过size获取，Object只能手动计算
-5. 迭代：Map是iterable的，存在Symbol(Symbol.iterator)迭代器，Object的迭代需要获取它的键再进行迭代（或者自己设定Symbol.iterator）
-6. 性能：Map的频繁删减有优化，Objcet对频繁删减未优化，但是Object的查询更快些
+1. 意外的键
+   1. Map默认情况不包含任何键，只有显式插入的键
+   2. Object有原型可能与插入的键冲突
+2. 键的类型
+   1. Map的键可以为任意值
+   2. Object的键必须为String或Symbol（传入其他格式则是会调用它自身的toString方法）
+3. 键的顺序
+   1. Map的键按照插入顺序
+   2. Object的键是无序的
+4. Size
+   1. Map的键值对数量可以通过size获取
+   2. Object只能手动计算
+5. 迭代
+   1. Map是iterable的，存在Symbol(Symbol.iterator)迭代器
+   2. Object的迭代需要获取它的键再进行迭代（或者自己设定Symbol.iterator）
+6. 性能
+   1. Map的频繁删减有优化
+   2. Objcet对频繁删减未优化，但是Object的查询更快些
 
 ## [Set](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set)
 
@@ -31,11 +43,10 @@
 
 set操作方法其实差不多，但是要注意set的添加是add，并且返回Set对象，说明可以链式调用
 
-## WeakMap/WeakSet（不介绍）
+## WeakMap/WeakSet（仅说明WeakMap）
 
-WeakMap 对象也是一组键值对的集合，其中的键是弱引用的
-
-其键必须是对象，原始数据类型不能作为key值，而值可以是任意的
+1. WeakMap 对象也是一组键值对的集合，其中的键是弱引用的
+2. 其键必须是对象，原始数据类型不能作为key值，而值可以是任意的
 
 ### 弱引用
 

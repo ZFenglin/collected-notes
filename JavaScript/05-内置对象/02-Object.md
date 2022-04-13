@@ -59,11 +59,13 @@ obj['key']
 
 #### Object.assgin(target, source, ...)
 
-参数
+#### 参数
+
 1. target目标对象（作为返回的对象）
 2. source拷贝对象
 
-特点
+#### 特点
+
 1. 存在同名属性，则后面的覆盖前面的
 2. 第一个参数不能为null和undefined，因为无法转化为对象
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"Map和Set","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"<a href=\"https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map\">Map</a>","c":[{"t":"ordered_list","d":3,"p":{"lines":[4,6],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[4,5],"index":1},"v":"1. 对象保存键值对"},{"t":"list_item","d":4,"p":{"lines":[5,6],"index":2},"v":"2. 键可以为任意值"}]},{"t":"heading","d":3,"p":{"lines":[8,9]},"v":"Map操作方法","c":[{"t":"list_item","d":5,"p":{"lines":[10,11],"index":1},"v":"1. size： map.size 返回Map结构的成员总数"},{"t":"list_item","d":5,"p":{"lines":[11,12],"index":2},"v":"2. set(key, value)：设置键名key对应的键值value，然后返回整个Map结构，如果key已经有值，则键值会被更新，否则就新生成该键（因为返回的是当前Map对象，所以可以链式调用）"},{"t":"list_item","d":5,"p":{"lines":[12,13],"index":3},"v":"3. get(key)：该方法读取key对应的键值，如果找不到key，返回undefined"},{"t":"list_item","d":5,"p":{"lines":[13,14],"index":4},"v":"4. has(key)：该方法返回一个布尔值，表示某个键是否在当前Map对象中"},{"t":"list_item","d":5,"p":{"lines":[14,15],"index":5},"v":"5. delete(key)：该方法删除某个键，返回true，如果删除失败，返回false"},{"t":"list_item","d":5,"p":{"lines":[15,16],"index":6},"v":"6. clear()：map.clear()清除所有成员，没有返回值"}]},{"t":"heading","d":3,"p":{"lines":[17,18]},"v":"Map与Object区别","c":[{"t":"list_item","d":5,"p":{"lines":[19,20],"index":1},"v":"1. 意外的键","c":[{"t":"list_item","d":7,"p":{"lines":[20,21],"index":1},"v":"1. Map默认情况不包含任何键，只有显式插入的键"},{"t":"list_item","d":7,"p":{"lines":[21,22],"index":2},"v":"2. Object有原型可能与插入的键冲突"}]},{"t":"list_item","d":5,"p":{"lines":[22,23],"index":2},"v":"2. 键的类型","c":[{"t":"list_item","d":7,"p":{"lines":[23,24],"index":1},"v":"1. Map的键可以为任意值"},{"t":"list_item","d":7,"p":{"lines":[24,25],"index":2},"v":"2. Object的键必须为String或Symbol（传入其他格式则是会调用它自身的toString方法）"}]},{"t":"list_item","d":5,"p":{"lines":[25,26],"index":3},"v":"3. 键的顺序","c":[{"t":"list_item","d":7,"p":{"lines":[26,27],"index":1},"v":"1. Map的键按照插入顺序"},{"t":"list_item","d":7,"p":{"lines":[27,28],"index":2},"v":"2. Object的键是无序的"}]},{"t":"list_item","d":5,"p":{"lines":[28,29],"index":4},"v":"4. Size","c":[{"t":"list_item","d":7,"p":{"lines":[29,30],"index":1},"v":"1. Map的键值对数量可以通过size获取"},{"t":"list_item","d":7,"p":{"lines":[30,31],"index":2},"v":"2. Object只能手动计算"}]},{"t":"list_item","d":5,"p":{"lines":[31,32],"index":5},"v":"5. 迭代","c":[{"t":"list_item","d":7,"p":{"lines":[32,33],"index":1},"v":"1. Map是iterable的，存在Symbol(Symbol.iterator)迭代器"},{"t":"list_item","d":7,"p":{"lines":[33,34],"index":2},"v":"2. Object的迭代需要获取它的键再进行迭代（或者自己设定Symbol.iterator）"}]},{"t":"list_item","d":5,"p":{"lines":[34,35],"index":6},"v":"6. 性能","c":[{"t":"list_item","d":7,"p":{"lines":[35,36],"index":1},"v":"1. Map的频繁删减有优化"},{"t":"list_item","d":7,"p":{"lines":[36,37],"index":2},"v":"2. Objcet对频繁删减未优化，但是Object的查询更快些"}]}]}]},{"t":"heading","d":2,"p":{"lines":[38,39]},"v":"<a href=\"https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set\">Set</a>","c":[{"t":"list_item","d":4,"p":{"lines":[40,41],"index":1},"v":"1. 对象是值的集合"},{"t":"list_item","d":4,"p":{"lines":[41,42],"index":2},"v":"2. 元素是唯一的"}]},{"t":"heading","d":2,"p":{"lines":[45,46]},"v":"WeakMap/WeakSet（仅说明WeakMap）","c":[{"t":"ordered_list","d":3,"p":{"lines":[47,50],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[47,48],"index":1},"v":"1. WeakMap 对象也是一组键值对的集合，其中的键是弱引用的"},{"t":"list_item","d":4,"p":{"lines":[48,49],"index":2},"v":"2. 其键必须是对象，原始数据类型不能作为key值，而值可以是任意的"}]},{"t":"heading","d":3,"p":{"lines":[50,51]},"v":"弱引用","c":[{"t":"list_item","d":5,"p":{"lines":[54,55],"index":1},"v":"1. 只要所引用的对象的其他引用都被清除，垃圾回收机制就会释放该对象所占用的内存"},{"t":"list_item","d":5,"p":{"lines":[55,56],"index":2},"v":"2. 一旦不再需要，WeakMap 里面的键名对象和所对应的键值对会自动消失，不用手动删除引用"}]},{"t":"heading","d":3,"p":{"lines":[57,58]},"v":"存在方法","c":[{"t":"list_item","d":5,"p":{"lines":[59,60],"index":1},"v":"1. set(key, value)：设置键名key对应的键值value，然后返回整个Map结构，如果key已经有值，则键值会被更新，否则就新生成该键（因为返回的是当前Map对象，所以可以链式调用）"},{"t":"list_item","d":5,"p":{"lines":[60,61],"index":2},"v":"2. get(key)：该方法读取key对应的键值，如果找不到key，返回undefined"},{"t":"list_item","d":5,"p":{"lines":[61,62],"index":3},"v":"3. has(key)：该方法返回一个布尔值，表示某个键是否在当前Map对象中"},{"t":"list_item","d":5,"p":{"lines":[62,63],"index":4},"v":"4. delete(key)：该方法删除某个键，返回true，如果删除失败，返回false"}]}]}]})</script>
+</body>
+</html>

@@ -9,10 +9,6 @@
 1. 将源文件经过转化输出新结果
 2. 一个文件同时还可以经过多个loader一起处理
 
-### Loader顺序
-
-由后往前依次处理
-
 ## Loader分类
 
 ### Normal Loader
@@ -20,66 +16,68 @@
 JavaScript模块导出的函数
 
 ```js
-module.exports = fuction() {}
+module.exports = fuction(source, inputSourceMap, data) {}
 ```
 
-#### Normal Loader分类
+#### 三个参数
+
+1. source：源文件内容
+2. inputSourceMap：使用的SourceMap数据
+3. data：数据，可以为任何内容
+
+#### 分类
 
 1. pre 前置
 2. post 后置
 3. normal 普通
 4. inline 行内
 
-可以通过rule对象的enforce属性指定前置和后置
-
+```js
+// 通过rule对象的enforce属性指定前置和后置
+use: [{
+    loader: 'css-loader',
+    options: {
+        enforce: "pre", //前置
+        enforce: "post", //后置
+    }
+}]
 ```
-enforce: "pre",
-enforce: "post",
-```
 
-#### Normal Loader三个参数
-
-1. content：源文件内容
-2. map：使用的SourceMap数据
-3. meta：数据，可以为任何内容
-
-#### Normal Loader顺序
-
-从右往左
+#### 顺序：从右往左
 
 ### Pitching Loader
 
 JavaScript模块导出的函数上增加的pitch属性
 
 ```js
-module.exports.pitch = fuction() {}
+module.exports.pitch = fuction(data, remainingRequest, precedingRequest) {}
 ```
 
-#### Pitching Loader三个参数
+#### 三个参数
 
 1. data：用于数据传递，之后的normal中可以通过this.data获取
 2. remainingRequest：剩余请求路径
 3. precedingRequest：前置请求路径
 
-#### Pitching Loader顺序
+#### 顺序
 
-默认为从左往右
-
-但是pitch可以中断，当pitch方法返回非undefined值时，则跳过剩余loader
+1. 默认为从左往右
+2. 但是pitch可以中断，当pitch方法返回非undefined值时，则跳过剩余loader，掉头往回走
 
 ![pitch中断](assets/02-pitch中断.jpeg)
 
 ## 编写Loader
 
-Loader只进行转义工作，对拿到的source进行处理后返回，提供loaderUtils方便开发
+1. Loader只进行转义工作，对拿到的source进行处理后返回
+2. Webapck提供loaderUtils方便开发
 
-配置获取
+### 配置获取
 
 ```js
 loaderUtils.getOptions(this)
 ```
 
-返回值
+### 返回值
 
 ```js
 // 同步返回
@@ -90,7 +88,7 @@ this.callback(err, content, sourceMap, abstractSyntaxTree) // 可以多个值
 var callback = this.async() //在异步回调中出发callback方法
 ```
 
-简单插件实现
+### 简单插件实现
 
 ```js
 const babel = require('babel-core');

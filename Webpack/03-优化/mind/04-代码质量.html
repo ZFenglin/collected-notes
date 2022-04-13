@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"代码质量","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"TreeSharking","c":[{"t":"heading","d":3,"p":{"lines":[6,7]},"v":"webpack配置","c":[{"t":"heading","d":4,"p":{"lines":[8,9]},"v":"开启前提","c":[{"t":"ordered_list","d":5,"p":{"lines":[10,15],"start":1},"v":"","c":[{"t":"list_item","d":6,"p":{"lines":[10,11],"index":1},"v":"1. mode: production"},{"t":"list_item","d":6,"p":{"lines":[11,12],"index":2},"v":"2. optimization.usedExports: true"},{"t":"list_item","d":6,"p":{"lines":[12,13],"index":3},"v":"3. optimization.minimize: true"},{"t":"list_item","d":6,"p":{"lines":[13,14],"index":4},"v":"4. production模式下，后两个条件自动为true"}]},{"t":"fence","d":5,"v":"<pre class=\"language-js\"><code class=\"language-js\"><span class=\"token keyword\">const</span> config <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">mode</span><span class=\"token operator\">:</span> <span class=\"token string\">'production'</span><span class=\"token punctuation\">,</span>\n    <span class=\"token literal-property property\">optimization</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n        <span class=\"token literal-property property\">usedExports</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">,</span>\n        <span class=\"token literal-property property\">minimize</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span>\n        <span class=\"token comment\">// 或指定特定的minifier时</span>\n        <span class=\"token comment\">// minimizer: [                </span>\n        <span class=\"token comment\">// new TerserPlugin({...})</span>\n        <span class=\"token comment\">//]</span>\n    <span class=\"token punctuation\">}</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n</code></pre>\n"}]}]},{"t":"heading","d":3,"p":{"lines":[31,32]},"v":"副作用","c":[{"t":"ordered_list","d":4,"p":{"lines":[33,37],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[33,34],"index":1},"v":"1. 在做tree shaking时，webpack会移删除未import过或未使用的代码"},{"t":"list_item","d":5,"p":{"lines":[34,35],"index":2},"v":"2. 但有些代码虽然未import， 但可能内部定义了全局变量，或者它是全局CSS文件"},{"t":"list_item","d":5,"p":{"lines":[35,36],"index":3},"v":"3. 通过设置副作用保留这些文件"}]},{"t":"fence","d":4,"v":"<pre class=\"language-json\"><code class=\"language-json\"><span class=\"token comment\">// 所有代码有副作用</span>\n<span class=\"token punctuation\">{</span>\n <span class=\"token property\">\"sideEffects\"</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span>\n<span class=\"token punctuation\">}</span>\n<span class=\"token comment\">// 所有代码没有副作用</span>\n<span class=\"token punctuation\">{</span>\n <span class=\"token property\">\"sideEffects\"</span><span class=\"token operator\">:</span> <span class=\"token boolean\">false</span>\n<span class=\"token punctuation\">}</span>\n<span class=\"token comment\">// 地址数组，指定特定有副作用的文件集合</span>\n<span class=\"token punctuation\">{</span>\n <span class=\"token property\">\"sideEffects\"</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span>\n  <span class=\"token string\">\"./src/file1.js\"</span><span class=\"token punctuation\">,</span>\n  <span class=\"token string\">\"./src/file2.js\"</span>\n <span class=\"token punctuation\">]</span>\n<span class=\"token punctuation\">}</span>\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[55,56]},"v":"TreeSharking适配","c":[{"t":"list_item","d":5,"p":{"lines":[57,58],"index":1},"v":"1. Npm大部分的包默认都是CommonJS，不支持"},{"t":"list_item","d":5,"p":{"lines":[58,59],"index":2},"v":"2. 但是这些库提供ES6的代码，利用mainFields来配置使用ES6的方式"}]}]},{"t":"heading","d":2,"p":{"lines":[60,61]},"v":"Scope Hoisting","c":[{"t":"heading","d":3,"p":{"lines":[64,65]},"v":"提升优势","c":[{"t":"list_item","d":5,"p":{"lines":[66,67],"index":1},"v":"1. 代码体积小"},{"t":"list_item","d":5,"p":{"lines":[67,68],"index":2},"v":"2. 作用域变少，内存开销减少"}]},{"t":"heading","d":3,"p":{"lines":[69,70]},"v":"Scope Hoisting设置方式","c":[{"t":"ordered_list","d":4,"p":{"lines":[71,74],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[71,72],"index":1},"v":"1. Webpack自带的ModuleConcatenationPlugin插件，配置即可"},{"t":"list_item","d":5,"p":{"lines":[72,73],"index":2},"v":"2. 但是由于只支持ES6模块化，mainFields设置优先使用ES6的依赖代码"}]},{"t":"fence","d":4,"v":"<pre class=\"language-js\"><code class=\"language-js\"><span class=\"token comment\">// webpack.config.js</span>\nmodule<span class=\"token punctuation\">.</span><span class=\"token property-access\">exports</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">optimization</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n        <span class=\"token literal-property property\">concatenateModules</span><span class=\"token operator\">:</span> <span class=\"token boolean\">true</span>\n    <span class=\"token punctuation\">}</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n</code></pre>\n"},{"t":"fence","d":4,"v":"<pre class=\"language-js\"><code class=\"language-js\"><span class=\"token literal-property property\">resolve</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">mainFields</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span><span class=\"token string\">'jsnext:main'</span><span class=\"token punctuation\">,</span> <span class=\"token string\">'browser'</span><span class=\"token punctuation\">,</span> <span class=\"token string\">'main'</span><span class=\"token punctuation\">]</span>\n<span class=\"token punctuation\">}</span>\n</code></pre>\n"}]}]},{"t":"heading","d":2,"p":{"lines":[89,90]},"v":"Prepack"}]})</script>
+</body>
+</html>

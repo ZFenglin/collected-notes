@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"执行上下文","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"执行上下文分类","c":[{"t":"heading","d":3,"p":{"lines":[4,5]},"v":"全局执行上下文","c":[{"t":"list_item","d":5,"p":{"lines":[6,7],"index":1},"v":"1. JS脚本解析时会创建全局上下文"},{"t":"list_item","d":5,"p":{"lines":[7,8],"index":2},"v":"2. 增加变量this"}]},{"t":"heading","d":3,"p":{"lines":[9,10]},"v":"函数执行上下文","c":[{"t":"list_item","d":5,"p":{"lines":[11,12],"index":1},"v":"1. 函数执行前会创建函数上下文"},{"t":"list_item","d":5,"p":{"lines":[12,13],"index":2},"v":"2. 增加变量this、arguments和函数参数"}]},{"t":"heading","d":3,"p":{"lines":[14,15]},"v":"Eval上下文","c":[{"t":"list_item","d":5,"p":{"lines":[16,17],"index":1},"v":"1. 执行 eval函数内部的代码也有属于它的上下文"},{"t":"list_item","d":5,"p":{"lines":[17,18],"index":2},"v":"2. 由于开发中是尽量避免或不用eval函数，故此不作讨论"}]}]},{"t":"heading","d":2,"p":{"lines":[19,20]},"v":"上下文结构","c":[{"t":"heading","d":3,"p":{"lines":[21,22]},"v":"组成部分","c":[{"t":"heading","d":4,"p":{"lines":[23,24]},"v":"Scope","c":[{"t":"list_item","d":6,"p":{"lines":[25,26],"index":1},"v":"1. 作用域"},{"t":"list_item","d":6,"p":{"lines":[26,27],"index":2},"v":"2. 名称查找变量的一套规则"}]},{"t":"heading","d":4,"p":{"lines":[28,29]},"v":"VO","c":[{"t":"list_item","d":6,"p":{"lines":[30,31],"index":1},"v":"1. 变量对象，Variable Object"},{"t":"list_item","d":6,"p":{"lines":[31,32],"index":2},"v":"2. 在上下文中定义的变量和函数声明"}]},{"t":"heading","d":4,"p":{"lines":[33,34]},"v":"AO","c":[{"t":"list_item","d":6,"p":{"lines":[35,36],"index":1},"v":"1. 活动对象，Active Object"},{"t":"list_item","d":6,"p":{"lines":[36,37],"index":2},"v":"2. 创建函数的时候初始化的一个对象，包含变量对象中的内容"},{"t":"list_item","d":6,"p":{"lines":[37,38],"index":3},"v":"3. 通常为VO + 函数参数变量 + arguments"}]},{"t":"heading","d":4,"p":{"lines":[39,40]},"v":"this","c":[{"t":"list_item","d":6,"p":{"lines":[41,42],"index":1},"v":"1. 上下文创建时指定的一个对象"}]}]},{"t":"heading","d":3,"p":{"lines":[43,44]},"v":"结构组成","c":[{"t":"heading","d":4,"p":{"lines":[45,46]},"v":"全局执行上下文","c":[{"t":"list_item","d":6,"p":{"lines":[47,48],"index":1},"v":"1. Scope"},{"t":"list_item","d":6,"p":{"lines":[48,49],"index":2},"v":"2. VO"},{"t":"list_item","d":6,"p":{"lines":[49,50],"index":3},"v":"3. this"}]},{"t":"heading","d":4,"p":{"lines":[51,52]},"v":"函数执行上下文","c":[{"t":"list_item","d":6,"p":{"lines":[53,54],"index":1},"v":"1. Scope"},{"t":"list_item","d":6,"p":{"lines":[54,55],"index":2},"v":"2. AO"},{"t":"list_item","d":6,"p":{"lines":[55,56],"index":3},"v":"3. this"}]}]}]},{"t":"heading","d":2,"p":{"lines":[57,58]},"v":"执行栈ECS","c":[{"t":"ordered_list","d":3,"p":{"lines":[59,62],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[59,60],"index":1},"v":"1. 执行栈就是解释引擎记录执行上下文的容器"},{"t":"list_item","d":4,"p":{"lines":[60,61],"index":2},"v":"2. 栈底是全局执行上下文，栈顶是当前正在执行的上下文"}]},{"t":"heading","d":3,"p":{"lines":[64,65]},"v":"运行方式","c":[{"t":"list_item","d":5,"p":{"lines":[66,67],"index":1},"v":"1. JS执行时，首先压入全局执行上下文"},{"t":"list_item","d":5,"p":{"lines":[67,68],"index":2},"v":"2. 每当函数调用时，会为该函数创建上下文并压入栈顶，执行完成后该上下文弹出，转至上一层上下文"},{"t":"list_item","d":5,"p":{"lines":[68,69],"index":3},"v":"3. 全部执行完成后，全局上下文弹出"}]}]},{"t":"heading","d":2,"p":{"lines":[70,71]},"v":"<a href=\"https://blog.csdn.net/yangxinxiang84/article/details/113051811\">上下文创建过程</a>","c":[{"t":"heading","d":3,"p":{"lines":[72,73]},"v":"全局执行上下文创建","c":[{"t":"list_item","d":5,"p":{"lines":[76,77],"index":1},"v":"1. 执行代码之前，先进入创建上下文阶段","c":[{"t":"list_item","d":7,"p":{"lines":[77,78],"index":1},"v":"1. 初始Scope"},{"t":"list_item","d":7,"p":{"lines":[78,79],"index":2},"v":"2. 创建VO，并将VO放到Scope中"},{"t":"list_item","d":7,"p":{"lines":[79,80],"index":3},"v":"3. 扫描上下文获取变量和函数声明"},{"t":"list_item","d":7,"p":{"lines":[80,81],"index":4},"v":"4. 确定this"}]},{"t":"list_item","d":5,"p":{"lines":[81,82],"index":2},"v":"2. 代码执行阶段"}]},{"t":"heading","d":3,"p":{"lines":[83,84]},"v":"函数执行上下文创建","c":[{"t":"list_item","d":5,"p":{"lines":[87,88],"index":1},"v":"1. 查找调用函数的代码"},{"t":"list_item","d":5,"p":{"lines":[88,89],"index":2},"v":"2. 执行代码之前，先进入创建上下文阶段","c":[{"t":"list_item","d":7,"p":{"lines":[89,90],"index":1},"v":"1. 初始Scope"},{"t":"list_item","d":7,"p":{"lines":[90,91],"index":2},"v":"2. 创建AO"},{"t":"list_item","d":7,"p":{"lines":[91,92],"index":3},"v":"3. 扫描上下文获取变量和函数声明"},{"t":"list_item","d":7,"p":{"lines":[92,93],"index":4},"v":"4. 确定this"}]},{"t":"list_item","d":5,"p":{"lines":[93,94],"index":3},"v":"3. 代码执行阶段"}]}]},{"t":"heading","d":2,"p":{"lines":[95,96]},"v":"执行上下文与作用域区别","c":[{"t":"list_item","d":4,"p":{"lines":[97,98],"index":1},"v":"1. 执行上下文在运行时确定，随时可能改变"},{"t":"list_item","d":4,"p":{"lines":[98,99],"index":2},"v":"2. 作用域在定义时就确定，并且不会改变"}]}]})</script>
+</body>
+</html>

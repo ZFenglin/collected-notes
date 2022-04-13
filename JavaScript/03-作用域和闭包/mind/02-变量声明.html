@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"变量声明","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"声明方式","c":[{"t":"heading","d":3,"p":{"lines":[6,7]},"v":"var"},{"t":"heading","d":3,"p":{"lines":[10,11]},"v":"let","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">// babel的let的转换，利用了闭包\nvar _loop = function _loop(i) {\n    setTimeout(function() {\n        return console.log(i);\n    });\n};\nfor (var i = 0; i &lt; 3; i++) {\n    _loop(i);\n}\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[26,27]},"v":"const","c":[{"t":"list_item","d":5,"p":{"lines":[29,30],"index":1},"v":"1. 声明必须立即赋值，否则会报错"},{"t":"list_item","d":5,"p":{"lines":[30,31],"index":2},"v":"2. 指针的指向不可修改，简单类型不可修改，复杂类型可以更改内部数据"}]},{"t":"heading","d":3,"p":{"lines":[32,33]},"v":"let和const出现的原因","c":[{"t":"heading","d":4,"p":{"lines":[34,35]},"v":"用来计数的循环变量无法正确打印","c":[{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">for (var i = 1; i &lt;= 5; i++) {\n    setTimeout(function timer() {\n        console.log(i)\n    }, i * 1000);\n}\n// 此处会全部打印6\n</code></pre>\n"}]},{"t":"heading","d":4,"p":{"lines":[45,46]},"v":"使用var内层变量可能会覆盖外层的声明","c":[{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">var tmp = 1\n\nfunction f() {\n    console.log(tmp)\n    if (false) {\n        var tmp = 2\n    }\n}\nf() // undefined\n// var tmp = 2这句话虽然没有执行，但是变量提升造成tmp被覆盖\n</code></pre>\n"}]},{"t":"heading","d":4,"p":{"lines":[60,61]},"v":"防止不规范使用","c":[{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">console.log(tmp)\nif (false) {\n    var tmp = 2\n}\n// 这种使用浏览器并不会报错，因为变量提升\n</code></pre>\n"}]}]}]},{"t":"heading","d":2,"p":{"lines":[70,71]},"v":"<a href=\"https://juejin.cn/post/6844904051369312263\">变量提升</a>","c":[{"t":"ordered_list","d":3,"p":{"lines":[74,77],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[74,75],"index":1},"v":"1. 函数声明和var都具有变量提升，声明提升至代码前面优先执行"},{"t":"list_item","d":4,"p":{"lines":[75,76],"index":2},"v":"2. let和const 则不会提升，未声明使用则会由于“暂时性死区”报错"}]},{"t":"heading","d":3,"p":{"lines":[77,78]},"v":"暂时性死区","c":[{"t":"list_item","d":5,"p":{"lines":[79,80],"index":1},"v":"1. 进入当前作用域，所要使用的变量就已经存在了，但是不可获取"},{"t":"list_item","d":5,"p":{"lines":[80,81],"index":2},"v":"2. 只有等到声明变量的那一行代码出现，才可以获取和使用该变量"},{"t":"list_item","d":5,"p":{"lines":[81,82],"index":3},"v":"3. 用于减少运行时错误，防止在变量声明前就使用这个变量"}]},{"t":"heading","d":3,"p":{"lines":[83,84]},"v":"变量提升作用","c":[{"t":"list_item","d":5,"p":{"lines":[85,86],"index":1},"v":"1. 提高性能","c":[{"t":"list_item","d":7,"p":{"lines":[86,87],"index":1},"v":"1. 解析阶段会进行语法检查和预编译"},{"t":"list_item","d":7,"p":{"lines":[87,88],"index":2},"v":"2. 统计变量和函数创建和代码压缩"},{"t":"list_item","d":7,"p":{"lines":[88,89],"index":3},"v":"3. 之后函数执行时可以直接分配空间"}]},{"t":"list_item","d":5,"p":{"lines":[89,90],"index":2},"v":"2. 容错性更好","c":[{"t":"list_item","d":7,"p":{"lines":[90,91],"index":1},"v":"1. 不规范的代码也能正常执行"}]}]},{"t":"heading","d":3,"p":{"lines":[92,93]},"v":"<a href=\"https://zhuanlan.zhihu.com/p/28140450\">let和const是否存在变量提升</a>","c":[{"t":"heading","d":4,"p":{"lines":[94,95]},"v":"声明处理","c":[{"t":"list_item","d":6,"p":{"lines":[96,97],"index":1},"v":"1. 创建"},{"t":"list_item","d":6,"p":{"lines":[97,98],"index":2},"v":"2. 初始化undefined"},{"t":"list_item","d":6,"p":{"lines":[98,99],"index":3},"v":"3. 赋值（主要是函数声明）"}]},{"t":"heading","d":4,"p":{"lines":[100,101]},"v":"三种声明区别","c":[{"t":"list_item","d":6,"p":{"lines":[102,103],"index":1},"v":"1. let/const：创建被提升，但是初始化没有提升"},{"t":"list_item","d":6,"p":{"lines":[103,104],"index":2},"v":"2. var：创建初始化都提升"},{"t":"list_item","d":6,"p":{"lines":[104,105],"index":3},"v":"3. function：创建，初始化，赋值都提升"}]}]}]},{"t":"heading","d":2,"p":{"lines":[106,107]},"v":"重复声明","c":[{"t":"list_item","d":4,"p":{"lines":[108,109],"index":1},"v":"1. var可以在相同作用域下重复声明相同变量（因为编译器会将var所有重复声明提升合并成一个）"},{"t":"list_item","d":4,"p":{"lines":[109,110],"index":2},"v":"2. let和const则不允许，声明会报错"}]},{"t":"heading","d":2,"p":{"lines":[111,112]},"v":"全局声明","c":[{"t":"heading","d":3,"p":{"lines":[113,114]},"v":"环境顶层对象","c":[{"t":"list_item","d":5,"p":{"lines":[116,117],"index":1},"v":"1. 浏览器的window"},{"t":"list_item","d":5,"p":{"lines":[117,118],"index":2},"v":"2. node的global"}]},{"t":"heading","d":3,"p":{"lines":[119,120]},"v":"特点","c":[{"t":"ordered_list","d":4,"p":{"lines":[121,124],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[121,122],"index":1},"v":"1. var和未使用声明符号的全局声明会挂载在环境顶层对象上"},{"t":"list_item","d":5,"p":{"lines":[122,123],"index":2},"v":"2. let和const则不会，但是仍会在页面的生命周期存在"}]},{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">var a = 1\nconsole.log(a) // 1\nconsole.log(window.a) // 1\n\nb = 1\nconsole.log(b) // 1\nconsole.log(window.b) // 1\n\nlet c = 1\nconsole.log(c) // 1\nconsole.log(window.c) // undefined\n</code></pre>\n"}]}]}]})</script>
+</body>
+</html>

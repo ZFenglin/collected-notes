@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"闭包","c":[{"t":"ordered_list","d":2,"p":{"lines":[1,4],"start":1},"v":"","c":[{"t":"list_item","d":3,"p":{"lines":[1,2],"index":1},"v":"1. 闭包是基于词法作用域书写代码时所产生的自然结果，你甚至不需要为了利用它们而有意识地创建闭包"},{"t":"list_item","d":3,"p":{"lines":[2,3],"index":2},"v":"2. 函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行"}]},{"t":"fence","d":2,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function foo() {\n    var a = 2;\n\n    function bar() {\n        console.log(a);\n    }\n    return bar;\n}\n</code></pre>\n"},{"t":"heading","d":2,"p":{"lines":[15,16]},"v":"特点","c":[{"t":"list_item","d":4,"p":{"lines":[17,18],"index":1},"v":"1. 函数可以访问另一个函数的作用域下的变量"},{"t":"list_item","d":4,"p":{"lines":[18,19],"index":2},"v":"2. 局部变量会常驻在内存中，可能会造成内存泄漏"},{"t":"list_item","d":4,"p":{"lines":[19,20],"index":3},"v":"3. 可以用于避免使用全局变量，防止污染，如Jquery"}]},{"t":"heading","d":2,"p":{"lines":[21,22]},"v":"作用","c":[{"t":"heading","d":3,"p":{"lines":[23,24]},"v":"处理循环问题（let可以处理）","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">for (var i = 1; i &lt;= 5; i++) {\n    setTimeout(function timer() {\n        console.log(i);\n    }, i * 1000);\n}\n</code></pre>\n"},{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">for (var i = 1; i &lt;= 5; i++) {\n    (function(j) {\n        setTimeout(function timer() {\n            console.log(j);\n        }, j * 1000);\n    })(i);\n}\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[47,48]},"v":"模块化","c":[{"t":"heading","d":4,"p":{"lines":[49,50]},"v":"模块化的使用条件","c":[{"t":"ordered_list","d":5,"p":{"lines":[51,54],"start":1},"v":"","c":[{"t":"list_item","d":6,"p":{"lines":[51,52],"index":1},"v":"1. 必须有外部的封闭函数，该函数必须至少被调用一次"},{"t":"list_item","d":6,"p":{"lines":[52,53],"index":2},"v":"2. 封闭函数必须返回至少一个内部函数，这样内部函数才能在私有作用域中形成闭包"}]},{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">var foo = (function CoolModule(id) {\n    function change() {\n        // 修改公共 API\n        publicAPI.identify = identify2;\n    }\n    function identify1() {\n        console.log(id);\n    }\n    function identify2() {\n        console.log(id.toUpperCase());\n    }\n    var publicAPI = {\n        change: change,\n        identify: identify1\n    };\n    return publicAPI;\n})(&quot;foo module&quot;);\nfoo.identify(); // foo module\nfoo.change();\nfoo.identify(); // FOO MODUL\n</code></pre>\n"}]}]},{"t":"heading","d":3,"p":{"lines":[77,78]},"v":"柯里化","c":[{"t":"heading","d":4,"p":{"lines":[83,84]},"v":"柯里化特点","c":[{"t":"ordered_list","d":5,"p":{"lines":[85,89],"start":1},"v":"","c":[{"t":"list_item","d":6,"p":{"lines":[85,86],"index":1},"v":"1. 函数参数的缓存"},{"t":"list_item","d":6,"p":{"lines":[86,87],"index":2},"v":"2. 函数更灵活，细粒度更小"},{"t":"list_item","d":6,"p":{"lines":[87,88],"index":3},"v":"3. 多元函数变成一元函数"}]},{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function curry(fn, args) {\n    // 获取函数需要的参数长度\n    let length = fn.length;\n    args = args || [];\n    return function() {\n        let subArgs = args.slice(0);\n        // 拼接得到现有的所有参数\n        for (let i = 0; i &lt; arguments.length; i++) {\n            subArgs.push(arguments[i]);\n        }\n        // 判断参数的长度是否已经满足函数所需参数的长度\n        if (subArgs.length &gt;= length) {\n            // 如果满足，执行函数\n            return fn.apply(this, subArgs);\n        } else {\n            // 如果不满足，递归返回科里化的函数，等待参数的传入\n            return curry.call(this, fn, subArgs);\n        }\n    };\n}\n// ES6简化调用\nfunction curry(fn, ...args) {\n    return fn.length &lt;= args.length ? fn(...args) : curry.bind(null, fn, ...args);\n}\n</code></pre>\n"}]}]},{"t":"heading","d":3,"p":{"lines":[116,117]},"v":"防抖和节流","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">// 函数防抖的实现\nfunction debounce(fn, wait) {\n    let timer = null;\n    return function() {\n        let context = this,\n            args = arguments;\n        // 如果此时存在定时器的话，则取消之前的定时器重新记时\n        if (timer) {\n            clearTimeout(timer);\n            timer = null;\n        }\n        // 设置定时器，使事件间隔指定事件后执行\n        timer = setTimeout(() =&gt; {\n            fn.apply(context, args);\n        }, wait);\n    };\n}\n</code></pre>\n"},{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">// 函数节流的实现;\nfunction throttle(fn, delay) {\n    let curTime = Date.now();\n    return function() {\n        let context = this,\n            args = arguments,\n            nowTime = Date.now();\n        // 如果两次时间间隔超过了指定时间，则执行函数。\n        if (nowTime - curTime &gt;= delay) {\n            curTime = Date.now();\n            return fn.apply(context, args);\n        }\n    };\n}\n</code></pre>\n"}]}]}]})</script>
+</body>
+</html>

@@ -10,11 +10,13 @@
 
 ### 两个过程
 
-pending => resolve（触发onFulfilled）
-pending => rejected（触发onRejected）
+1. pending => resolve（触发onFulfilled）
+2. pending => rejected（触发onRejected）
 
-1. 变化不可逆
-2. 结果事件将会放在微任务队列中等待执行
+#### 过程特点
+
+3. 变化不可逆
+4. 结果事件将会放在微任务队列中等待执行
 
 ## Promise方法
 
@@ -94,7 +96,7 @@ function promiseAll(promises) {
 
 任何一个promise对象成功或失败，返回第一个失败或成功对象结果
 
-#### 手写Promise.race
+##### 手写Promise.race
 
 ```JS
 function promiseRace(promises) {
@@ -118,7 +120,7 @@ function promiseRace(promises) {
 }
 ```
 
-#### Promise.race实现执行中断
+##### Promise.race实现执行中断
 
 Promise执行是不可以中断的，可以利用Promise.race实现伪中断
 
@@ -165,7 +167,9 @@ p.then(() {})
 p.then(() {})
 // 2. return直接返回Promise实例
 return new Promise().then(() {}).then(() {})
+```
 
+```JS
 // 按照回调执行后注册
 // 会等待第一个then执行完后再注册第二个
 new Promise().then(() {}).then(() {})

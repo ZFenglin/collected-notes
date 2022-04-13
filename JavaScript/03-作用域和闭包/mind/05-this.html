@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"this","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"this概念","c":[{"t":"heading","d":3,"p":{"lines":[4,5]},"v":"this和词法作用域不要混淆","c":[{"t":"list_item","d":5,"p":{"lines":[6,7],"index":1},"v":"1. this 是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件"},{"t":"list_item","d":5,"p":{"lines":[7,8],"index":2},"v":"2. this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式"}]},{"t":"heading","d":3,"p":{"lines":[9,10]},"v":"调用位置","c":[{"t":"list_item","d":5,"p":{"lines":[11,12],"index":1},"v":"1. 分析this需要明确调用位置"},{"t":"list_item","d":5,"p":{"lines":[12,13],"index":2},"v":"2. 调用位置就是函数在代码中被调用的位置（而不是声明的位置）"}]}]},{"t":"heading","d":2,"p":{"lines":[14,15]},"v":"绑定规则","c":[{"t":"heading","d":3,"p":{"lines":[16,17]},"v":"绑定规则优先级（new &gt; 显式绑定 &gt; 隐式绑定 &gt; 默认绑定）"},{"t":"heading","d":3,"p":{"lines":[18,19]},"v":"默认绑定","c":[{"t":"ordered_list","d":4,"p":{"lines":[20,24],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[20,21],"index":1},"v":"1. 直接使用不带任何修饰的函数引用进行调用的函数指向默认绑定"},{"t":"list_item","d":5,"p":{"lines":[21,22],"index":2},"v":"2. 函数默认绑定时，this指向全局对象"},{"t":"list_item","d":5,"p":{"lines":[22,23],"index":3},"v":"3. 严格模式下，默认模式不可用，this为undefined"}]},{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function foo() {\n    console.log(this.a);\n}\nvar a = 2;\nfoo(); // 2\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[32,33]},"v":"隐式绑定","c":[{"t":"ordered_list","d":4,"p":{"lines":[34,37],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[34,35],"index":1},"v":"1. 隐式绑定是调用位置是否有上下文对象，或者说是否被某个对象拥有或者包含"},{"t":"list_item","d":5,"p":{"lines":[35,36],"index":2},"v":"2. 当函数引用有上下文对象时，隐式绑定规则会把函数调用中的 this 绑定到这个上下文对象"}]},{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function foo() {\n    console.log(this.a);\n}\nvar obj = {\n    a: 2,\n    foo: foo\n};\nobj.foo(); // 2\n</code></pre>\n"},{"t":"heading","d":4,"p":{"lines":[48,49]},"v":"隐式丢失","c":[{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">// 隐式绑定只取决于是否存在有上下文对象，与函数无关\nfunction foo() {\n    console.log(this.a);\n}\n\nfunction doFoo(fn) {\n    // fn 其实引用的是 foo\n    fn(); // &lt;-- 调用位置！\n}\nvar obj = {\n    a: 2,\n    foo: foo\n};\nvar a = &quot;oops, global&quot;; // a 是全局对象的属性\ndoFoo(obj.foo); // &quot;oops, global&quot;\n</code></pre>\n"}]}]},{"t":"heading","d":3,"p":{"lines":[68,69]},"v":"显式绑定","c":[{"t":"ordered_list","d":4,"p":{"lines":[70,75],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[70,71],"index":1},"v":"1. 利用call，apply和bind强行指定this的绑定对象"},{"t":"list_item","d":5,"p":{"lines":[71,72],"index":2},"v":"2. 显式绑定的硬绑定特性解决了之前this恢复默认绑定问题"},{"t":"list_item","d":5,"p":{"lines":[72,73],"index":3},"v":"3. 部分内置函数提供参数，支持上下文context绑定"},{"t":"list_item","d":5,"p":{"lines":[73,74],"index":4},"v":"4. 显示绑定对象为null，或者undefined则执行默认绑定"}]},{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function foo(el) {\n    console.log(el, this.id);\n}\nvar obj = {\n    id: &quot;awesome&quot;\n};\n// 调用 foo(..) 时把 this 绑定到 obj\n[1, 2, 3].forEach(foo, obj);\n// 1 awesome 2 awesome 3 awesome\n</code></pre>\n"},{"t":"heading","d":4,"p":{"lines":[87,88]},"v":"手写call，apply和bind","c":[{"t":"fence","d":5,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">/**\n * @param {Object} context \n * @param  {...any} args \n */\nFunction.prototype._call = function(context, ...args) {\n    if (typeof this !== 'function') {\n        throw TypeError('this must be function')\n    }\n    context = context || window\n    context.fn = this\n    let res = context.fn(...args)\n    delete context.fn\n    return res\n}\n\n/**\n * @param {Object} context \n * @param {Array} args \n */\nFunction.prototype._apply = function(context, args) {\n    return this.call(context, ...args)\n}\n\n/**\n * @param {Object} context \n * @param {Array} args \n */\nFunction.prototype._bind = function(context, ...args) {\n    if (typeof this !== 'function') {\n        throw TypeError('this must be function')\n    }\n    let fn = this\n    return function Fn() {\n        // 注意，当绑定函数被new调用时，this会被变更\n        context = this instanceof Fn ? this : context\n        fn._apply(context, args.concat(arguments))\n    }\n}\n</code></pre>\n"}]}]},{"t":"heading","d":3,"p":{"lines":[130,131]},"v":"new绑定","c":[{"t":"ordered_list","d":4,"p":{"lines":[132,137],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[132,133],"index":1},"v":"1. 首先创建了一个新的空对象"},{"t":"list_item","d":5,"p":{"lines":[133,134],"index":2},"v":"2. 设置原型，将对象的原型设置为函数的 prototype 对象"},{"t":"list_item","d":5,"p":{"lines":[134,135],"index":3},"v":"3. 让函数的 this 指向这个对象，执行构造函数的代码（为这个新对象添加属性）"},{"t":"list_item","d":5,"p":{"lines":[135,136],"index":4},"v":"4. 判断函数的返回值类型，如果是值类型，返回创建的对象。如果是引用类型，就返回这个引用类型的对象"}]},{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function _new(fn, args) {\n    if (typeof fn !== 'function') {\n        throw TypeError('fn is not function')\n    }\n    let obj = new Object()\n    obj.__proto__ = fn.prototype\n    let res = fn.apply(obj, args)\n    return typeof res == 'object' ? res : obj\n}\n</code></pre>\n"}]}]},{"t":"heading","d":2,"p":{"lines":[149,150]},"v":"箭头函数","c":[{"t":"fence","d":3,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">function foo() {\n    return () =&gt; console.log(this.a);\n}\nvar obj1 = {\n    a: 2\n};\nvar obj2 = {\n    a: 3\n};\nvar bar = foo.call(obj1);\n// 箭头函数的this并没有变动\nbar.call(obj2); // 2, 不是 3 ！\n</code></pre>\n"},{"t":"heading","d":3,"p":{"lines":[166,167]},"v":"针对箭头函数的this有以下特点","c":[{"t":"list_item","d":5,"p":{"lines":[168,169],"index":1},"v":"1. 创建箭头函数时，创建它的上下文的this就是箭头函数的this"},{"t":"list_item","d":5,"p":{"lines":[169,170],"index":2},"v":"2. 箭头函数的this无法修改绑定（new也不可以）"}]}]}]})</script>
+</body>
+</html>

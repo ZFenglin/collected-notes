@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"模块化","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"模块化概念","c":[{"t":"heading","d":3,"p":{"lines":[6,7]},"v":"模块化和组件化差异","c":[{"t":"list_item","d":5,"p":{"lines":[8,9],"index":1},"v":"1. 重复的代码提取出来合并成为一个组件"},{"t":"list_item","d":5,"p":{"lines":[9,10],"index":2},"v":"2. 分属同一功能的代码进行隔离成独立的模块"}]}]},{"t":"heading","d":2,"p":{"lines":[11,12]},"v":"ES6之前的模块化","c":[{"t":"heading","d":3,"p":{"lines":[13,14]},"v":"CommonJS","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">var clock = require('clock.js')\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[21,22]},"v":"AMD (Asynchronous Module Definition)","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">require([module], callback);\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[29,30]},"v":"CMD (Common Module Definition)","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">define(function(require, exports, module) {\n    var clock = require('clock.js');\n    clock.start();\n})\n</code></pre>\n"}]}]},{"t":"heading","d":2,"p":{"lines":[40,41]},"v":"Module(ES6模块化)","c":[{"t":"heading","d":3,"p":{"lines":[42,43]},"v":"导出","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">// 默认导出\n// 一个模块只能有一个\nexport default name\n// 单独导出需要的\nexport name\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[52,53]},"v":"导入","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">// 默认导入\nimport defaultFn from './module2'\nimport {\n    default as defaultFn\n} from './module2'\n// 部分导入\nimport {\n    fn1,\n    fn2\n} from './util2.js'\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[67,68]},"v":"as别名","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">// 导出更改\nexport name as a\n// 导入更改\nimport {\n    fn1 as a\n} from './util2.js'\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[78,79]},"v":"整体加载","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">import * as circle from './module1'\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[86,87]},"v":"复合写法","c":[{"t":"fence","d":4,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">export {\n    foo\n}\nfrom 'my_module';\n</code></pre>\n"}]}]}]})</script>
+</body>
+</html>

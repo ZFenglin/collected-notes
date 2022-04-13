@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"ES6","c":[{"t":"heading","d":2,"p":{"lines":[4,5]},"v":"声明","c":[{"t":"list_item","d":4,"p":{"lines":[6,7],"index":1},"v":"1. let"},{"t":"list_item","d":4,"p":{"lines":[7,8],"index":2},"v":"2. const"}]},{"t":"heading","d":2,"p":{"lines":[9,10]},"v":"新增方法","c":[{"t":"heading","d":3,"p":{"lines":[11,12]},"v":"数组新增方法","c":[{"t":"heading","d":4,"p":{"lines":[13,14]},"v":"ES2015","c":[{"t":"list_item","d":6,"p":{"lines":[15,16],"index":1},"v":"1. map"},{"t":"list_item","d":6,"p":{"lines":[16,17],"index":2},"v":"2. sort"}]},{"t":"heading","d":4,"p":{"lines":[18,19]},"v":"ES2016","c":[{"t":"list_item","d":6,"p":{"lines":[20,21],"index":3},"v":"3. includes"}]}]},{"t":"heading","d":3,"p":{"lines":[22,23]},"v":"对象新增方法","c":[{"t":"heading","d":4,"p":{"lines":[24,25]},"v":"ES2015","c":[{"t":"list_item","d":6,"p":{"lines":[26,27],"index":1},"v":"1. Object.assign"},{"t":"list_item","d":6,"p":{"lines":[27,28],"index":2},"v":"2. Object.is"}]},{"t":"heading","d":4,"p":{"lines":[29,30]},"v":"ES2017","c":[{"t":"list_item","d":6,"p":{"lines":[31,32],"index":1},"v":"1. Object.values"},{"t":"list_item","d":6,"p":{"lines":[32,33],"index":2},"v":"2. Object.entries"},{"t":"list_item","d":6,"p":{"lines":[33,34],"index":3},"v":"3. Object.getOwnPropertyDescriptors"}]}]},{"t":"heading","d":3,"p":{"lines":[35,36]},"v":"字符串新增方法","c":[{"t":"heading","d":4,"p":{"lines":[37,38]},"v":"ES2015","c":[{"t":"list_item","d":6,"p":{"lines":[39,40],"index":1},"v":"1. includes"},{"t":"list_item","d":6,"p":{"lines":[40,41],"index":2},"v":"2. startsWith"},{"t":"list_item","d":6,"p":{"lines":[41,42],"index":3},"v":"3. endsWith"},{"t":"list_item","d":6,"p":{"lines":[42,43],"index":4},"v":"4. repeat"}]},{"t":"heading","d":4,"p":{"lines":[44,45]},"v":"ES2017","c":[{"t":"list_item","d":6,"p":{"lines":[46,47],"index":1},"v":"1. padStart"},{"t":"list_item","d":6,"p":{"lines":[47,48],"index":2},"v":"2. padEnd"}]}]}]},{"t":"heading","d":2,"p":{"lines":[49,50]},"v":"数据类型","c":[{"t":"list_item","d":4,"p":{"lines":[51,52],"index":1},"v":"1. Map/Set"},{"t":"list_item","d":4,"p":{"lines":[52,53],"index":2},"v":"2. WeakMap/WeakSet"},{"t":"list_item","d":4,"p":{"lines":[53,54],"index":3},"v":"3. Symbol"},{"t":"list_item","d":4,"p":{"lines":[54,55],"index":4},"v":"4. BigInt"}]},{"t":"heading","d":2,"p":{"lines":[56,57]},"v":"模板字符串","c":[{"t":"ordered_list","d":3,"p":{"lines":[58,61],"start":1},"v":"","c":[{"t":"list_item","d":4,"p":{"lines":[58,59],"index":1},"v":"1. 可以动态变更内容的字符串"},{"t":"list_item","d":4,"p":{"lines":[59,60],"index":2},"v":"2. 模板字符串支持函数调用"}]},{"t":"fence","d":3,"v":"<pre class=\"language-JS\"><code class=\"language-JS\">myTagFunc`hey, ${name} is a ${gender}`\n</code></pre>\n"},{"t":"heading","d":3,"p":{"lines":[65,66]},"v":"传入的参数","c":[{"t":"list_item","d":5,"p":{"lines":[67,68],"index":1},"v":"1. 按照模板分割的数组内容"},{"t":"list_item","d":5,"p":{"lines":[68,69],"index":2},"v":"2. 模板对应参数"}]}]},{"t":"heading","d":2,"p":{"lines":[70,71]},"v":"Proxy和Reflect"},{"t":"heading","d":2,"p":{"lines":[72,73]},"v":"模块化"},{"t":"heading","d":2,"p":{"lines":[74,75]},"v":"迭代器"},{"t":"heading","d":2,"p":{"lines":[76,77]},"v":"拓展运算符和解构"}]})</script>
+</body>
+</html>

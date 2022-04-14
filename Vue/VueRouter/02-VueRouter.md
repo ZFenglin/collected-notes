@@ -2,6 +2,8 @@
 
 VueRouter类
 
+## 整体代码
+
 ```js
 export default class VueRouter {
     // 构造函数处理
@@ -87,9 +89,8 @@ export default class VueRouter {
 
 ## match
 
-匹配结果返回
-
 ```js
+// 匹配结果返回
 match(raw, current, redirectedFrom) {
     return this.matcher.match(raw, current, redirectedFrom)
 }
@@ -97,9 +98,8 @@ match(raw, current, redirectedFrom) {
 
 ## currentRoute
 
-当前路由获取
-
 ```js
+// 当前路由获取
 get currentRoute() {
     return this.history && this.history.current
 }
@@ -107,56 +107,62 @@ get currentRoute() {
 
 ## init
 
-初始化处理，给vue实例注册对应的钩子
+1. 当前实例入队
+2. 实例注册销毁history钩子
+3. 实例已经处理过了，返回
+4. 路由监听的初始化跳转处理
 
 ```js
-  init(app) {
-      // 当前实例入队
-      this.apps.push(app)
-      // 实例注册销毁history钩子
-      app.$once('hook:destroyed', () => {
-          const index = this.apps.indexOf(app)
-          if (index > -1) this.apps.splice(index, 1)
-          if (this.app === app) this.app = this.apps[0] || null
-          if (!this.app) this.history.teardown()
-      })
-      // 当前已经处理过了，返回
-      if (this.app) {
-          return
-      }
-      this.app = app
-      const history = this.history
-      if (history instanceof HTML5History || history instanceof HashHistory) {
-          const handleInitialScroll = routeOrError => {
-              const from = history.current
-              const expectScroll = this.options.scrollBehavior
-              const supportsScroll = supportsPushState && expectScroll
-              if (supportsScroll && 'fullPath' in routeOrError) {
-                  handleScroll(this, routeOrError, from, false)
-              }
-          }
-          // history首次跳转监听
-          const setupListeners = routeOrError => {
-              history.setupListeners()
-              handleInitialScroll(routeOrError)
-          }
-          // 页面初始化完成后跳转至当前地址
-          history.transitionTo(
-              history.getCurrentLocation(),
-              setupListeners,
-              setupListeners
-          )
-      }
-      // history监听注册
-      history.listen(route => {
-          this.apps.forEach(app => {
-              app._route = route
-          })
-      })
-  }
+// 初始化处理，给vue实例注册对应的钩子
+// install时的混入的beforeCreated时执行
+init(app) {
+    // 当前实例入队
+    this.apps.push(app)
+    // 实例注册销毁history钩子
+    app.$once('hook:destroyed', () => {
+        const index = this.apps.indexOf(app)
+        if (index > -1) this.apps.splice(index, 1)
+        if (this.app === app) this.app = this.apps[0] || null
+        if (!this.app) this.history.teardown()
+    })
+    // 当前已经处理过了，返回
+    if (this.app) {
+        return
+    }
+    // 路由监听的初始化跳转处理
+    this.app = app
+    const history = this.history
+    if (history instanceof HTML5History || history instanceof HashHistory) {
+        const handleInitialScroll = routeOrError => {
+            const from = history.current
+            const expectScroll = this.options.scrollBehavior
+            const supportsScroll = supportsPushState && expectScroll
+            if (supportsScroll && 'fullPath' in routeOrError) {
+                handleScroll(this, routeOrError, from, false)
+            }
+        }
+        // history首次跳转监听
+        const setupListeners = routeOrError => {
+            history.setupListeners()
+            handleInitialScroll(routeOrError)
+        }
+        // 页面初始化完成后跳转至当前地址
+        history.transitionTo(
+            history.getCurrentLocation(),
+            setupListeners,
+            setupListeners
+        )
+    }
+    // history监听注册
+    history.listen(route => {
+        this.apps.forEach(app => {
+            app._route = route
+        })
+    })
+}
 ```
 
-## 路由钩子注册
+## 路由守卫钩子注册
 
 用于注册对应的路由钩子
 
@@ -170,13 +176,10 @@ beforeResolve(fn) {
 afterEach(fn) {
     return registerHook(this.afterHooks, fn)
 }
-```
-
-执行钩子方法
-
-```js
+// ... 
 function registerHook(list, fn) {
     list.push(fn)
+    // 返回删除监听方法
     return () => {
         const i = list.indexOf(fn)
         if (i > -1) list.splice(i, 1)

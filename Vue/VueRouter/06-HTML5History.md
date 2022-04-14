@@ -42,30 +42,30 @@ export class HTML5History extends History {
 ### setupListeners注册变动监听
 
 ```js
-  setupListeners() {
-      if (this.listeners.length > 0) {
-          return
-      }
-      //...
-      const handleRoutingEvent = () => {
-          const current = this.current
-          const location = getLocation(this.base)
-          if (this.current === START && location === this._startLocation) {
-              return
-          }
-          // 执行transitionTo切换组件并渲染
-          this.transitionTo(location, route => {
-              // scroll滚动处理
-              // ...
-          })
-      }
-      // H5利用popstate进行监听处理
-      window.addEventListener('popstate', handleRoutingEvent)
-      // 添加listeners
-      this.listeners.push(() => {
-          window.removeEventListener('popstate', handleRoutingEvent)
-      })
-  }
+setupListeners() {
+    if (this.listeners.length > 0) {
+        return
+    }
+    //...
+    const handleRoutingEvent = () => {
+        const current = this.current
+        const location = getLocation(this.base)
+        if (this.current === START && location === this._startLocation) {
+            return
+        }
+        // 执行transitionTo切换组件并渲染
+        this.transitionTo(location, route => {
+            // scroll滚动处理
+            // ...
+        })
+    }
+    // H5利用popstate进行监听处理
+    window.addEventListener('popstate', handleRoutingEvent)
+    // 添加listeners
+    this.listeners.push(() => {
+        window.removeEventListener('popstate', handleRoutingEvent)
+    })
+}
 ```
 
 ### 路由跳转h5模式下实现

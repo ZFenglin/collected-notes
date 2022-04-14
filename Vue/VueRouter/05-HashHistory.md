@@ -2,7 +2,8 @@
 
 ## 工具方法
 
-pushState用于处理最终浏览器路径变更，在HashHistory和HTML5History中都使用过了
+1. pushState用于处理最终浏览器路径变更
+2. 在HashHistory和HTML5History中都使用过了
 
 ```js
 export function pushState(url, replace) {
@@ -74,6 +75,8 @@ function replaceHash(path) {
 ## HashHistory
 
 专门处理Hash模式下的路由方法执行
+
+### 整体代码
 
 1. setupListeners注册变动监听
 2. 路由跳转hash模式下实现

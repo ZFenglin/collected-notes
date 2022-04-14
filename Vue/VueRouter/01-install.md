@@ -14,10 +14,7 @@ export default class VueRouter {
 // 包括install等静态属性设置
 VueRouter.install = install
 VueRouter.version = '__VERSION__'
-VueRouter.isNavigationFailure = isNavigationFailure
-VueRouter.NavigationFailureType = NavigationFailureType
-VueRouter.START_LOCATION = START
-
+// ...
 if (inBrowser && window.Vue) {
     window.Vue.use(VueRouter)
 }
@@ -28,10 +25,10 @@ if (inBrowser && window.Vue) {
 install的作用就是让Vue.use触发，并在Vue上安装Router
 
 1. 已安装拦截
-2. 设置相关属性installed和_Vue
+2. 设置相关属性，如installed和_Vue
 3. 相关方法声明isDef（判断是否定义）和registerInstance（注册实例）
 4. Vue.mixin为组件在beforeCreate时注册相关属性和destroyed销毁实例
-5. $router和$route定义
+5. `$router`和`$route`定义
 6. RouterView和RouterLink组件注册
 7.  路由钩子合并策略设置（等价于created的合并策略，即借用生命周期的合并策略）
 

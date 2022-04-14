@@ -1,8 +1,4 @@
 # eventsMixin
-1. $on
-2. $once
-3. $off
-4. $emit
 
 ```js
 export function eventsMixin(Vue) {
@@ -22,9 +18,10 @@ export function eventsMixin(Vue) {
 }
 ```
 
-## $on原理
+## `$on` 原理
 
-vm._events向key为event的数组push传入的fn
+1. vm._events上获取key未event的数组，不存在的创建空数组
+2. event的数组push传入的fn
 
 ```js
 Vue.prototype.$on = function(event, fn) {
@@ -45,9 +42,10 @@ Vue.prototype.$on = function(event, fn) {
 }
 ```
 
-## $once原理
+## `$once` 原理
 
-对传入的fn进行一次封装，在执行之前执行vm.$off移除监听
+1. 对传入的fn进行一次封装，在执行fn之前执行vm.$off移除监听
+2.  vm.$on注册封装
 
 ```js
 Vue.prototype.$once = function(event, fn) {
@@ -66,9 +64,9 @@ Vue.prototype.$once = function(event, fn) {
 }
 ```
 
-## $off原理
+## `$off` 原理
 
-1. 不传递参数则直接清空监听
+1. 不传递参数则直接清空vm._events，去除所有监听
 2. 不传fn，则event下的监听清空
 
 ```js
@@ -111,7 +109,7 @@ Vue.prototype.$off = function(event, fn) {
 }
 ```
 
-## $emit原理
+## `$emit` 原理
 
 取出vm._events的key为event的cbs，遍历执行
 

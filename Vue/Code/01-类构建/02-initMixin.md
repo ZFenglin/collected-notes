@@ -1,8 +1,4 @@
 # initMixin
-1. 相关标识属性添加
-2. options配置处理
-3. 实例初始化处理
-4. 组件挂载
 
 ```js
 export function initMixin(Vue) {
@@ -47,7 +43,8 @@ export function initMixin(Vue) {
 
 ## initLifecycle
 
-寻找不是抽象组件的父组件，给父组件添加$children，并设置当前组件的$parent和$root
+1. 寻找不是抽象组件的父组件，给父组件添加 `$children`
+2. 设置当前组件的 `$parent` 和 `$root`
 
 ```js
 export function initLifecycle(vm) {
@@ -72,13 +69,15 @@ export function initLifecycle(vm) {
 ## initEvents
 
 处理组件间事件的发布订阅
+1. vm._events的空对象设置
+2. updateComponentListeners(vm, vm.$options._parentListeners)
 
 ```js
 export function initEvents(vm) {
     // 当前实例创建_events，作为发布订阅的收集
     vm._events = Object.create(null)
     vm._hasHookEvent = false
-    // 初始化parent连接时间
+    // 初始化parent监听事件
     const listeners = vm.$options._parentListeners
     if (listeners) {
         updateComponentListeners(vm, listeners)
@@ -89,8 +88,8 @@ export function initEvents(vm) {
 ## initRender
 
 1. 初始化插槽
-2. _c和$createElement（内部编译使用_c，外部编译使用$createElement）
-3. $attrs和$listeners
+2. _c和`$createElement`（内部编译使用_c，外部编译使用`$createElement`）
+3. `$attrs`和`$listeners`响应式设定到vm上
 
 ```js
 export function initRender(vm) {
@@ -111,7 +110,8 @@ export function initRender(vm) {
 
 ## initInjections
 
-inject处理，隔代传输数据，不建议开发使用，因为值不清楚由谁提供
+1. inject处理，隔代传输数据
+2. 不建议开发使用，因为值不清楚由谁提供
 
 ```js
 export function initInjections(vm) {
@@ -130,7 +130,8 @@ export function initInjections(vm) {
 }
 ```
 
-inject的获取就是不断访问当前实例上的$parent，直到实例的provider有inject对应的key
+1. inject的获取就是不断访问当前实例上的$parent
+2. 直到实例的provider有inject对应的key
 
 ```js
 export function resolveInject(inject, vm) {
@@ -166,6 +167,11 @@ export function resolveInject(inject, vm) {
 ## initState
 
 判断vue的options是否存在对应的属性，决定是否进行相关处理
+1. initProps
+2. initMethods
+3. initData
+4. initComputed
+5. initWatch
 
 ```js
 export function initState(vm) {
@@ -194,6 +200,8 @@ export function initState(vm) {
 ### initProps
 
 props初始化，在当前实例的_props上设置传入值
+1. 创建vm._props，并对propsOptions遍历将对应的key和value响应式定义到它身上
+2. 当对应的值不存在在vm上，则proxy代理
 
 ```js
 function initProps(vm, propsOptions) {
@@ -224,7 +232,8 @@ function initProps(vm, propsOptions) {
 
 ### initMethods
 
-获取methods绑定this至vm的处理函数，将函数赋值到vm对应的key上
+1. 获取methods绑定this至vm的处理函数
+2. 将函数赋值到vm对应的key上
 
 ```js
 function initMethods(vm, methods) {
@@ -240,9 +249,8 @@ function initMethods(vm, methods) {
 
 ## initProvide
 
-简单处理provider赋值，如果是function则获取执行结果，将值设置到vm._provided上
-
-此处可以看出provider并不是响应式的数据
+1. 简单处理provider赋值，如果是function则获取执行结果，将值设置到vm._provided上
+2. 此处可以看出provider并不是响应式的数据
 
 ```js
 export function initProvide(vm) {

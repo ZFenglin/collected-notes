@@ -1,7 +1,4 @@
 # lifecycleMixin
-1. _update
-2. $forceUpdate
-3. $destroy
 
 ```js
 export function lifecycleMixin(Vue) {
@@ -19,11 +16,11 @@ export function lifecycleMixin(Vue) {
 }
 ```
 
-## _update原理
+## `_update` 原理
 
-vue内部使用，用于处理实例渲染更新方法
-
-prevVnode是否存在决定是执行初次渲染，还是更新渲染
+1. vue内部使用，用于处理实例渲染更新方法
+2. prevVnode是否存在决定是执行初次渲染，还是更新渲染
+3. 挂载虚拟节点时，_update(_render())为挂载Vue核心
 
 ```js
 Vue.prototype._update = function(vnode, hydrating) {
@@ -50,9 +47,10 @@ Vue.prototype._update = function(vnode, hydrating) {
 }
 ```
 
-而执行真正执行挂载更新的是__patch__方法，patch的挂载则是在公共mount声明之前，patch相关请见编译与挂载的元素patch处理
+1. 而执行真正执行挂载更新的是__patch__方法
+2. patch的挂载则是在公共mount声明之前，patch相关请见编译与挂载的元素patch处理
 
-## $forceUpdate原理
+## `$forceUpdate` 原理
 
 获取当前实例的_watcher，并调用其update
 
@@ -66,6 +64,15 @@ Vue.prototype.$forceUpdate = function() {
 ```
 
 ## $destroy原理
+
+1. 判断拦截重复处理
+2. callHook(vm, 'beforeDestroy')
+3. 从父组件中移除自身
+4. 移除watcher监听
+5. 渲染树清空
+6. callHook(vm, 'destroyed')
+7. 移除` $el.__vue__` 引用
+8. 清空虚拟节点的parent
 
 ```js
 Vue.prototype.$destroy = function() {

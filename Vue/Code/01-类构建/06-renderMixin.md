@@ -1,7 +1,4 @@
 # renderMixin
-1. 安装渲染函数helpers处理
-2. $nextTick
-3. _render
 
 ```js
 export function renderMixin(Vue) {
@@ -20,7 +17,8 @@ export function renderMixin(Vue) {
 
 ## installRenderHelpers原理
 
-将处理各种标签渲染的方法添加至Vue.prototype，供后续render方法执行时使用
+1. 将处理各种标签渲染的方法添加至Vue.prototype
+2. 供后续render方法执行时使用
 
 ```js
 export function installRenderHelpers(target: any) {
@@ -44,7 +42,7 @@ export function installRenderHelpers(target: any) {
 }
 ```
 
-## $nextTick原理
+## `$nextTick` 原理
 
 用于处理实例异步更新后执行的方法
 
@@ -59,6 +57,13 @@ nextTick见响应式原理的异步更新
 ## _render原理
 
 vnode相关属性设置和render函数的执行
+1. 处理作用域插槽
+2. $vnode设置
+3. 执行render函数
+4. vnode处理
+   1. 返回的vnode只有一项，则直接设置该项
+   2. vnode不正确，则设置空节点
+5. 设置vnode.parent
 
 ```js
 Vue.prototype._render = function() {

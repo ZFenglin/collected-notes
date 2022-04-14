@@ -1,7 +1,4 @@
 # stateMixin
-1. $data和$props设置
-2. $set和$delete设置
-3. $watch设置
 
 ```js
 export function stateMixin(Vue) {
@@ -19,9 +16,10 @@ export function stateMixin(Vue) {
 }
 ```
 
-## $data和$props设置
+## `$data` 和 `$props` 设置
 
-简单将this._data和this._props设置为get并定义到Vue.prototype上
+1. 简单将this._data和this._props封装成get
+2. 将get定义到Vue.prototype上
 
 ```js
 const dataDef = {}
@@ -36,10 +34,13 @@ Object.defineProperty(Vue.prototype, '$data', dataDef)
 Object.defineProperty(Vue.prototype, '$props', propsDef)
 ```
 
-## $set原理
+## `$set` 原理
 
 1. 如果是数组，则直接执行splice方法处理
-2. 如果是对象，先过滤不需要定义新属性的情形，否则使用defineReactive定义新值至ob.value，并通知更新
+2. 如果是对象
+   1. target上存在key，直接赋值
+   2. target不是响应式，直接赋值
+   3. 否则使用defineReactive定义新值至ob.value，并通知更新
 
 ```js
 export function set(target, key, val) {
@@ -72,10 +73,11 @@ export function set(target, key, val) {
 }
 ```
 
-## $delete原理
+## `$delete` 原理
 
 1. 如果是数组，则直接执行splice方法处理
-2. 如果是对象，先过滤异常和不存在情况，否则使用delete删除属性，并通知更新
+2. 如果是对象，先过滤异常和不存在情况
+3. 否则使用delete删除属性，并通知更新
 
 ```js
 export function del(target, key) {
@@ -105,7 +107,8 @@ export function del(target, key) {
 
 ##  $watch原理
 
-创建对应Watcher，同时返回对应watcher实例的销毁方法
+1. 创建对应Watcher的实例
+2. 同时返回对应watcher实例的销毁方法unwatchFn
 
 ```js
 Vue.prototype.$watch = function(expOrFn, cb, options) {

@@ -4,7 +4,7 @@
 
 ## render范例
 
-例如以下一个Vue的模板
+### Vue的模板
 
 ```html
 <ul :class="bindCls" class="list" v-if="isShow">
@@ -12,7 +12,7 @@
 </ul>
 ```
 
-而转化后的render的函数
+### 转化后的render的函数
 
 ```js
 with(this) {
@@ -54,6 +54,12 @@ export function generate(ast, options) {
     }
 }
 ```
+
+## 元素生成
+
+1. genElement处理元素生成方式
+2. 当该元素存在children时，用genChildren获取children的代码
+3. genChildren遍历元素调用genNode，判断元素的类型，type为1继续调用genElement
 
 ### genElement
 
@@ -100,6 +106,48 @@ export function genElement(el, state) {
             code = state.transforms[i](el, code)
         }
         return code
+    }
+}
+```
+
+### genChildren
+
+```js
+export function genChildren(el, state, checkSkip, altGenElement, altGenNode) {
+    const children = el.children
+    if (children.length) {
+        const el = children[0]
+        if (children.length === 1 &&
+            el.for &&
+            el.tag !== 'template' &&
+            el.tag !== 'slot'
+        ) {
+            const normalizationType = checkSkip ?
+                state.maybeComponent(el) ? `,1` : `,0` :
+                ``
+            return `${(altGenElement || genElement)(el, state)}${normalizationType}`
+        }
+        const normalizationType = checkSkip ?
+            getNormalizationType(children, state.maybeComponent) :
+            0
+        const gen = altGenNode || genNode
+        return `[${children.map(c => gen(c, state)).join(',')}]${
+      normalizationType ? `,${normalizationType}` : ''
+    }`
+    }
+}
+```
+
+### genNode
+
+```js
+function genNode(node, state) {
+    if (node.type === 1) {
+        return genElement(node, state)
+    } else if (node.type === 3 && node.isComment) {
+        return genComment(node)
+    } else {
+        return genText(node)
     }
 }
 ```

@@ -4,7 +4,7 @@ render代码生成后，执行得到vnode
 
 ## 执行代码设置
 
-_c是由initMixin的initRender时处理
+_c是执行initMixin中的initRender时处理
 
 ```js
 export function initRender(vm) {
@@ -24,18 +24,7 @@ export function installRenderHelpers(target: any) {
     target._s = toString
     target._l = renderList
     target._t = renderSlot
-    target._q = looseEqual
-    target._i = looseIndexOf
-    target._m = renderStatic
-    target._f = resolveFilter
-    target._k = checkKeyCodes
-    target._b = bindObjectProps
-    target._v = createTextVNode
-    target._e = createEmptyVNode
-    target._u = resolveScopedSlots
-    target._g = bindObjectListeners
-    target._d = bindDynamicKeys
-    target._p = prependModifier
+    // ...
 }
 ```
 
@@ -44,14 +33,7 @@ export function installRenderHelpers(target: any) {
 ## createElement
 
 ```js
-export function createElement(
-    context,
-    tag,
-    data,
-    children,
-    normalizationType,
-    alwaysNormalize
-) {
+export function createElement(context, tag, data, children, normalizationType, alwaysNormalize) {
     if (Array.isArray(data) || isPrimitive(data)) {
         normalizationType = children
         children = data
@@ -62,39 +44,24 @@ export function createElement(
     }
     return _createElement(context, tag, data, children, normalizationType)
 }
+```
 
-export function _createElement(
-    context,
-    tag,
-    data,
-    children,
-    normalizationType
-) {
+_createElement正真负责vnode创建
+
+```js
+export function _createElement(context, tag, data, children, normalizationType) {
     // observed的data对象拦截
     if (isDef(data) && isDef((data).__ob__)) {
         return createEmptyVNode()
     }
-    if (isDef(data) && isDef(data.is)) {
-        tag = data.is
-    }
+    // ...
     if (!tag) {
+        // tag获取和异常拦截
         return createEmptyVNode()
     }
-    if (Array.isArray(children) &&
-        typeof children[0] === 'function'
-    ) {
-        data = data || {}
-        data.scopedSlots = {
-            default: children[0]
-        }
-        children.length = 0
-    }
+    // ...
     // children 的规范化处理成Vnode
-    if (normalizationType === ALWAYS_NORMALIZE) {
-        children = normalizeChildren(children)
-    } else if (normalizationType === SIMPLE_NORMALIZE) {
-        children = simpleNormalizeChildren(children)
-    }
+    // ...
     // VNode 的创建
     let vnode, ns
     if (typeof tag === 'string') {
@@ -139,43 +106,16 @@ Vue.js 中 Virtual DOM 是借鉴了一个开源库 snabbdom，并增加了Vue的
 
 ```js
 export default class VNode {
-    tag: string | void;
-    data: VNodeData | void;
-    children: ? Array < VNode > ;
-    text: string | void;
-    elm: Node | void;
-    ns: string | void;
-    context: Component | void; // rendered in this component's scope
-    key: string | number | void;
-    componentOptions: VNodeComponentOptions | void;
-    componentInstance: Component | void; // component instance
-    parent: VNode | void; // component placeholder node
-
-    // strictly internal
-    raw: boolean; // contains raw HTML? (server only)
-    isStatic: boolean; // hoisted static node
-    isRootInsert: boolean; // necessary for enter transition check
-    isComment: boolean; // empty comment placeholder?
-    isCloned: boolean; // is a cloned node?
-    isOnce: boolean; // is a v-once node?
-    asyncFactory: Function | void; // async component factory function
-    asyncMeta: Object | void;
-    isAsyncPlaceholder: boolean;
-    ssrContext: Object | void;
-    fnContext: Component | void; // real context vm for functional nodes
-    fnOptions: ? ComponentOptions; // for SSR caching
-    devtoolsMeta: ? Object; // used to store functional render context for devtools
-    fnScopeId: ? string; // functional scope id support
-
+    // ...
     constructor(
-        tag ? : string,
-        data ? : VNodeData,
-        children ? : ? Array < VNode > ,
-        text ? : string,
-        elm ? : Node,
-        context ? : Component,
-        componentOptions ? : VNodeComponentOptions,
-        asyncFactory ? : Function
+        tag,
+        data,
+        children,
+        text,
+        elm,
+        context,
+        componentOptions,
+        asyncFactory
     ) {
         this.tag = tag
         this.data = data
@@ -201,9 +141,6 @@ export default class VNode {
         this.asyncMeta = undefined
         this.isAsyncPlaceholder = false
     }
-
-    // DEPRECATED: alias for componentInstance for backwards compat.
-    /* istanbul ignore next */
     get child(): Component | void {
         return this.componentInstance
     }

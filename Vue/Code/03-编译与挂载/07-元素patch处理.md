@@ -72,6 +72,18 @@ export function createPatchFunction(backend) {
 
 ## patchVnode
 
+1. 新旧节点一致，则直接返回
+2. 异步组件处理
+3. 静态组件直接返回
+4. 组件prepatch钩子触发
+5. 节点比对
+   1. 非文本标签处理
+      1. 新旧孩子都有，调用updateChildren使用diff更新孩子
+      2. 仅有新孩子，直接添加新孩子
+      3. 仅有旧孩子，直接删除旧孩子
+   2. 文本标签，则直接替换
+6. postpatch钩子触发
+
 ```js
   function patchVnode(
       oldVnode,
@@ -124,7 +136,7 @@ export function createPatchFunction(backend) {
       if (isUndef(vnode.text)) {
           // 非文本标签处理
           if (isDef(oldCh) && isDef(ch)) {
-              // 新旧孩子都有，孩子不同updateChildren从而diff更新孩子
+              // 新旧孩子都有，调用updateChildren使用diff更新孩子
               if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly)
           } else if (isDef(ch)) {
               // 仅有新孩子

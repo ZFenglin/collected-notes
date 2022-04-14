@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"组件化","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"生命周期","c":[{"t":"heading","d":3,"p":{"lines":[4,5]},"v":"组件生命周期步骤","c":[{"t":"heading","d":4,"p":{"lines":[6,7]},"v":"开始创建","c":[{"t":"list_item","d":6,"p":{"lines":[8,9],"index":1},"v":"1. beforeCreate（创建前）","c":[{"t":"list_item","d":8,"p":{"lines":[9,10],"index":1},"v":"1. data 的响应式追踪、event/watcher 都还没有被设置"},{"t":"list_item","d":8,"p":{"lines":[10,11],"index":2},"v":"2. data、computed、watch、methods无法访问"}]}]},{"t":"heading","d":4,"p":{"lines":[12,13]},"v":"初始化数据","c":[{"t":"list_item","d":6,"p":{"lines":[15,16],"index":1},"v":"1. initInjections(vm)"},{"t":"list_item","d":6,"p":{"lines":[16,17],"index":2},"v":"2. initState(vm)"},{"t":"list_item","d":6,"p":{"lines":[17,18],"index":3},"v":"3. initProvide(vm)"}]},{"t":"heading","d":4,"p":{"lines":[19,20]},"v":"编译模版","c":[{"t":"list_item","d":6,"p":{"lines":[21,22],"index":1},"v":"1. created（创建后）","c":[{"t":"list_item","d":8,"p":{"lines":[22,23],"index":1},"v":"1. data、computed、watch、methods 等都配置完成"},{"t":"list_item","d":8,"p":{"lines":[23,24],"index":2},"v":"2. 渲染节点未挂载到DOM上，所以无法访问$el"},{"t":"list_item","d":8,"p":{"lines":[24,25],"index":3},"v":"3. 此时多处理数据初始化"}]}]},{"t":"heading","d":4,"p":{"lines":[26,27]},"v":"挂载Dom -&gt; 渲染","c":[{"t":"list_item","d":6,"p":{"lines":[28,29],"index":1},"v":"1. beforeMount（挂载前）","c":[{"t":"list_item","d":8,"p":{"lines":[29,30],"index":1},"v":"1. 在挂载开始之前被调用，相关的render函数首次被调用"},{"t":"list_item","d":8,"p":{"lines":[30,31],"index":2},"v":"2. 已完成以下的配置：编译模板，把data里面的数据和模板生成html"},{"t":"list_item","d":8,"p":{"lines":[31,32],"index":3},"v":"3. html还没有挂载到页面中"}]},{"t":"list_item","d":6,"p":{"lines":[32,33],"index":2},"v":"2. mounted（挂载后）","c":[{"t":"list_item","d":8,"p":{"lines":[33,34],"index":1},"v":"1. 在el被新创建的 vm.$el 替换，并挂载到实例上去之后调用"},{"t":"list_item","d":8,"p":{"lines":[34,35],"index":2},"v":"2. 此时多处理DOM节点"}]}]},{"t":"heading","d":4,"p":{"lines":[36,37]},"v":"更新 -&gt; 渲染","c":[{"t":"list_item","d":6,"p":{"lines":[38,39],"index":1},"v":"1. beforeUpdate（更新前）","c":[{"t":"list_item","d":8,"p":{"lines":[39,40],"index":1},"v":"1. 此时响应式数据更新了但是真实DOM未渲染"}]},{"t":"list_item","d":6,"p":{"lines":[40,41],"index":2},"v":"2. updated（更新后）","c":[{"t":"list_item","d":8,"p":{"lines":[41,42],"index":1},"v":"1. 组件DOM更新了，需要避免此期间更改状态，容易造成无限循环"},{"t":"list_item","d":8,"p":{"lines":[42,43],"index":2},"v":"2. 服务器不可以调用"}]}]},{"t":"heading","d":4,"p":{"lines":[44,45]},"v":"卸载","c":[{"t":"list_item","d":6,"p":{"lines":[46,47],"index":1},"v":"1. beforeDestroy（销毁前）","c":[{"t":"list_item","d":8,"p":{"lines":[47,48],"index":1},"v":"1. 实例销毁前调用，this还是可以获取到实例"}]},{"t":"list_item","d":6,"p":{"lines":[48,49],"index":2},"v":"2. destroyed（销毁后）","c":[{"t":"list_item","d":8,"p":{"lines":[49,50],"index":1},"v":"1. 调用后，Vue实例的所有东西都会解除绑定，事件监听移除，子实例也会销毁"},{"t":"list_item","d":8,"p":{"lines":[50,51],"index":2},"v":"2. 服务器不可以调用"}]}]},{"t":"heading","d":4,"p":{"lines":[52,53]},"v":"keep-alive","c":[{"t":"list_item","d":6,"p":{"lines":[54,55],"index":1},"v":"1. deactivated","c":[{"t":"list_item","d":8,"p":{"lines":[55,56],"index":1},"v":"1. 组件缓存到内存中执行deactived"}]},{"t":"list_item","d":6,"p":{"lines":[56,57],"index":2},"v":"2. activated","c":[{"t":"list_item","d":8,"p":{"lines":[57,58],"index":1},"v":"1. 命中缓存渲染后执行activated"}]}]}]},{"t":"heading","d":3,"p":{"lines":[59,60]},"v":"父子组件执行顺序","c":[{"t":"heading","d":4,"p":{"lines":[63,64]},"v":"渲染加载","c":[{"t":"list_item","d":6,"p":{"lines":[65,66],"index":1},"v":"1. beforeCreate"},{"t":"list_item","d":6,"p":{"lines":[66,67],"index":2},"v":"2. created"},{"t":"list_item","d":6,"p":{"lines":[67,68],"index":3},"v":"3. beforeMount","c":[{"t":"list_item","d":8,"p":{"lines":[68,69],"index":1},"v":"1. beforeCreate"},{"t":"list_item","d":8,"p":{"lines":[69,70],"index":2},"v":"2. created"},{"t":"list_item","d":8,"p":{"lines":[70,71],"index":3},"v":"3. beforeMount"},{"t":"list_item","d":8,"p":{"lines":[71,72],"index":4},"v":"4. mounted"}]},{"t":"list_item","d":6,"p":{"lines":[72,73],"index":4},"v":"4. mounted"}]},{"t":"heading","d":4,"p":{"lines":[74,75]},"v":"更新过程","c":[{"t":"list_item","d":6,"p":{"lines":[76,77],"index":1},"v":"1. beforeUpdate","c":[{"t":"list_item","d":8,"p":{"lines":[77,78],"index":1},"v":"1. beforeUpdate"},{"t":"list_item","d":8,"p":{"lines":[78,79],"index":2},"v":"2. updated"}]},{"t":"list_item","d":6,"p":{"lines":[79,80],"index":2},"v":"2. updated"}]},{"t":"heading","d":4,"p":{"lines":[81,82]},"v":"销毁过程","c":[{"t":"list_item","d":6,"p":{"lines":[83,84],"index":1},"v":"1. beforeDestroy","c":[{"t":"list_item","d":8,"p":{"lines":[84,85],"index":1},"v":"1. beforeDestroy"},{"t":"list_item","d":8,"p":{"lines":[85,86],"index":2},"v":"2. destroyed"}]},{"t":"list_item","d":6,"p":{"lines":[86,87],"index":2},"v":"2. destroyed"}]}]},{"t":"heading","d":3,"p":{"lines":[88,89]},"v":"请求异步数据时机","c":[{"t":"list_item","d":5,"p":{"lines":[90,91],"index":1},"v":"1. 其实create和mount的钩子都可以，但是推荐在 created 钩子函数中调用异步请求"},{"t":"list_item","d":5,"p":{"lines":[91,92],"index":2},"v":"2. 能更快获取到服务端数据，减少页面加载时间，用户体验更好"},{"t":"list_item","d":5,"p":{"lines":[92,93],"index":3},"v":"3. SSR不支持 beforeMount 、mounted 钩子函数"}]}]}]})</script>
+</body>
+</html>

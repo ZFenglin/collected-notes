@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"类构建","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"Vue.use","c":[{"t":"heading","d":3,"p":{"lines":[6,7]},"v":"作用","c":[{"t":"list_item","d":5,"p":{"lines":[8,9],"index":1},"v":"1. 注册全局配置属性"},{"t":"list_item","d":5,"p":{"lines":[9,10],"index":2},"v":"2. 注册全局引用方法"}]},{"t":"heading","d":3,"p":{"lines":[13,14]},"v":"步骤","c":[{"t":"list_item","d":5,"p":{"lines":[15,16],"index":1},"v":"1. 插件检查：检查插件列表是否存在传入插件，存在直接返回"},{"t":"list_item","d":5,"p":{"lines":[16,17],"index":2},"v":"2. 参数转化：toArray方法将参数的类数组转化为数组"},{"t":"list_item","d":5,"p":{"lines":[17,18],"index":3},"v":"3. 插件执行","c":[{"t":"list_item","d":7,"p":{"lines":[18,19],"index":1},"v":"1. plugin.install是function，则执行plugin.install.apply(plugin, args)"},{"t":"list_item","d":7,"p":{"lines":[19,20],"index":2},"v":"2. plugin是function，则执行plugin.apply(null, args)"}]},{"t":"list_item","d":5,"p":{"lines":[20,21],"index":4},"v":"4. 插件入队，installedPlugins.push(plugin)"}]}]},{"t":"heading","d":2,"p":{"lines":[22,23]},"v":"Vue.mixin与Vue.extends","c":[{"t":"heading","d":3,"p":{"lines":[26,27]},"v":"Vue.mixin","c":[{"t":"ordered_list","d":4,"p":{"lines":[28,33],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[28,29],"index":1},"v":"1. 能够为 Vue 组件编写可插拔和可重用的功能"},{"t":"list_item","d":5,"p":{"lines":[29,30],"index":2},"v":"2. 希望在多个组件之间重用一组组件选项，则可以将其编写为 mixin，并在组件中简单的引用它"},{"t":"list_item","d":5,"p":{"lines":[30,31],"index":3},"v":"3. 钩子按照传入顺序依次调用，并在调用组件自身的钩子之前被调用"},{"t":"list_item","d":5,"p":{"lines":[31,32],"index":4},"v":"4. 混入对象可以像正常的实例对象一样包含实例选项，并会被合并到最终的选项中"}]},{"t":"heading","d":4,"p":{"lines":[35,36]},"v":"与mixins的区别","c":[{"t":"fence","d":5,"v":"<pre class=\"language-js\"><code class=\"language-js\"><span class=\"token comment\">// mixin</span>\n<span class=\"token maybe-class-name\">Vue</span><span class=\"token punctuation\">.</span><span class=\"token method function property-access\">mixin</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>\n<span class=\"token comment\">// mixins</span>\n<span class=\"token literal-property property\">mixins</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span>myMixin<span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n</code></pre>\n"},{"t":"ordered_list","d":5,"p":{"lines":[44,47],"start":1},"v":"","c":[{"t":"list_item","d":6,"p":{"lines":[44,45],"index":1},"v":"1. Vue.mixin是全局混入，适合添加AJAX和工具类，但是要谨慎使用"},{"t":"list_item","d":6,"p":{"lines":[45,46],"index":2},"v":"2. mixins局部混入，用于添加部分逻辑，并且mixins混入的钩子会优先于组件自身钩子执行"}]}]}]},{"t":"heading","d":3,"p":{"lines":[47,48]},"v":"Vue.extends","c":[{"t":"list_item","d":5,"p":{"lines":[49,50],"index":1},"v":"1. 扩展组件生成一个构造器"},{"t":"list_item","d":5,"p":{"lines":[50,51],"index":2},"v":"2. 便于扩展单文件组件，接收一个对象或构造函数，通常会与 $mount 一起使用"}]},{"t":"heading","d":3,"p":{"lines":[52,53]},"v":"配置合并","c":[{"t":"heading","d":4,"p":{"lines":[54,55]},"v":"mergeOptions","c":[{"t":"list_item","d":6,"p":{"lines":[57,58],"index":1},"v":"1. 规范化选项（normalizeProps、normalizelnject、normalizeDirectives)"},{"t":"list_item","d":6,"p":{"lines":[58,59],"index":2},"v":"2. 对未合并的选项，进行判断"},{"t":"list_item","d":6,"p":{"lines":[59,60],"index":3},"v":"3. 合并处理","c":[{"t":"list_item","d":8,"p":{"lines":[60,61],"index":1},"v":"1. 利用策略模式"},{"t":"list_item","d":8,"p":{"lines":[61,62],"index":2},"v":"2. 根据一个通用 Vue 实例所包含的选项进行分类逐一判断合并"},{"t":"list_item","d":8,"p":{"lines":[62,63],"index":3},"v":"3. 将合并结果存储在新定义的 options 对象里"}]},{"t":"list_item","d":6,"p":{"lines":[63,64],"index":4},"v":"4. 返回合并结果 options"}]},{"t":"heading","d":4,"p":{"lines":[67,68]},"v":"mixin与extends配置合并差异"}]}]},{"t":"heading","d":2,"p":{"lines":[71,72]},"v":"Vue.directive","c":[{"t":"heading","d":3,"p":{"lines":[75,76]},"v":"<a href=\"https://cn.vuejs.org/v2/guide/custom-directive.html\">directive使用方式</a>","c":[{"t":"fence","d":4,"v":"<pre class=\"language-js\"><code class=\"language-js\"><span class=\"token comment\">// 全局定义</span>\n<span class=\"token maybe-class-name\">Vue</span><span class=\"token punctuation\">.</span><span class=\"token method function property-access\">directive</span><span class=\"token punctuation\">(</span><span class=\"token string\">\"focus\"</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span>\n\n<span class=\"token comment\">// 局部定义</span>\n<span class=\"token literal-property property\">directives</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token literal-property property\">focus</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span><span class=\"token punctuation\">}</span>\n<span class=\"token punctuation\">}</span>\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[87,88]},"v":"directive使用场景","c":[{"t":"list_item","d":5,"p":{"lines":[90,91],"index":1},"v":"1. 鼠标聚焦"},{"t":"list_item","d":5,"p":{"lines":[91,92],"index":2},"v":"2. 下拉菜单"},{"t":"list_item","d":5,"p":{"lines":[92,93],"index":3},"v":"3. 自定义指令实现图片懒加载"},{"t":"list_item","d":5,"p":{"lines":[93,94],"index":4},"v":"4. 自定义指令集成第三方插件"}]}]},{"t":"heading","d":2,"p":{"lines":[95,96]},"v":"Vue.filters","c":[{"t":"heading","d":3,"p":{"lines":[101,102]},"v":"filters使用方式","c":[{"t":"fence","d":4,"v":"<pre class=\"language-html\"><code class=\"language-html\"><span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;</span>li</span><span class=\"token punctuation\">></span></span>商品价格：{{item.price | filterPrice}}<span class=\"token tag\"><span class=\"token tag\"><span class=\"token punctuation\">&lt;/</span>li</span><span class=\"token punctuation\">></span></span>\n</code></pre>\n"},{"t":"fence","d":4,"v":"<pre class=\"language-js\"><code class=\"language-js\"><span class=\"token literal-property property\">filters</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token function\">filterPrice</span><span class=\"token punctuation\">(</span><span class=\"token parameter\">price</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span>\n        <span class=\"token keyword control-flow\">return</span> price <span class=\"token operator\">?</span> <span class=\"token punctuation\">(</span><span class=\"token string\">'￥'</span> <span class=\"token operator\">+</span> price<span class=\"token punctuation\">)</span> <span class=\"token operator\">:</span> <span class=\"token string\">'--'</span>\n    <span class=\"token punctuation\">}</span>\n<span class=\"token punctuation\">}</span>\n</code></pre>\n"}]}]}]})</script>
+</body>
+</html>

@@ -32,11 +32,10 @@
 
 ### 编译过程
 
-Vite是按需编译，利用浏览器支持ESModule，只编译这个页面需要的代码
+1. Vite是按需编译，利用浏览器支持ESModule，只编译这个页面需要的代码
+2. Webpack则是完全编译好后，将代码防至内存获取
 
 ![Vite编译过程](assets/04-Vite编译过程.png)
-
-Webpack则是完全编译好后，将代码防至内存获取
 
 ![Webpack编译过程](assets/04-Webpack编译过程.png)
 

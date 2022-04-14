@@ -14,9 +14,10 @@ Composition API 可以让我们更好地组织代码结构
 
 ### Composition API
 
-一组基于函数的API，它的使用没有位置的规范
+1. 一组基于函数的API，它的使用没有位置的规范
+2. 具有更加灵活的组件逻辑，甚至可以将组建的逻辑抽离到一个方法中导出
 
-具有更加灵活的组件逻辑，甚至可以将组建的逻辑抽离到一个方法中导出，例如鼠标组件逻辑
+#### 鼠标监听逻辑
 
 ```js
 // utils/mouse.js
@@ -48,30 +49,27 @@ export function useMouse() {
 }
 
 // 组件内直接使用
-import {
-    useMouse
-} from '../utils/mouse'
-
 let {
     x,
     y
 } = useMouse()
 ```
 
-同时style中支持数据绑定
+#### style中支持数据绑定
 
-```vue
+```html
 <script setup>
-let color = ref('red')
-function change() {
-  color.value = Math.random()>0.5? "blue":"red"
-}
+    let color = ref('red')
+
+    function change() {
+        color.value = Math.random() > 0.5 ? "blue" : "red"
+    }
 </script>
 
 <style scoped>
-h1 {
-  color:v-bind(color);
-}
+    h1 {
+        color: v-bind(color);
+    }
 </style>
 ```
 
@@ -79,11 +77,10 @@ h1 {
 
 ### 创建实例
 
-createApp用于创建组件
-
-内部可以使用setup
-1. setup中的代码就是beforeCreate和created时执行，所以不需要
-2. 其他的就是在之前的增加on开头
+1. createApp用于创建组件
+2. 内部可以使用setup
+   1. setup中的代码就是beforeCreate和created时执行
+   2. 其他生命周期的就是在之前的增加on开头
 
 ### 创建响应式对象
 
@@ -147,12 +144,14 @@ watchEffect(async () => {
 
 Compositon API思路借鉴React Hook
 
-但是React Hook存在一些限制
+### React Hook存限制
+
 1. 不能在循环、条件、嵌套函数中调用Hook
 2. 必须确保总是在你的React函数的顶层调用Hook
 3. useEffect、useMemo等函数必须手动确定依赖关系
 
-而两者区别主要如下：
+### 两者区别
+
 1. 渲染区别
    1. 声明在setup函数内，一次组件实例化只调用一次setup
    2. React Hook每次重渲染都需要调用Hook，使得React的GC比Vue更有压力

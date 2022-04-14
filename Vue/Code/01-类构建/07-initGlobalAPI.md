@@ -1,59 +1,50 @@
 # initGlobalAPI
 
 增加Vue上的静态方法和属性
-1. Vue.config
-2. Vue.util（vue内部的工具方法）
-3. Vue.set、Vue.nextTick、Vue.delete
-4. Vue.observable
-5. Vue.options
-6. initUse设置Vue.use
-7. initMixin设置Vue.mixin
-8. initExtend设置Vue.extend
-9. initAssetRegisters处理Vue.options的components、filters和directive
 
 ```js
 export function initGlobalAPI(Vue) {
-    // Vue.config
+    // 1. Vue.config
     const configDef = {}
     configDef.get = () => config
     Object.defineProperty(Vue, 'config', configDef)
-    // Vue.util（vue内部的工具方法）
+    // 2. Vue.util（vue内部的工具方法）
     Vue.util = {
         warn,
         extend,
         mergeOptions, // 配置合并
         defineReactive // 响应式数据
     }
-    // Vue.set、Vue.nextTick、Vue.delete
+    // 3. Vue.set、Vue.nextTick、Vue.delete
     Vue.set = set
     Vue.delete = del
     Vue.nextTick = nextTick
-    // Vue.observable（监控对象）
+    // 4. Vue.observable（监控对象）
     Vue.observable = (obj) => {
         observe(obj)
         return obj
     }
-    // Vue.options
+    // 5. Vue.options
     Vue.options = Object.create(null)
     ASSET_TYPES.forEach(type => {
         Vue.options[type + 's'] = Object.create(null)
     })
     Vue.options._base = Vue
     // ...
-    // initUse设置Vue.use
+    // 6. initUse设置Vue.use
     initUse(Vue)
-    // initMixin设置Vue.mixin
+    // 7. initMixin设置Vue.mixin
     initMixin(Vue)
-    // initExtend设置Vue.extend
+    // 8. initExtend设置Vue.extend
     initExtend(Vue)
-    // initAssetRegisters处理Vue.options的components、filters和directive
+    // 9. initAssetRegisters处理Vue.options的components、filters和directive
     initAssetRegisters(Vue)
 }
 ```
 
 ## Vue.config
 
-Vue默认的基础配置，用于控制vue默认的处理方式
+1. Vue默认的基础配置，用于控制vue默认的处理方式
 
 ```js
 export default ({
@@ -103,7 +94,8 @@ Vue.defineReactive，就是响应式处理的对应方法
 
 ### Vue.util.extend
 
-源码中只是简单的对象的浅层拷贝，即方便后续使用的工具方法
+1. 源码中只是简单的对象的浅层拷贝
+2. 即方便后续使用的工具方法
 
 ```js
 export function extend(to, _from) {
@@ -122,11 +114,7 @@ export function extend(to, _from) {
  
 
 ```js
- export function mergeOptions(
-     parent,
-     child,
-     vm
- ) {
+ export function mergeOptions(parent, child, vm) {
      // 孩子的属性获取和标准化为Object-based形式
      if (typeof child === 'function') {
          child = child.options
@@ -166,7 +154,7 @@ export function extend(to, _from) {
  }
 ```
 
-默认策略，优先childVal
+#### 默认策略，优先childVal
 
 ```js
 const defaultStrat = function(parentVal, childVal) {
@@ -180,26 +168,20 @@ const defaultStrat = function(parentVal, childVal) {
 
 ### Vue.options属性设置
 
-上面设置了components、filters和directive，外加_base
-
-_base就是简单的Vue对象
-
-而components、filters和directive用户自定义的全局属性，先设置号空对象
+1. 上面设置了components、filters和directive，外加_base
+2. _base就是简单的Vue对象
+3. 而components、filters和directive用户自定义的全局属性，先设置号空对象
 
 ### components、filters和directive对应方法注册
 
 initAssetRegisters则是处理对应的方法注册
 
-Vue.component => Vue.options.components
-Vue.directive => Vue.options.directives
-Vue.filter => Vue.options.filters
+1. Vue.component => Vue.options.components
+2. Vue.directive => Vue.options.directives
+3. Vue.filter => Vue.options.filters
 
 ```js
-export const ASSET_TYPES = [
-    'component',
-    'directive',
-    'filter'
-]
+export const ASSET_TYPES = ['component', 'directive', 'filter']
 export function initAssetRegisters(Vue) {
     ASSET_TYPES.forEach(type => {
         Vue[type] = function(id, definition) {
@@ -230,7 +212,8 @@ export function initAssetRegisters(Vue) {
 
 设置Vue.use
 
-给Vue扩展功能，希望扩展的时候使用的vue版本一致
+1. 用于给Vue扩展功能，希望扩展的时候使用的vue版本一致
+2. Vue维护一个_installedPlugins数组，用于管理插件
 
 ```js
 // 为了给Vue扩展功能，希望扩展的时候使用的vue版本一致
@@ -238,9 +221,7 @@ plugin.install = function(Vue, optoins, a, b, c) {}
 Vue.use(plugin, options, a, b, c)
 ```
 
-Vue维护一个_installedPlugins数组，用于管理插件
-
-注册插件则时有以下步骤
+### 注册插件则时有以下步骤
 
 1. 获取installedPlugins
 2. 检查插件是否安装，安装过直接返回
@@ -276,9 +257,8 @@ export function initUse(Vue) {
 
 ## initMixin
 
-对当前Vue调用了mergeOptions
-
 ```js
+// 对当前Vue调用了mergeOptions
 export function initMixin(Vue) {
     Vue.mixin = function(mixin) {
         this.options = mergeOptions(this.options, mixin)
@@ -289,10 +269,5 @@ export function initMixin(Vue) {
 
 ## 其它
 
-Vue.set、Vue.delete、Vue.nextTick和Vue.observable
-
-这些就是Vue响应式和异步更新中对应的同名方法
-
-initExtend
-
-设置Vue.extend，用于组件配置部分，详情见组件化
+1. Vue.set、Vue.delete、Vue.nextTick和Vue.observable，这些就是Vue响应式和异步更新中对应的同名方法
+2. initExtend，设置Vue.extend，用于组件配置部分，详情见组件化

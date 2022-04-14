@@ -1,17 +1,13 @@
 # computed和watch
-
-watch只是一种用户自定义的watcher，当数据变化后，将触发传入的cb
-
-computed是懒加载的watcher，只有对应值变化后才会处理新值获取
+1. watch只是一种用户自定义的watcher，当数据变化后，将触发传入的cb
+2. computed是懒加载的watcher，只有对应值变化后才会处理新值获取
 
 ## watch
 
-watch的处理只是在当前的实例上利用$watch创建新的watcher
-
-initWatch：按照不同的handler，处理后调用createWatcher创建对应watcher
-createWatcher： 利用$watch创建watcher
+1. watch的处理只是在当前的实例上利用$watch创建新的watcher
 
 ```js
+// 按照不同的handler，处理后调用createWatcher创建对应watcher
 function initWatch(vm, watch) {
     for (const key in watch) {
         const handler = watch[key]
@@ -24,7 +20,7 @@ function initWatch(vm, watch) {
         }
     }
 }
-
+// 利用$watch创建watcher
 function createWatcher(
     vm,
     expOrFn,
@@ -47,9 +43,8 @@ function createWatcher(
 
 ### computed初始化
 
-遍历computed，对每一项进行处理并创建对应的lazy形式Watcher和定义属性至vm上
-
-同时还会收集当前实例的所有computed产生的watcher，用于在get触发时获取对应watcher并更新
+1. 遍历computed，对每一项进行处理并创建对应的lazy形式Watcher和定义属性至vm上
+2. 同时还会收集当前实例的所有computed产生的watcher，用于在get触发时获取对应watcher并更新
 
 ```js
 const computedWatcherOptions = {
@@ -86,11 +81,6 @@ defineComputed
 1. 按照用户定义方式决定如何处理获取get
 2. 利用Object.defineProperty将对应的computed定义到vm上
 
-createComputedGetter用于创建computed使用的get
-1. 获取key对应watcher
-2. 判断是否时脏数据，从而决定是否执行evaluate更新
-3. 判断target是存在，进行depend收集处理
-
 ```js
 export function defineComputed(
     target,
@@ -115,6 +105,19 @@ export function defineComputed(
     Object.defineProperty(target, key, sharedPropertyDefinition)
 }
 
+function createGetterInvoker(fn) {
+    return function computedGetter() {
+        return fn.call(this, this)
+    }
+}
+```
+
+createComputedGetter用于创建computed使用的get
+1. 获取key对应watcher
+2. 判断是否是脏数据，从而决定是否执行evaluate更新
+3. 判断target是存在，进行depend收集处理
+
+```js
 function createComputedGetter(key) {
     return function computedGetter() {
         // 获取key对应watcher
@@ -130,12 +133,6 @@ function createComputedGetter(key) {
             }
             return watcher.value
         }
-    }
-}
-
-function createGetterInvoker(fn) {
-    return function computedGetter() {
-        return fn.call(this, this)
     }
 }
 ```

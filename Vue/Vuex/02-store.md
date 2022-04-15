@@ -1,4 +1,7 @@
 # store
+
+## 整体代码
+
 1. constructor构建基本的store实例
 2. state设置获取方法
 3. commit提交处理

@@ -1,8 +1,7 @@
 # install
 
-Vuex在目录index中导出所有相关方法
-
 ```js
+// Vuex在目录index中导出所有相关方法
 export default {
     Store,
     install,

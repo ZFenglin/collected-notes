@@ -101,40 +101,7 @@ function* generator()
 
 ### 生成器执行器
 
-```js
-function readFile(url) {
-    return new Promise(function(resolve, reject) {
-        fs.readFile(url, function(error, data) {
-            if (error) reject(error);
-            resolve(data)
-        })
-    })
-}
-function* gen() {
-    var f1 = yield readFile('./a.txt');
-    console.log(f1)
-    var f2 = yield readFile('./b.txt');
-    console.log(f2)
+1. 接收生成器函数
+2. 自动执行next，将生成器函数执行完毕
 
-}
-function co(generator) {
-    const iterator = generator();
-    return new Promise(function(resolve, reject) {
-        // 通过递归的方式遍历内部状态
-        function diff(value) {
-            ret = iterator.next(value);
-            if (ret.done) return resolve(ret.value);
-            Promise.resolve(ret.value).then(function(data) {
-                diff(data.toString())
-            });
-        }
-        try {
-            diff()
-        } catch (err) {
-            reject(err)
-        }
-    })
-
-}
-co(gen)
-```
+详见手写代码/异步编程

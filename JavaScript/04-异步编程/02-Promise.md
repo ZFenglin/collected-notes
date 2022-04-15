@@ -60,7 +60,7 @@ resolve和reject都会触发
       1. 成功时，看promisesResults的长度，判断是否完全处理完，看是否触发resolve(promisesResults)
       2. 失败直接reject(res)
 
-详见手写代码/Promise
+详见手写代码/异步编程
 
 #### Promise.allSettled(iterable)
 
@@ -79,7 +79,7 @@ resolve和reject都会触发
 1. 与Promise.all差不多，Promise.resolve(promise)外部差不多，没有需要维护的数组
 2. then内部则是谁先触发谁resolve(res)或reject(res)
 
-详见手写代码/Promise
+详见手写代码/异步编程
 
 ##### Promise.race实现执行中断
 
@@ -137,6 +137,8 @@ new Promise().then(() {}).then(() {})
 ```
 
 ## Promise原理
+
+详见手写代码/异步编程
 
 1. 利用数组保存回调
 2. 在下一个循环执行resolve和reject

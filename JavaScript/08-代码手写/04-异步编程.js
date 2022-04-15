@@ -1,3 +1,33 @@
+/////
+///// 回调函数与定时器
+///// 
+/**
+ * requestAnimationFrame模拟定时器
+ * @param {*} callback 
+ * @param {*} interval 
+ * @returns 
+ */
+function setInterval(callback, interval) {
+    let timer
+    const now = Date.now
+    let startTime = now()
+    let endTime = startTime
+    const loop = () => {
+        timer = window.requestAnimationFrame(loop)
+        endTime = now()
+        if (endTime - startTime >= interval) {
+            startTime = endTime = now()
+            callback(timer)
+        }
+    }
+    timer = window.requestAnimationFrame(loop)
+    return timer
+}
+
+
+/////
+///// Promise
+///// 
 /**
  * 手写promise
  */
@@ -72,28 +102,7 @@ class _Promise {
         return this.then(null, onRejected)
     }
 }
-// console.log('1')
-// let p = new _Promise(function (resolve, reject) {
-//     console.log('2')
-//     setTimeout(() => {
-//         resolve('zfl')
-//         console.log('4')
-//     }, 1000);
-// })
 
-// p.then(
-//     res => {
-//         console.log('resolve:' + res)
-//         return '123'
-//     },
-//     res => { console.log('reject:' + res) }
-// ).then(
-//     res => {
-//         console.log('resolve2:' + res)
-//     },
-//     res => { console.log('reject2:' + res) }
-// )
-// console.log('3')
 
 /**
  * 手写Promise.all
@@ -125,24 +134,7 @@ function promiseAll(promises) {
         }
     })
 }
-// let p1 = new Promise(function (resolve, reject) {
-//     setTimeout(function () {
-//         resolve(1)
-//     }, 1000)
-// })
-// let p2 = new Promise(function (resolve, reject) {
-//     setTimeout(function () {
-//         resolve(2)
-//     }, 2000)
-// })
-// let p3 = new Promise(function (resolve, reject) {
-//     setTimeout(function () {
-//         resolve(3)
-//     }, 3000)
-// })
-// promiseAll([p3, p1, p2]).then(res => {
-//     console.log(res) // [3, 1, 2]
-// })
+
 
 /**
  * 手写Promise.race
@@ -166,21 +158,47 @@ function promiseRace(promises) {
         }
     })
 }
-// let p1 = new Promise(function (resolve, reject) {
-//     setTimeout(function () {
-//         resolve(1)
-//     }, 1000)
-// })
-// let p2 = new Promise(function (resolve, reject) {
-//     setTimeout(function () {
-//         resolve(2)
-//     }, 2000)
-// })
-// let p3 = new Promise(function (resolve, reject) {
-//     setTimeout(function () {
-//         resolve(3)
-//     }, 3000)
-// })
-// promiseRace([p3, p1, p2]).then(res => {
-//     console.log(res) // [3, 1, 2]
-// })
+
+/////
+///// Generator
+///// 
+/**
+ * 生成器执行器
+ * @param {*} generator 
+ * @returns 
+ */
+function co(generator) {
+    const iterator = generator();
+    return new Promise(function (resolve, reject) {
+        // 通过递归的方式遍历内部状态
+        function diff(value) {
+            ret = iterator.next(value);
+            if (ret.done) return resolve(ret.value);
+            Promise.resolve(ret.value).then(function (data) {
+                diff(data.toString())
+            });
+        }
+        try {
+            diff()
+        } catch (err) {
+            reject(err)
+        }
+    })
+
+}
+function readFile(url) {
+    return new Promise(function (resolve, reject) {
+        fs.readFile(url, function (error, data) {
+            if (error) reject(error);
+            resolve(data)
+        })
+    })
+}
+function* gen() {
+    var f1 = yield readFile('./a.txt');
+    console.log(f1)
+    var f2 = yield readFile('./b.txt');
+    console.log(f2)
+
+}
+co(gen)

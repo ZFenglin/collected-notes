@@ -68,162 +68,81 @@
 
 ## 数组去重
 
+详细见手写代码/数组相关
+
 ### ES6
 
-利用Set可以快速去重
-
-```js
-const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];
-Array.from(new Set(array)); // [1, 2, 3, 5, 9, 8]
-```
+1. 利用Set可以快速去重
+2. Array.from再将Set转化为数组
 
 ### ES5
 
-```js
-const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];
-uniqueArray(array); // [1, 2, 3, 5, 9, 8]
-function uniqueArray(array) {
-    let map = {};
-    let res = [];
-    for (var i = 0; i < array.length; i++) {
-        if (!map.hasOwnProperty([array[i]])) {
-            map[array[i]] = 1;
-            res.push(array[i]);
-        }
-    }
-    return res;
-}
-```
+1. 维护一个对象map和返回数组res
+2. 遍历数组
+   1. 当前值map中存在则直接跳过
+   2. 不存在则插入res，并修改对应的map值
 
 ## 数组扁平化
 
+详见手写代码/数组相关
+
 ### flat
 
-arr.flat可以传入设定展开深度作为参数，Infinity为全展开
-
-```js
-function flatten(arr) {
-    // Infinity为全展开
-    return arr.flat(Infinity);
-}
-```
+1. flat可以展开数组
+2. 参数则是设定展开层级，Infinity为全展开
 
 ###  字符串
 
 通过数组转化为字符串的形式处理展开
-
-#### split 和 toString
-
-```js
-function flatten(arr) {
-    return arr.toString().split(',');
-}
-```
-
-#### 正则和 JSON 方法
-
-```js
-function flatten(arr) {
-    let str = JSON.stringify(arr);
-    str = str.replace(/(\[|\])/g, '');
-    str = '[' + str + ']';
-    return JSON.parse(str);
-}
-```
+1. split 和 toString
+   1. 数组toString转化
+   2. split用', '分割
+2. 正则和 JSON 方法
+   1. JSON.stringify转化数组
+   2. 正则replace替换左右括号
+   3. 添加外层括号
+   4. JSON.parse转化回去
 
 ### concat递归实现
 
 concat每次会展开一层
-
-#### 递归
-
-```js
-function flatten(arr) {
-    let result = [];
-    for (let i = 0; i < arr.length; i++) {
-        if (Array.isArray(arr[i])) {
-            result = result.concat(flatten(arr[i]));
-        } else {
-            result.push(arr[i]);
-        }
-    }
-    return result;
-}
-```
-
-#### reduce
-
-```js
-function flatten(arr) {
-    return arr.reduce(function(prev, next) {
-        return prev.concat(Array.isArray(next) ? flatten(next) : next)
-    }, [])
-}
-```
+1. 递归
+   1. 维护一个result数组
+   2. 遍历arr，判断遍历项是否时数组
+      1. 是数组则result.concat(flatten(遍历项))
+      2. 不是则直接push进result
+   3. 返回result
+2. reduce
+   1. 逻辑差不多，只是reduce负责遍历
 
 ### 扩展运算符
 
-不断检测是否存在数组，然后使用拓展运算符不断展开
+1. 不断检测是否存在数组
+2. 存在使用拓展运算符不断展开
 
-```js
-function flatten(arr) {
-    while (arr.some(item => Array.isArray(item))) {
-        arr = [].concat(...arr);
-    }
-    return arr;
-}
-```
+## 数组方法实现原理
 
-## 手写数组方法
+详细见手写代码/数组相关
 
-```js
-/**
- * 手写flat
- * @param {Array} arr 
- * @param {Number} depth 
- * @returns 
- */
-Array.prototype._flat = function(depth = 1) {
-    if (!Array.isArray(this) || depth <= 0) return this
-    return this.reduce(function(pre, cur) {
-        return pre.concat(Array.isArray(cur) ? Array.prototype._flat.call(cur, depth - 1) : cur)
-    }, [])
-}
-/**
- * 手写push 
- */
-Array.prototype._push = function() {
-    for (let i = 0; i < arguments.length; i++) {
-        this[this.length] = arguments[i];
-    }
-    return this.length;
-}
-/**
- * 手写map
- * @param {Function} fn 
- */
-Array.prototype._map = function(fn) {
-    if (typeof fn !== 'function') {
-        throw TypeError('fn must be function')
-    }
-    let res = []
-    for (let index = 0; index < this.length; index++) {
-        res.push(fn.call(this, this[index], index))
-    }
-    return res
-}
-/**
- * 手写filter
- * @param {Function} fn 
- */
-Array.prototype._filter = function(fn) {
-    if (typeof fn !== "function") {
-        throw Error('参数必须是一个函数');
-    }
-    const res = [];
-    for (let i = 0, len = this.length; i < len; i++) {
-        fn(this[i]) && res.push(this[i]);
-    }
-    return res;
-}
-```
+### flat
+
+1. reduce负责遍历每项获取返回值
+2. concat负责一层一层展开
+3. 当reduce的cur为数组时则嵌套调用
+
+### push
+
+1. for循环遍历arguments
+2. 数组的尾项设置循环值
+3. 返回数组长度
+
+### map
+
+1. 创建res
+2. 遍历数组，将res推入fn.call的结果
+3. 返回res
+
+### filter
+
+1. 类似map
+2. 只是推入时判断fn执行结果，看遍历项是否需要推入res

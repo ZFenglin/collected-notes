@@ -85,48 +85,16 @@ var obj = {
 // 1 awesome 2 awesome 3 awesome
 ```
 
-#### 手写call，apply和bind
+#### call，apply和bind原理
 
-```js
-/**
- * @param {Object} context 
- * @param  {...any} args 
- */
-Function.prototype._call = function(context, ...args) {
-    if (typeof this !== 'function') {
-        throw TypeError('this must be function')
-    }
-    context = context || window
-    context.fn = this
-    let res = context.fn(...args)
-    delete context.fn
-    return res
-}
-
-/**
- * @param {Object} context 
- * @param {Array} args 
- */
-Function.prototype._apply = function(context, args) {
-    return this.call(context, ...args)
-}
-
-/**
- * @param {Object} context 
- * @param {Array} args 
- */
-Function.prototype._bind = function(context, ...args) {
-    if (typeof this !== 'function') {
-        throw TypeError('this must be function')
-    }
-    let fn = this
-    return function Fn() {
-        // 注意，当绑定函数被new调用时，this会被变更
-        context = this instanceof Fn ? this : context
-        fn._apply(context, args.concat(arguments))
-    }
-}
-```
+详见手写代码/函数相关
+1. call传入两个参数(context, ...args)
+   1. context因为默认绑定存在，未设置则window
+   2. 否则将context.fn设置为this，并执行返回res（记得delete删除fn）
+2. apply就是直接对call封装，将传入的第二个参数展开
+3. bing利用闭包，返回一个处理函数Fn
+   1. 首先判断context，当this instanceof Fn时，则context为this，否则不变
+   2. 利用apply绑定context执行，（记得传入的参数合并bind和Fn的共同参数）
 
 ### new绑定
 

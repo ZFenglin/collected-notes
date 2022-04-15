@@ -52,37 +52,15 @@ resolve和reject都会触发
 
 任何一个promise对象失败，触发失败，返回第一个错误
 
-##### 手写Promise.all(iterable)
+##### Promise.all原理
 
-```js
-function promiseAll(promises) {
-    return new Promise(function(resolve, reject) {
-        // 类型判断
-        if (!Array.isArray(promises)) {
-            throw new TypeError('promise must be a array')
-        }
-        let count = 0
-        let length = promises.length
-        let promisesResults = []
-        for (let index = 0; index < length; index++) {
-            // 用Promise.resolve包裹传入promise参数，防止传入普通函数报错
-            const promise = promises[index];
-            Promise.resolve(promise).then(
-                res => {
-                    count++
-                    promisesResults[index] = res
-                    if (count === length) {
-                        return resolve(promisesResults)
-                    }
-                },
-                res => {
-                    return reject(res)
-                },
-            )
-        }
-    })
-}
-```
+1. 返回一个Promise
+   1. 维护一个结果数组promisesResults
+   2. 遍历promises，Promise.resolve(promise)封装，在then时处理成功和失败
+      1. 成功时，看promisesResults的长度，判断是否完全处理完，看是否触发resolve(promisesResults)
+      2. 失败直接reject(res)
+
+详见手写代码/Promise
 
 #### Promise.allSettled(iterable)
 
@@ -96,29 +74,12 @@ function promiseAll(promises) {
 
 任何一个promise对象成功或失败，返回第一个失败或成功对象结果
 
-##### 手写Promise.race
+##### Promise.race原理
 
-```js
-function promiseRace(promises) {
-    return new Promise((resolve, reject) => {
-        // 类型判断
-        if (!Array.isArray(promises)) {
-            throw new TypeError('promise must be a array')
-        }
-        for (let index = 0; index < promises.length; index++) {
-            const promise = promises[index];
-            Promise.resolve(promise).then(
-                res => {
-                    return resolve(res)
-                },
-                res => {
-                    return reject(res)
-                },
-            )
-        }
-    })
-}
-```
+1. 与Promise.all差不多，Promise.resolve(promise)外部差不多，没有需要维护的数组
+2. then内部则是谁先触发谁resolve(res)或reject(res)
+
+详见手写代码/Promise
 
 ##### Promise.race实现执行中断
 
@@ -175,85 +136,10 @@ return new Promise().then(() {}).then(() {})
 new Promise().then(() {}).then(() {})
 ```
 
-## 手写Promise
+## Promise原理
 
 1. 利用数组保存回调
 2. 在下一个循环执行resolve和reject
 3. 按照执行结果是否instanceof _Promise，决定是否继续执行then
 4. then返回一个_Promise对象
 5. catch返回一个只注册onRejected的then的执行结果
-
-```js
-class _Promise {
-    static PENDING = '待定'
-    static FULFILLED = '兑现'
-    static REJECTED = '拒绝'
-
-    status = _Promise.PENDING
-    result = undefined
-    resolveCallbacks = []
-    rejectCallbacks = []
-
-    constructor(executor) {
-        const resolve = (value) => {
-            setTimeout(() => {
-                if (this.status === _Promise.PENDING) {
-                    this.status = _Promise.FULFILLED
-                    this.result = value
-                    this.resolveCallbacks.forEach(cb => cb())
-                }
-            });
-        }
-        const reject = (value) => {
-            setTimeout(() => {
-                if (this.status === _Promise.PENDING) {
-                    this.status = _Promise.REJECTED
-                    this.result = value
-                    this.rejectCallbacks.forEach(cb => cb())
-                }
-            });
-        }
-        try {
-            executor(resolve, reject)
-        } catch (error) {
-            reject(error)
-        }
-    }
-
-    handlePromise(fn, resolve, reject, resolved = true) {
-        try {
-            let x = fn(this.result)
-            if (x instanceof _Promise) {
-                x.then(resolve, reject)
-            } else {
-                resolved ? resolve(x) : reject(x)
-            }
-        } catch (error) {
-            reject(error)
-        }
-    }
-
-    then(onResolved, onRejected) {
-        return new _Promise((resolve, reject) => {
-            let resolvedFn = typeof onResolved === 'function' ? () => this.handlePromise(onResolved, resolve, reject, true) : () => {}
-            let rejectedFn = typeof onRejected === 'function' ? () => this.handlePromise(onRejected, resolve, reject, false) : () => {}
-            switch (this.status) {
-                case _Promise.FULFILLED:
-                    resolvedFn()
-                    break;
-                case _Promise.REJECTED:
-                    rejectedFn()
-                    break;
-                case _Promise.PENDING:
-                    this.resolveCallbacks.push(() => resolvedFn())
-                    this.rejectCallbacks.push(() => rejectedFn())
-                    break;
-            }
-        })
-    }
-
-    catch (onRejected) {
-        return this.then(null, onRejected)
-    }
-}
-```

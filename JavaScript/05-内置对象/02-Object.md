@@ -76,27 +76,13 @@ obj['key']
 
 但是拷贝的对象中如果有函数，undefined，symbol，则会丢失
 
-### 手写深浅拷贝
+### 深浅拷贝实现
 
-```js
-/**
- * 对象拷贝支持深浅拷贝
- * @param {*} obj 
- * @param {*} deep 
- * @returns 
- */
-function objectCopy(obj, deep = false) {
-    if (typeof obj !== 'object') return obj
-    let newObj = obj instanceof Array ? [] : {}
-    for (let key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            let element = obj[key]
-            newObj[key] = deep && typeof element === 'object' ? objectCopy(element, deep) : element
-        }
-    }
-    return newObj
-}
-```
+1. 判断newObj的类型，数组还是对象，设置空值
+2. for...in遍历obj，hasOwnProperty过滤原型属性
+3. newObj赋值，当设置的值为对象并且deep为true，则嵌套调用objectCopy
+
+详见手写代码/对象相关
 
 ## 删除对象delete
 

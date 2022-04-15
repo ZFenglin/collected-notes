@@ -51,19 +51,29 @@ obj['key']
 
 ### 浅拷贝
 
-#### Object.assgin(target, source, ...)
+#### assgin
 
-#### 参数
+```js
+Object.assgin(target, source, ...)
+```
+
+##### 参数
 
 1. target目标对象（作为返回的对象）
 2. source拷贝对象
 
-#### 特点
+##### 特点
 
 1. 存在同名属性，则后面的覆盖前面的
 2. 第一个参数不能为null和undefined，因为无法转化为对象
 
-#### let copyObj = { ...obj1 }
+#### 扩展运算符
+
+```js
+let copyObj = {
+    ...obj1
+}
+```
 
 #### 数组浅拷贝
 
@@ -74,7 +84,12 @@ obj['key']
 
 ####  JSON.stringify()
 
-但是拷贝的对象中如果有函数，undefined，symbol，则会丢失
+```js
+// 拷贝的对象中如果有函数，undefined，symbol，则会丢失
+let obj2 = JSON.parse(JSON.stringify(obj1));
+```
+
+#### lodash的_.cloneDeep方法
 
 ### 深浅拷贝实现
 

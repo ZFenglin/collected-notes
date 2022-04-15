@@ -2,16 +2,6 @@
 ///// 对象原理
 ///// 
 /**
- * Object.create
- * @param {Object} obj 
- */
-Object._create = function (obj) {
-    function Fn() { }
-    Fn.prototype = obj
-    return new Fn()
-}
-
-/**
  * new
  * @param {Function} fn 
  * @param {Array} args 
@@ -25,6 +15,18 @@ function _new(fn, args) {
     let res = fn.apply(obj, args)
     return typeof res == 'object' ? res : obj
 }
+
+
+/**
+ * Object.create
+ * @param {Object} obj 
+ */
+Object._create = function (obj) {
+    function Fn() { }
+    Fn.prototype = obj
+    return new Fn()
+}
+
 
 /**
  * instanceof

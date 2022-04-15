@@ -267,3 +267,30 @@ function Child(name, age) {
     this.age = age;
 }
 inherit(Child, Parent);
+
+
+/////
+///// 其它方面
+///// 
+/**
+ * 对象是否循环使用
+ * @param {Object} obj 
+ * @param {Object} parent 
+ */
+const isCycleObject = (obj, parent) => {
+    const parentArr = parent || [obj];
+    for (let i in obj) {
+        if (typeof obj[i] === 'object') {
+            let flag = false;
+            parentArr.forEach((pObj) => {
+                if (pObj === obj[i]) {
+                    flag = true;
+                }
+            })
+            if (flag) return true;
+            flag = isCycleObject(obj[i], [...parentArr, obj[i]]);
+            if (flag) return true;
+        }
+    }
+    return false;
+}

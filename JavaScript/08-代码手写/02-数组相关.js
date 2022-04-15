@@ -138,3 +138,43 @@ function flatten(arr) {
     }
     return arr;
 }
+
+
+
+/////
+///// 其他方面
+///// 
+/**
+ * 数组乱序（洗牌算法）
+ * @param {Array} arr 
+ */
+function shuffle(arr) {
+    for (let index = arr.length - 1; index > 0; index--) {
+        randomIndex = Math.floor(Math.random() * (index - 1));
+        [arr[randomIndex], arr[index]] = [arr[index], arr[randomIndex]];
+    }
+}
+
+/**
+ * 多层数组求和
+ * @param {Array} array 
+ * @returns 
+ */
+// 1. 字符串
+function arrSum(array) {
+    return array.toString().split(',').reduce((total, i) => total += Number(i), 0)
+}
+// 2. flat
+function arrSum(array) {
+    return array.flat(Infinity).reduce((total, i) => total += Number(i), 0)
+}
+// 3. 递归
+function arrSum(array) {
+    return array.reduce((pre, cur) => {
+        if (Array.isArray(cur)) {
+            return pre + arrSum(cur)
+        } else {
+            return pre + cur
+        }
+    }, 0)
+}

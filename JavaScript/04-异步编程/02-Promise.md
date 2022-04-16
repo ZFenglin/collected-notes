@@ -100,18 +100,16 @@ Promise.race([promise1, timeOutPromise(5000)]).then(res => {})
 1. value为带有then方法的对象：返回的Promise对象的最终状态由then方法执行决定
 2. value为其他：返回的Promise对象状态为fulfilled，并且将该value传递给对应的then方法
 
-## 链式调用
+## then与catch链式调用
 
 ![Promise执行过程](assets/02-Promises执行过程.png)
 
 ### Promise执行方法判断
 
-首先按照Promise的状态（resolved或rejected）触发then或者catch
-
-then和catch后续触发则是按照以下情况
-
-1. 当没有设定状态时，默认状态是resolved，触发最近的then
-2. 当内部报错时，默认状态为rejected，触发最近的catch
+1. 首先按照Promise的状态（resolved或rejected）触发then或者catch
+2. then和catch后续触发则是按照以下情况
+   1. 当没有设定状态时，默认状态是resolved，触发最近的then
+   2. 当内部报错时，默认状态为rejected，触发最近的catch
 
 ### [执行顺序判断](https://juejin.cn/post/6844903987183894535)
 

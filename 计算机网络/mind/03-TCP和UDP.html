@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"TCP和UDP","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"TCP","c":[{"t":"heading","d":3,"p":{"lines":[6,7]},"v":"TCP特点","c":[{"t":"heading","d":4,"p":{"lines":[8,9]},"v":"面向连接","c":[{"t":"list_item","d":6,"p":{"lines":[10,11],"index":1},"v":"1. 发送数据之前必须在两端通过三次握手建立连接"}]},{"t":"heading","d":4,"p":{"lines":[12,13]},"v":"可靠传输","c":[{"t":"list_item","d":6,"p":{"lines":[14,15],"index":1},"v":"1. 超时重传","c":[{"t":"list_item","d":8,"p":{"lines":[15,16],"index":1},"v":"1. 消息发出后会设置一个定时器，接收方确认超时则会重新发送"}]},{"t":"list_item","d":6,"p":{"lines":[16,17],"index":2},"v":"2. 流量控制","c":[{"t":"list_item","d":8,"p":{"lines":[17,18],"index":1},"v":"1. 通信双发具有固定大小的缓冲空间，发送方只能发送接收方允许的数据大小，并利用滑动窗口实现流量控制"}]},{"t":"list_item","d":6,"p":{"lines":[18,19],"index":3},"v":"3. 拥塞控制","c":[{"t":"list_item","d":8,"p":{"lines":[19,20],"index":1},"v":"1. 检测到网络拥塞时，减少数据发送"}]},{"t":"list_item","d":6,"p":{"lines":[20,21],"index":4},"v":"4. 数据分块","c":[{"t":"list_item","d":8,"p":{"lines":[21,22],"index":1},"v":"1. 数据分割成适合发送的块"}]},{"t":"list_item","d":6,"p":{"lines":[22,23],"index":5},"v":"5. 序列号（有序发送）","c":[{"t":"list_item","d":8,"p":{"lines":[23,24],"index":1},"v":"1. 每一个发送的数据包都具有序号"},{"t":"list_item","d":8,"p":{"lines":[24,25],"index":2},"v":"2. 接收端通过序号对数据包进行排序后发送给应用层"}]},{"t":"list_item","d":6,"p":{"lines":[25,26],"index":6},"v":"6. 校验和","c":[{"t":"list_item","d":8,"p":{"lines":[26,27],"index":1},"v":"1. 保持首部和数据的校验和，出错则直接丢弃报文"}]},{"t":"list_item","d":6,"p":{"lines":[27,28],"index":7},"v":"7. 停止等待协议","c":[{"t":"list_item","d":8,"p":{"lines":[28,29],"index":1},"v":"1. 发送完一个分组则停止发送，等双发确认后继续发送"}]}]},{"t":"heading","d":4,"p":{"lines":[30,31]},"v":"单播","c":[{"t":"list_item","d":6,"p":{"lines":[32,33],"index":1},"v":"1. 仅支持一对一通信"}]},{"t":"heading","d":4,"p":{"lines":[34,35]},"v":"字节流","c":[{"t":"list_item","d":6,"p":{"lines":[36,37],"index":1},"v":"1. 不保留报文边界，使用字节流进行数据传输"}]}]},{"t":"heading","d":3,"p":{"lines":[38,39]},"v":"连接方式","c":[{"t":"heading","d":4,"p":{"lines":[40,41]},"v":"相关字段","c":[{"t":"list_item","d":6,"p":{"lines":[42,43],"index":1},"v":"1. 1位字段","c":[{"t":"list_item","d":8,"p":{"lines":[43,44],"index":1},"v":"1. SYN：发起新请求"},{"t":"list_item","d":8,"p":{"lines":[44,45],"index":2},"v":"2. ACK：确认序号是否有效"},{"t":"list_item","d":8,"p":{"lines":[45,46],"index":3},"v":"3. FIN：是否释放连接"}]},{"t":"list_item","d":6,"p":{"lines":[46,47],"index":2},"v":"2. 32位字段","c":[{"t":"list_item","d":8,"p":{"lines":[47,48],"index":1},"v":"1. 序号（seq）：标识客户端向服务端发送的字节流，发起放会发送数据时会进行标记"},{"t":"list_item","d":8,"p":{"lines":[48,49],"index":2},"v":"2. 确认序号（ack）：用于确认sep消息，值通常位seq+1"}]}]},{"t":"heading","d":4,"p":{"lines":[50,51]},"v":"三次握手：确保双方收发正常"},{"t":"heading","d":4,"p":{"lines":[54,55]},"v":"四次挥手：确保数据传输完，双方断开连接"}]},{"t":"heading","d":3,"p":{"lines":[58,59]},"v":"TCP粘包","c":[{"t":"heading","d":4,"p":{"lines":[60,61]},"v":"TCP粘包产生原因","c":[{"t":"list_item","d":6,"p":{"lines":[62,63],"index":1},"v":"1. 面向字节流传输，应⽤程序必须以消息为单位提取数据，不能⼀次提取任意字节的数据"},{"t":"list_item","d":6,"p":{"lines":[63,64],"index":2},"v":"2. 延迟传送算法 (Nagle算法）：多次数据发送，会缓冲起来作一次发送"}]},{"t":"heading","d":4,"p":{"lines":[65,66]},"v":"UDP不粘包原因","c":[{"t":"list_item","d":6,"p":{"lines":[67,68],"index":1},"v":"1. UDP具有保护消息边界，在每个UDP包中就有了消息头（消息来源地址，端⼝等信息）"},{"t":"list_item","d":6,"p":{"lines":[68,69],"index":2},"v":"2. 传输协议把数据当作⼀条独⽴的消息在⽹上传输，接收端只能接收独⽴的消息"}]},{"t":"heading","d":4,"p":{"lines":[70,71]},"v":"粘包解决方式","c":[{"t":"list_item","d":6,"p":{"lines":[72,73],"index":1},"v":"1. 多次发送增加时间间隔"},{"t":"list_item","d":6,"p":{"lines":[73,74],"index":2},"v":"2. 关闭Nagle算法(不推荐)"},{"t":"list_item","d":6,"p":{"lines":[74,75],"index":3},"v":"3. 封包/拆包：在每个数据包的前后添加特征数据，接收数据后根据特征数据分割数据包"}]}]}]},{"t":"heading","d":2,"p":{"lines":[76,77]},"v":"UDP","c":[{"t":"heading","d":3,"p":{"lines":[80,81]},"v":"UDP特点","c":[{"t":"heading","d":4,"p":{"lines":[82,83]},"v":"面向无连接","c":[{"t":"list_item","d":6,"p":{"lines":[84,85],"index":1},"v":"1. 发送时无需建立连接"}]},{"t":"heading","d":4,"p":{"lines":[86,87]},"v":"不可靠","c":[{"t":"list_item","d":6,"p":{"lines":[88,89],"index":1},"v":"1. 不保证交付成功"},{"t":"list_item","d":6,"p":{"lines":[89,90],"index":2},"v":"2. 无交付顺序（无序发送）"},{"t":"list_item","d":6,"p":{"lines":[90,91],"index":3},"v":"3. 无拥塞控制"}]},{"t":"heading","d":4,"p":{"lines":[93,94]},"v":"单播/多播/广播","c":[{"t":"list_item","d":6,"p":{"lines":[95,96],"index":1},"v":"1. 可以一对一，一对多，多对多通信"}]},{"t":"heading","d":4,"p":{"lines":[97,98]},"v":"报文","c":[{"t":"list_item","d":6,"p":{"lines":[99,100],"index":1},"v":"1. 应用层传入的报文不进行处理"},{"t":"list_item","d":6,"p":{"lines":[100,101],"index":2},"v":"2. 保留报文边，仅添加头部后直接发送给网路层"}]},{"t":"heading","d":4,"p":{"lines":[102,103]},"v":"传输高效（头部占比小）","c":[{"t":"list_item","d":6,"p":{"lines":[104,105],"index":1},"v":"1. UDP首部8字节"},{"t":"list_item","d":6,"p":{"lines":[105,106],"index":2},"v":"2. TCP首部最小20字节，最大60字节"}]}]}]}]})</script>
+</body>
+</html>

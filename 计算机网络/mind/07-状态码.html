@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"状态码","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"1XX (Information 信息状态码)"},{"t":"heading","d":2,"p":{"lines":[6,7]},"v":"2XX (Success 成功状态码)","c":[{"t":"heading","d":3,"p":{"lines":[8,9]},"v":"正常返回","c":[{"t":"heading","d":4,"p":{"lines":[10,11]},"v":"200 OK"}]},{"t":"heading","d":3,"p":{"lines":[14,15]},"v":"无主体返回","c":[{"t":"heading","d":4,"p":{"lines":[16,17]},"v":"204 No Content","c":[{"t":"heading","d":5,"p":{"lines":[20,21]},"v":"204使用场景","c":[{"t":"list_item","d":7,"p":{"lines":[22,23],"index":1},"v":"1. 性能监控"},{"t":"list_item","d":7,"p":{"lines":[23,24],"index":2},"v":"2. 错误上报"}]}]},{"t":"heading","d":4,"p":{"lines":[25,26]},"v":"205 Reset Content"}]},{"t":"heading","d":3,"p":{"lines":[29,30]},"v":"范围请求（Content-Range指定范围）","c":[{"t":"heading","d":4,"p":{"lines":[31,32]},"v":"206 Partial Content"}]}]},{"t":"heading","d":2,"p":{"lines":[35,36]},"v":"3XX (Redirection 重定向状态码)","c":[{"t":"heading","d":3,"p":{"lines":[37,38]},"v":"永久重定向","c":[{"t":"heading","d":4,"p":{"lines":[39,40]},"v":"301 Moved Permanently","c":[{"t":"heading","d":5,"p":{"lines":[43,44]},"v":"301使用场景","c":[{"t":"list_item","d":7,"p":{"lines":[45,46],"index":1},"v":"1. 更换不再使用的旧域名"}]}]}]},{"t":"heading","d":3,"p":{"lines":[47,48]},"v":"临时重定向","c":[{"t":"heading","d":4,"p":{"lines":[51,52]},"v":"302 Found","c":[{"t":"heading","d":5,"p":{"lines":[53,54]},"v":"302使用场景","c":[{"t":"list_item","d":7,"p":{"lines":[55,56],"index":1},"v":"1. 首页跳转活动页"},{"t":"list_item","d":7,"p":{"lines":[56,57],"index":2},"v":"2. 未登录重定向至登录页"},{"t":"list_item","d":7,"p":{"lines":[57,58],"index":3},"v":"3. 404重定向至首页"}]}]},{"t":"heading","d":4,"p":{"lines":[59,60]},"v":"303 See Other"},{"t":"heading","d":4,"p":{"lines":[63,64]},"v":"307 Temporary Redirect"},{"t":"heading","d":4,"p":{"lines":[67,68]},"v":"302、303和307三者区别","c":[{"t":"list_item","d":6,"p":{"lines":[69,70],"index":1},"v":"1. 303和307是302的细化版本，区别在于是否更改请求方法"},{"t":"list_item","d":6,"p":{"lines":[70,71],"index":2},"v":"2. 302/303","c":[{"t":"list_item","d":8,"p":{"lines":[71,72],"index":1},"v":"1. 几乎所有的浏览器都会把 POST 改成GET"},{"t":"list_item","d":8,"p":{"lines":[72,73],"index":2},"v":"2. 并删除请求报文内的主体，之后请求会再次自动发送"},{"t":"list_item","d":8,"p":{"lines":[73,74],"index":3},"v":"3. 303是明确表示采用GET，而302是浏览器自己改的"}]},{"t":"list_item","d":6,"p":{"lines":[74,75],"index":3},"v":"3. 307","c":[{"t":"list_item","d":8,"p":{"lines":[75,76],"index":1},"v":"1. 遵循浏览器标准，不会将POST改为GET"}]}]}]},{"t":"heading","d":3,"p":{"lines":[77,78]},"v":"缓存","c":[{"t":"heading","d":4,"p":{"lines":[79,80]},"v":"304 Not Modified","c":[{"t":"heading","d":5,"p":{"lines":[81,82]},"v":"304作用"},{"t":"heading","d":5,"p":{"lines":[85,86]},"v":"较多304的原因和问题","c":[{"t":"list_item","d":7,"p":{"lines":[87,88],"index":1},"v":"1. 产生原因","c":[{"t":"list_item","d":9,"p":{"lines":[88,89],"index":1},"v":"1. 页面更新周期长或不更新"},{"t":"list_item","d":9,"p":{"lines":[89,90],"index":2},"v":"2. 纯静态页面或强制生成静态html"}]},{"t":"list_item","d":7,"p":{"lines":[90,91],"index":2},"v":"2. 但是搜索引擎更青睐更新频繁的网址，一直处于304状态会降低搜索引擎的爬取，造成以下问题","c":[{"t":"list_item","d":9,"p":{"lines":[91,92],"index":1},"v":"1. 网站快照停止"},{"t":"list_item","d":9,"p":{"lines":[92,93],"index":2},"v":"2. 收录减少"},{"t":"list_item","d":9,"p":{"lines":[93,94],"index":3},"v":"3. 权重下降"}]}]}]}]}]},{"t":"heading","d":2,"p":{"lines":[95,96]},"v":"4XX (Client Error 客户端错误状态码)","c":[{"t":"heading","d":3,"p":{"lines":[97,98]},"v":"语法错误","c":[{"t":"heading","d":4,"p":{"lines":[99,100]},"v":"400 Bad Request"}]},{"t":"heading","d":3,"p":{"lines":[103,104]},"v":"未认证或服务器拒绝","c":[{"t":"heading","d":4,"p":{"lines":[105,106]},"v":"401 Unauthorized"},{"t":"heading","d":4,"p":{"lines":[111,112]},"v":"403 Forbidden","c":[{"t":"heading","d":5,"p":{"lines":[117,118]},"v":"401和403区别","c":[{"t":"list_item","d":7,"p":{"lines":[119,120],"index":1},"v":"1. 401表示用户是否登陆"},{"t":"list_item","d":7,"p":{"lines":[120,121],"index":2},"v":"2. 403表示用户已登录但是无权限"}]}]},{"t":"heading","d":4,"p":{"lines":[122,123]},"v":"405 Method Not Allowed"}]},{"t":"heading","d":3,"p":{"lines":[128,129]},"v":"无资源","c":[{"t":"heading","d":4,"p":{"lines":[130,131]},"v":"404 Not Found"}]}]},{"t":"heading","d":2,"p":{"lines":[134,135]},"v":"5XX (Server Error 服务器错误状态码)","c":[{"t":"heading","d":3,"p":{"lines":[136,137]},"v":"处理请求故障","c":[{"t":"heading","d":4,"p":{"lines":[138,139]},"v":"500 Internal Server Error"}]},{"t":"heading","d":3,"p":{"lines":[140,141]},"v":"网关出错","c":[{"t":"heading","d":4,"p":{"lines":[142,143]},"v":"502 Bad Gateway"}]},{"t":"heading","d":3,"p":{"lines":[144,145]},"v":"超负载或停机","c":[{"t":"heading","d":4,"p":{"lines":[146,147]},"v":"503 Service Unavailable","c":[{"t":"list_item","d":6,"p":{"lines":[149,150],"index":1},"v":"1. 服务器维护"},{"t":"list_item","d":6,"p":{"lines":[150,151],"index":2},"v":"2. nginx设置限速"}]}]},{"t":"heading","d":3,"p":{"lines":[152,153]},"v":"超时","c":[{"t":"heading","d":4,"p":{"lines":[154,155]},"v":"504 Gateway Timeout"}]}]}]})</script>
+</body>
+</html>

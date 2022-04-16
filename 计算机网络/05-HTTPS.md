@@ -1,4 +1,5 @@
 # HTTPS
+
 ## 相关概念
 
 ### 超文本传输安全协议
@@ -11,6 +12,7 @@
    2. 信息加密
    3. 完整性校验
    
+
 ![HTTPS](assets/05-HTTPS.png)
 
 ### 加密方式
@@ -41,11 +43,9 @@ MD5，SHA1，SHA256
 
 ### TLS/SSL概念
 
-SSL 为安全套接层（Secure Sockets Laye）
-
-传输层安全性协议（Transport Layer Securit）
-
-SSL为TLS的继任者
+1. SSL 为安全套接层（Secure Sockets Laye）
+2. 传输层安全性协议（Transport Layer Securit）
+3. SSL为TLS的继任者
 
 ![TLS/SSL](assets/05-SSL与TSL结构图.png)
 
@@ -62,9 +62,10 @@ SSL为TLS的继任者
       1. 数字证书
          1. hash信息摘要
          2. 公钥
+
       2. 服务器选择的密码组合
       3. "server random"随机字符串
-3. 客户端验证，并发送 premaster secret
+3. 客户端验证，并发送公钥加密信息
    1. 对证书进行验证
       1. 检查信息完整
       2. 获取公钥
@@ -82,7 +83,7 @@ SSL为TLS的继任者
 
 ### 中间人攻击
 
-公钥可能被第三方拦截并替换，然后冒充用户进行通信
+1. 公钥可能被第三方拦截并替换，然后冒充用户进行通信
 
 ### 数字证书过程
 
@@ -96,4 +97,5 @@ SSL为TLS的继任者
    2. 通过公证处的公钥来解密数字证书
    3. 比对解密摘要和生成摘要，确定信息是否被更改
    
+
 ![数字证书执行过程](assets/05-数字证书执行过程.png)

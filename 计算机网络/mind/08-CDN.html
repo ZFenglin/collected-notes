@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"CDN","c":[{"t":"ordered_list","d":2,"p":{"lines":[1,4],"start":1},"v":"","c":[{"t":"list_item","d":3,"p":{"lines":[1,2],"index":1},"v":"1. Content Delivery Network，内容分发网络"},{"t":"list_item","d":3,"p":{"lines":[2,3],"index":2},"v":"2. 互联网互相连接的电脑网络系统"}]},{"t":"heading","d":2,"p":{"lines":[4,5]},"v":"CDN组成","c":[{"t":"heading","d":3,"p":{"lines":[8,9]},"v":"分发服务系统","c":[{"t":"list_item","d":5,"p":{"lines":[10,11],"index":1},"v":"1. 响应用户请求，发送本地缓存数据"},{"t":"list_item","d":5,"p":{"lines":[11,12],"index":2},"v":"2. 不同站点内容同步"},{"t":"list_item","d":5,"p":{"lines":[12,13],"index":3},"v":"3. 更新内容和本地没有的从源服务器获取并缓存本地"}]},{"t":"heading","d":3,"p":{"lines":[14,15]},"v":"负载均衡系统","c":[{"t":"list_item","d":5,"p":{"lines":[16,17],"index":1},"v":"1. 对用户请求进行调度，提供最好的访问地址"}]},{"t":"heading","d":3,"p":{"lines":[18,19]},"v":"运营管理系统","c":[{"t":"list_item","d":5,"p":{"lines":[20,21],"index":1},"v":"1. 对用户，产品，计费进行管理"}]}]},{"t":"heading","d":2,"p":{"lines":[22,23]},"v":"CDN作用","c":[{"t":"heading","d":3,"p":{"lines":[24,25]},"v":"性能","c":[{"t":"list_item","d":5,"p":{"lines":[26,27],"index":1},"v":"1. 用户最终访问最近的数据中心获取数据，延迟低，加载快"},{"t":"list_item","d":5,"p":{"lines":[27,28],"index":2},"v":"2. 将部分资源分配给了CDN服务器，减少了服务器负载"}]},{"t":"heading","d":3,"p":{"lines":[29,30]},"v":"安全","c":[{"t":"list_item","d":5,"p":{"lines":[31,32],"index":1},"v":"1. 监控分析异常流量，针对DDoS攻击"},{"t":"list_item","d":5,"p":{"lines":[32,33],"index":2},"v":"2. 全链路HTTPS通信"}]}]},{"t":"heading","d":2,"p":{"lines":[34,35]},"v":"CDN应用场景","c":[{"t":"list_item","d":4,"p":{"lines":[36,37],"index":1},"v":"1. 开源项目的CDN"},{"t":"list_item","d":4,"p":{"lines":[37,38],"index":2},"v":"2. 使用CDN存放静态文件"},{"t":"list_item","d":4,"p":{"lines":[38,39],"index":3},"v":"3. 直播传输，CDN支持流媒体传输，用于直播提高加载速度"}]}]})</script>
+</body>
+</html>

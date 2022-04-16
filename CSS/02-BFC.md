@@ -1,10 +1,8 @@
 # [BFC](https://zhuanlan.zhihu.com/p/25321647)
-
-Block Format Context：块级格式化上下文
-
-独立的渲染区域
-1. 内部元素按照容器规则进行摆放
-2. 内部元素的处理不会影响外部元素，也不会被外部影响
+1. Block Format Context：块级格式化上下文
+2. 独立的渲染区域
+3. 内部元素按照容器规则进行摆放
+4. 内部元素的处理不会影响外部元素，也不会被外部影响
 
 ## [BFC特性](https://segmentfault.com/a/1190000009545742)
 
@@ -32,11 +30,11 @@ Block Format Context：块级格式化上下文
 
 ### float
 
-除none
+1. 除none
 
 ### overflow
 
-除visible和clip
+1. 除visible和clip
 
 ### display
 
@@ -53,7 +51,7 @@ Block Format Context：块级格式化上下文
 
 ### column-count或column-width
 
-除了auto
+1. 除了auto
 
 ## BFC作用
 
@@ -74,7 +72,7 @@ Block Format Context：块级格式化上下文
 
 ##### 兄弟外边距折叠
 
-兄弟元素各自放在一个BFC中
+1. 兄弟元素各自放在一个BFC中
 
 ##### 父子外边距折叠
 
@@ -83,8 +81,8 @@ Block Format Context：块级格式化上下文
 
 ### 清除浮动
 
-创建自适应两栏布局，给被遮挡的元素创建新的BFC
+1. 创建自适应两栏布局，给被遮挡的元素创建新的BFC
 
 ### 包裹浮动元素
 
-解决高度塌陷问题，父元素设置BFC
+1. 解决高度塌陷问题，父元素设置BFC

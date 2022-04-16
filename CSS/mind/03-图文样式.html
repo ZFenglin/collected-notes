@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"图文样式","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"图片格式","c":[{"t":"heading","d":3,"p":{"lines":[4,5]},"v":"点阵图","c":[{"t":"heading","d":4,"p":{"lines":[6,7]},"v":"BMP"},{"t":"heading","d":4,"p":{"lines":[10,11]},"v":"GIF"},{"t":"heading","d":4,"p":{"lines":[14,15]},"v":"JPEG"},{"t":"heading","d":4,"p":{"lines":[18,19]},"v":"PNG","c":[{"t":"heading","d":5,"p":{"lines":[20,21]},"v":"-8"},{"t":"heading","d":5,"p":{"lines":[24,25]},"v":"-24"}]},{"t":"heading","d":4,"p":{"lines":[28,29]},"v":"WebP（优先）"}]},{"t":"heading","d":3,"p":{"lines":[32,33]},"v":"矢量图","c":[{"t":"heading","d":4,"p":{"lines":[34,35]},"v":"SVG"}]}]},{"t":"heading","d":2,"p":{"lines":[38,39]},"v":"文本溢出","c":[{"t":"heading","d":3,"p":{"lines":[40,41]},"v":"单行文本溢出","c":[{"t":"fence","d":4,"v":"<pre class=\"language-css\"><code class=\"language-css\"><span class=\"token selector\">p</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token property\">overflow</span><span class=\"token punctuation\">:</span> hidden<span class=\"token punctuation\">;</span> // 溢出隐藏\n    <span class=\"token property\">text-overflow</span><span class=\"token punctuation\">:</span> ellipsis<span class=\"token punctuation\">;</span> // 溢出用省略号显示\n    <span class=\"token property\">white-space</span><span class=\"token punctuation\">:</span> nowrap<span class=\"token punctuation\">;</span> // 规定段落中的文本不进行换行\n<span class=\"token punctuation\">}</span>\n</code></pre>\n"}]},{"t":"heading","d":3,"p":{"lines":[50,51]},"v":"多行文本溢出","c":[{"t":"fence","d":4,"v":"<pre class=\"language-css\"><code class=\"language-css\"><span class=\"token selector\">p</span> <span class=\"token punctuation\">{</span>\n    <span class=\"token property\">overflow</span><span class=\"token punctuation\">:</span> hidden<span class=\"token punctuation\">;</span> // 溢出隐藏\n    <span class=\"token property\">text-overflow</span><span class=\"token punctuation\">:</span> ellipsis<span class=\"token punctuation\">;</span> // 溢出用省略号显示\n    <span class=\"token property\">display</span><span class=\"token punctuation\">:</span> -webkit-box<span class=\"token punctuation\">;</span> // 作为弹性伸缩盒子模型显示。\n    <span class=\"token property\">-webkit-box-orient</span><span class=\"token punctuation\">:</span> vertical<span class=\"token punctuation\">;</span> // 设置伸缩盒子的子元素排列方式：从上到下垂直排列\n    <span class=\"token property\">-webkit-line-clamp</span><span class=\"token punctuation\">:</span> <span class=\"token number\">3</span><span class=\"token punctuation\">;</span> // 显示的行数\n<span class=\"token punctuation\">}</span>\n</code></pre>\n"},{"t":"heading","d":4,"p":{"lines":[62,63]},"v":"WebKit","c":[{"t":"list_item","d":6,"p":{"lines":[64,65],"index":1},"v":"1. 一种用来让网页浏览器绘制网页的排版引擎，用于Safari"},{"t":"list_item","d":6,"p":{"lines":[65,66],"index":2},"v":"2. 分支Blink被用于基于Chromium的网页浏览器，如Opera与Google Chrome"}]}]}]},{"t":"heading","d":2,"p":{"lines":[67,68]},"v":"line-height","c":[{"t":"heading","d":3,"p":{"lines":[71,72]},"v":"行高赋值","c":[{"t":"list_item","d":5,"p":{"lines":[73,74],"index":1},"v":"1. px：固定px"},{"t":"list_item","d":5,"p":{"lines":[74,75],"index":2},"v":"2. em：参照父元素的font-size计算"},{"t":"list_item","d":5,"p":{"lines":[75,76],"index":3},"v":"3. 数字：传递比例给后代，后代按照自身的font-size计算"},{"t":"list_item","d":5,"p":{"lines":[76,77],"index":4},"v":"4. 百分比：将计算后的值传递给后代"}]},{"t":"heading","d":3,"p":{"lines":[78,79]},"v":"与高度的关系","c":[{"t":"list_item","d":5,"p":{"lines":[80,81],"index":1},"v":"1. height未设置，则表现为line-height高度"},{"t":"list_item","d":5,"p":{"lines":[81,82],"index":2},"v":"2. 与height一致时则垂直居中"},{"t":"list_item","d":5,"p":{"lines":[82,83],"index":3},"v":"3. 都可以撑开高度"}]}]}]})</script>
+</body>
+</html>

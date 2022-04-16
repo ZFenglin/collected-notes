@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"盒模型","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"盒子宽高","c":[{"t":"heading","d":3,"p":{"lines":[4,5]},"v":"宽度值","c":[{"t":"list_item","d":5,"p":{"lines":[6,7],"index":1},"v":"1. 盒子宽度：content宽度 + padding 宽度 + border 宽度（+ 滚动条宽度） + margin 宽度"},{"t":"list_item","d":5,"p":{"lines":[7,8],"index":2},"v":"2. offsetWidth： content宽度 + padding 宽度 + border 宽度 （+ 滚动条宽度）"}]},{"t":"heading","d":3,"p":{"lines":[9,10]},"v":"width属性设置（推荐将所有的元素都设置为border-box）","c":[{"t":"list_item","d":5,"p":{"lines":[11,12],"index":1},"v":"1. 标准盒模型：box-sizing: content-box(默认) =&gt; content宽度"},{"t":"list_item","d":5,"p":{"lines":[12,13],"index":2},"v":"2. IE盒模型：box-sizing: border-box =&gt; content宽度 + padding 宽度 + border 宽度"}]}]},{"t":"heading","d":2,"p":{"lines":[18,19]},"v":"充满容器的盒子","c":[{"t":"list_item","d":4,"p":{"lines":[20,21],"index":1},"v":"1. 元素状态","c":[{"t":"list_item","d":6,"p":{"lines":[21,22],"index":1},"v":"1. 子元素为块元素，且未设定宽度"},{"t":"list_item","d":6,"p":{"lines":[22,23],"index":2},"v":"2. 容器则是宽度设置为固定值"}]},{"t":"list_item","d":4,"p":{"lines":[23,24],"index":2},"v":"2. 修改 margin 、 border 或 padding 其中一项的宽度值，造成content减少"},{"t":"list_item","d":4,"p":{"lines":[24,25],"index":3},"v":"3. 当设定值超过容器极限时，容器会被撑开"}]},{"t":"heading","d":2,"p":{"lines":[26,27]},"v":"margin负值","c":[{"t":"heading","d":3,"p":{"lines":[28,29]},"v":"设定元素移动","c":[{"t":"list_item","d":5,"p":{"lines":[30,31],"index":1},"v":"1. margin-top（向上移动）"},{"t":"list_item","d":5,"p":{"lines":[31,32],"index":2},"v":"2. margin-left（向左移动）"}]},{"t":"heading","d":3,"p":{"lines":[33,34]},"v":"临近元素移动","c":[{"t":"list_item","d":5,"p":{"lines":[35,36],"index":1},"v":"1. margin-right（右侧元素左移）"},{"t":"list_item","d":5,"p":{"lines":[36,37],"index":2},"v":"2. margin-bottom（下方元素上移）"}]}]},{"t":"heading","d":2,"p":{"lines":[38,39]},"v":"display","c":[{"t":"heading","d":3,"p":{"lines":[42,43]},"v":"display属性","c":[{"t":"heading","d":4,"p":{"lines":[44,45]},"v":"none","c":[{"t":"list_item","d":6,"p":{"lines":[46,47],"index":1},"v":"1. 元素不显示"},{"t":"list_item","d":6,"p":{"lines":[47,48],"index":2},"v":"2. 并且会从文档流中移除，包括子元素"}]},{"t":"heading","d":4,"p":{"lines":[49,50]},"v":"block","c":[{"t":"list_item","d":6,"p":{"lines":[51,52],"index":1},"v":"1. 块元素"},{"t":"list_item","d":6,"p":{"lines":[52,53],"index":2},"v":"2. 默认宽度为父元素宽度，独占一行，多元素会另起一行，并可以自动换行"},{"t":"list_item","d":6,"p":{"lines":[53,54],"index":3},"v":"3. 可以设置width、height、margin和padding属性"}]},{"t":"heading","d":4,"p":{"lines":[55,56]},"v":"inline","c":[{"t":"list_item","d":6,"p":{"lines":[57,58],"index":1},"v":"1. 行内元素"},{"t":"list_item","d":6,"p":{"lines":[58,59],"index":2},"v":"2. 默认宽度为内容宽度，不会自动换行"},{"t":"list_item","d":6,"p":{"lines":[59,60],"index":3},"v":"3. 设置width、height属性无效，只可设置水平方向的margin和padding属性"}]},{"t":"heading","d":4,"p":{"lines":[61,62]},"v":"inline-block","c":[{"t":"list_item","d":6,"p":{"lines":[63,64],"index":1},"v":"1. 行内块元素"},{"t":"list_item","d":6,"p":{"lines":[64,65],"index":2},"v":"2. 默认宽度为内容宽度，不会独占一行"},{"t":"list_item","d":6,"p":{"lines":[65,66],"index":3},"v":"3. 可以设置width、height、margin和padding属性"}]},{"t":"heading","d":4,"p":{"lines":[67,68]},"v":"flow-root","c":[{"t":"heading","d":5,"p":{"lines":[69,70]},"v":"与inline-block区别","c":[{"t":"list_item","d":7,"p":{"lines":[71,72],"index":1},"v":"1. 都会创建BFC"},{"t":"list_item","d":7,"p":{"lines":[72,73],"index":2},"v":"2. inline-block展示为inline"},{"t":"list_item","d":7,"p":{"lines":[73,74],"index":3},"v":"3. flow-root展示为block"}]}]},{"t":"heading","d":4,"p":{"lines":[75,76]},"v":"list-item","c":[{"t":"list_item","d":6,"p":{"lines":[77,78],"index":1},"v":"1. 块元素现实"},{"t":"list_item","d":6,"p":{"lines":[78,79],"index":2},"v":"2. 有列表标记"}]},{"t":"heading","d":4,"p":{"lines":[80,81]},"v":"table","c":[{"t":"list_item","d":6,"p":{"lines":[82,83],"index":1},"v":"1. 块级表格显示"}]},{"t":"heading","d":4,"p":{"lines":[84,85]},"v":"inherit","c":[{"t":"list_item","d":6,"p":{"lines":[86,87],"index":1},"v":"1. 父元素继承"}]}]}]},{"t":"heading","d":2,"p":{"lines":[88,89]},"v":"隐藏元素","c":[{"t":"heading","d":3,"p":{"lines":[90,91]},"v":"不响应绑定事件","c":[{"t":"heading","d":4,"p":{"lines":[92,93]},"v":"display: none"},{"t":"heading","d":4,"p":{"lines":[96,97]},"v":"visibility: hidden"},{"t":"heading","d":4,"p":{"lines":[100,101]},"v":"display: none与visibility: hidden区别","c":[{"t":"list_item","d":6,"p":{"lines":[102,103],"index":1},"v":"1. 渲染树","c":[{"t":"list_item","d":8,"p":{"lines":[103,104],"index":1},"v":"1. display: none的元素完全从渲染树中消失，不会占据任何空间"},{"t":"list_item","d":8,"p":{"lines":[104,105],"index":2},"v":"2. visibility: hidden的元素仍然在渲染树中，也会占据空间"}]},{"t":"list_item","d":6,"p":{"lines":[105,106],"index":2},"v":"2. 继承","c":[{"t":"list_item","d":8,"p":{"lines":[106,107],"index":1},"v":"1. display: none为非继承属性，子孙节点会随着元素一起消失"},{"t":"list_item","d":8,"p":{"lines":[107,108],"index":2},"v":"2. visibility: hidden继承属性，子孙节点是继承了hidden消失"}]},{"t":"list_item","d":6,"p":{"lines":[108,109],"index":3},"v":"3. 回流和重绘","c":[{"t":"list_item","d":8,"p":{"lines":[109,110],"index":1},"v":"1. display: none会造成文档回流"},{"t":"list_item","d":8,"p":{"lines":[110,111],"index":2},"v":"2. visibility: hidden会使元素重绘"}]},{"t":"list_item","d":6,"p":{"lines":[111,112],"index":4},"v":"4. 读屏器","c":[{"t":"list_item","d":8,"p":{"lines":[112,113],"index":1},"v":"1. display: none不会读取"},{"t":"list_item","d":8,"p":{"lines":[113,114],"index":2},"v":"2. visibility: hidden的内容仍可以读取"}]}]}]},{"t":"heading","d":3,"p":{"lines":[115,116]},"v":"响应绑定事件","c":[{"t":"heading","d":4,"p":{"lines":[117,118]},"v":"z-index: 负值"},{"t":"heading","d":4,"p":{"lines":[121,122]},"v":"position: absolute"},{"t":"heading","d":4,"p":{"lines":[125,126]},"v":"transform: scale(0, 0)"},{"t":"heading","d":4,"p":{"lines":[129,130]},"v":"clip/clip-path"},{"t":"heading","d":4,"p":{"lines":[133,134]},"v":"opacity: 0（可点击）"}]}]}]})</script>
+</body>
+</html>

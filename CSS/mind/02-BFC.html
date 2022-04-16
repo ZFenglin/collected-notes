@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"<a href=\"https://zhuanlan.zhihu.com/p/25321647\">BFC</a>","c":[{"t":"ordered_list","d":2,"p":{"lines":[1,6],"start":1},"v":"","c":[{"t":"list_item","d":3,"p":{"lines":[1,2],"index":1},"v":"1. Block Format Context：块级格式化上下文"},{"t":"list_item","d":3,"p":{"lines":[2,3],"index":2},"v":"2. 独立的渲染区域"},{"t":"list_item","d":3,"p":{"lines":[3,4],"index":3},"v":"3. 内部元素按照容器规则进行摆放"},{"t":"list_item","d":3,"p":{"lines":[4,5],"index":4},"v":"4. 内部元素的处理不会影响外部元素，也不会被外部影响"}]},{"t":"heading","d":2,"p":{"lines":[6,7]},"v":"<a href=\"https://segmentfault.com/a/1190000009545742\">BFC特性</a>","c":[{"t":"heading","d":3,"p":{"lines":[10,11]},"v":"对内","c":[{"t":"list_item","d":5,"p":{"lines":[12,13],"index":1},"v":"1. 内部盒子垂直方向上自上而下排列"},{"t":"list_item","d":5,"p":{"lines":[13,14],"index":2},"v":"2. 内部元素的 margin-left 和容器的左 border 相接触"},{"t":"list_item","d":5,"p":{"lines":[14,15],"index":3},"v":"3. 同一BFC的盒子的垂直外边距会重叠"}]},{"t":"heading","d":3,"p":{"lines":[16,17]},"v":"对外","c":[{"t":"list_item","d":5,"p":{"lines":[18,19],"index":1},"v":"1. 不会与浮动元素重叠，可以用于清除浮动或者对兄弟元素设定BFC防止其被之前浮动元素覆盖"},{"t":"list_item","d":5,"p":{"lines":[19,20],"index":2},"v":"2. 计算BFC高度，浮动元素也会参与计算"}]}]},{"t":"heading","d":2,"p":{"lines":[21,22]},"v":"创建BFC","c":[{"t":"heading","d":3,"p":{"lines":[23,24]},"v":"根元素html"},{"t":"heading","d":3,"p":{"lines":[25,26]},"v":"position","c":[{"t":"list_item","d":5,"p":{"lines":[27,28],"index":1},"v":"1. absolute"},{"t":"list_item","d":5,"p":{"lines":[28,29],"index":2},"v":"2. fixed"}]},{"t":"heading","d":3,"p":{"lines":[30,31]},"v":"float","c":[{"t":"list_item","d":5,"p":{"lines":[32,33],"index":1},"v":"1. 除none"}]},{"t":"heading","d":3,"p":{"lines":[34,35]},"v":"overflow","c":[{"t":"list_item","d":5,"p":{"lines":[36,37],"index":1},"v":"1. 除visible和clip"}]},{"t":"heading","d":3,"p":{"lines":[38,39]},"v":"display","c":[{"t":"ordered_list","d":4,"p":{"lines":[40,46],"start":1},"v":"","c":[{"t":"list_item","d":5,"p":{"lines":[40,41],"index":1},"v":"1. inline-block等价于display: inline flow-root;"},{"t":"list_item","d":5,"p":{"lines":[41,42],"index":2},"v":"2. flow-root等价于display: block flow-root"},{"t":"list_item","d":5,"p":{"lines":[42,43],"index":3},"v":"3. table相关"},{"t":"list_item","d":5,"p":{"lines":[43,44],"index":4},"v":"4. flex相关"},{"t":"list_item","d":5,"p":{"lines":[44,45],"index":5},"v":"5. grid相关"}]},{"t":"heading","d":4,"p":{"lines":[46,47]},"v":"inline-block与flow-root比较","c":[{"t":"list_item","d":6,"p":{"lines":[48,49],"index":1},"v":"1. 对外显示为block或inline"},{"t":"list_item","d":6,"p":{"lines":[49,50],"index":2},"v":"2. 对内创建一个独立的文档布局流，即BFC"}]}]},{"t":"heading","d":3,"p":{"lines":[51,52]},"v":"column-count或column-width","c":[{"t":"list_item","d":5,"p":{"lines":[53,54],"index":1},"v":"1. 除了auto"}]}]},{"t":"heading","d":2,"p":{"lines":[55,56]},"v":"BFC作用","c":[{"t":"heading","d":3,"p":{"lines":[57,58]},"v":"避免margin重叠","c":[{"t":"heading","d":4,"p":{"lines":[59,60]},"v":"触发方式","c":[{"t":"list_item","d":6,"p":{"lines":[61,62],"index":1},"v":"1. 属于同一个BFC"},{"t":"list_item","d":6,"p":{"lines":[62,63],"index":2},"v":"2. 没有被padding、border、clear或非空内容隔开"},{"t":"list_item","d":6,"p":{"lines":[63,64],"index":3},"v":"3. 两个或两个以上垂直方向的相邻元素"}]},{"t":"heading","d":4,"p":{"lines":[65,66]},"v":"计算方式","c":[{"t":"list_item","d":6,"p":{"lines":[67,68],"index":1},"v":"1. 全正/负数，取绝对值大的"},{"t":"list_item","d":6,"p":{"lines":[68,69],"index":2},"v":"2. 一正一负，取相减绝对值"}]},{"t":"heading","d":4,"p":{"lines":[70,71]},"v":"解决方式","c":[{"t":"heading","d":5,"p":{"lines":[72,73]},"v":"兄弟外边距折叠","c":[{"t":"list_item","d":7,"p":{"lines":[74,75],"index":1},"v":"1. 兄弟元素各自放在一个BFC中"}]},{"t":"heading","d":5,"p":{"lines":[76,77]},"v":"父子外边距折叠","c":[{"t":"list_item","d":7,"p":{"lines":[78,79],"index":1},"v":"1. 父元素/子元素设定BFC"},{"t":"list_item","d":7,"p":{"lines":[79,80],"index":2},"v":"2. 父元素添加透明边框：border:1px solid transparent"}]}]}]},{"t":"heading","d":3,"p":{"lines":[81,82]},"v":"清除浮动","c":[{"t":"list_item","d":5,"p":{"lines":[83,84],"index":1},"v":"1. 创建自适应两栏布局，给被遮挡的元素创建新的BFC"}]},{"t":"heading","d":3,"p":{"lines":[85,86]},"v":"包裹浮动元素","c":[{"t":"list_item","d":5,"p":{"lines":[87,88],"index":1},"v":"1. 解决高度塌陷问题，父元素设置BFC"}]}]}]})</script>
+</body>
+</html>

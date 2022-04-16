@@ -71,9 +71,7 @@
 01. document.querySelector()
 02. document.querySelectorAll()
 
-## 进度条和度量器
-
-IE、Safari 不支持
+## 进度条和度量器（IE、Safari 不支持）
 
 ### progress标签
 
@@ -113,7 +111,8 @@ IE、Safari 不支持
 
 ### Canvas
 
-画布，通过Javascript来绘制2D图形，是逐像素进行渲染的，位置变化则重新绘制图形
+01. 画布，通过Javascript来绘制2D图形
+02. 逐像素进行渲染的，位置变化则重新绘制图形
 
 #### Canvas特点
 
@@ -125,9 +124,8 @@ IE、Safari 不支持
 
 ### SVG
 
-可缩放矢量图形（Scalable Vector Graphics）是基于可扩展标记语言XML描述的2D图形的语言
-
-SVG属性发生变化就会重现图形，至于XML说明SVG DOM中的元素是可用的
+01. 可缩放矢量图形（Scalable Vector Graphics）是基于可扩展标记语言XML描述的2D图形的语言
+02. SVG属性发生变化就会重现图形，至于XML说明SVG DOM中的元素是可用的
 
 #### SVG特点
 

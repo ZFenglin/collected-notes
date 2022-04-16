@@ -11,9 +11,8 @@
 
 ### DOCTYPE作用
 
-告诉浏览器（解析器）应该以什么样（html或xhtml）的文档类型定义来解析文档
-
-不同的渲染模式会影响浏览器对 CSS 代码甚⾄ JavaScript 脚本的解析
+1. 告诉浏览器（解析器）应该以什么样（html或xhtml）的文档类型定义来解析文档
+2. 不同的渲染模式会影响浏览器对 CSS 代码甚⾄ JavaScript 脚本的解析
 
 #### 解析模式（document.compatMode获取）
 
@@ -46,47 +45,37 @@
 
 #### 常见meta标签
 
-##### charset
-
-用来描述 HTML 文档的编码类型
+##### charset（编码类型）
 
 ```html
 <meta charset="UTF-8">
 ```
 
-##### keywords
-
-页面关键词
+##### keywords（页面关键词）
 
 ```html
 <meta name="keywords" content="关键词" />
 ```
 
-##### description
-
-页面描述
+##### description（页面描述）
 
 ```html
 <meta name="description" content="页面描述内容" />
 ```
 
-##### refresh
-
-页面重定向和刷新：
+##### refresh（页面重定向和刷新）
 
 ```html
 <meta http-equiv="refresh" content="0; url=" />
 ```
 
-##### viewport
-
-适配移动端，可以控制视口的大小和比例：
+##### viewport（控制视口的大小和比例）
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 ```
 
-content 参数有以下几种：
+###### content 参数
 
 1. width viewport ：宽度(数值/device-width)
 2. height viewport ：高度(数值/device-height)
@@ -112,25 +101,22 @@ content 参数有以下几种：
 
 ## script标签
 
-默认情况下：立即加载并执行脚本，会阻塞页面加载
+1. 默认情况下：立即加载并执行脚本，会阻塞页面加载
+2. 异步加载外部的JS脚本文件，不会阻塞页面的解析
 
 ### script标签异步加载
-
-异步加载外部的JS脚本文件，不会阻塞页面的解析
 
 ![script标签加载流](assets/02-script标签加载流.png)
 
 #### defer
 
-下载完成后仍然等待文档解析
-
-解析完后在DOMContentLoaded前依次执行，按照加载顺序执行
+1. 下载完成后仍然等待文档解析
+2. 解析完后在DOMContentLoaded前依次执行，按照加载顺序执行
 
 #### async
 
-下载完成后立即解析
-
-不会按照加载顺序执行
+1. 下载完成后立即解析
+2. 不会按照加载顺序执行
 
 ## img标签
 
@@ -138,25 +124,21 @@ content 参数有以下几种：
 
 给图片设置srcset和sizes实现图片自适应
 
-#### srcset
-
-指定图片的地址和对应的图片质量
+#### srcset（指定图片的地址和对应的图片质量）
 
 ```html
+<!-- 实现在屏幕密度为 1x 的情况下加载 image-128.png, 屏幕密度为 2x 时加载 image-256.png -->
 <img src="image-128.png" srcset="image-256.png 2x" />
 ```
 
-实现在屏幕密度为 1x 的情况下加载 image-128.png, 屏幕密度为 2x 时加载 image-256.png
-
-#### sizes
-
-用来设置图片的尺寸临界点
+#### sizes（用来设置图片的尺寸临界点）
 
 ```html
 <img src="image-128.png" srcset="image-128.png 128w, image-256.png 256w, image-512.png 512w" sizes="(max-width: 360px) 340px, 128px" />
 ```
 
-对于 srcset 中的 w 单位，可以理解成图片质量。如果可视区域小于这个质量的值，就可以使用。浏览器会自动选择一个最小的可用图片
+1. srcset 中的 w 单位，可以理解成图片质量
+2. 如果可视区域小于这个质量的值，就可以使用。浏览器会自动选择一个最小的可用图片
 
 使用语法如下
 

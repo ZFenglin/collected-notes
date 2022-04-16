@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.7"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script><script>(r => {
+                setTimeout(r);
+              })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"HTML相关","c":[{"t":"heading","d":2,"p":{"lines":[2,3]},"v":"HTML定义","c":[{"t":"list_item","d":4,"p":{"lines":[4,5],"index":1},"v":"1. HTML 是一种符合 XML 标准"},{"t":"list_item","d":4,"p":{"lines":[5,6],"index":2},"v":"2. 但又不能自定义标签的标记语言"}]},{"t":"heading","d":2,"p":{"lines":[7,8]},"v":"HTML语义化","c":[{"t":"heading","d":3,"p":{"lines":[11,12]},"v":"语义化优点","c":[{"t":"list_item","d":5,"p":{"lines":[13,14],"index":1},"v":"1. 便于爬虫更好理解网页，利于SEO"},{"t":"list_item","d":5,"p":{"lines":[14,15],"index":2},"v":"2. 页面结构化，便于阅读，便于开发团队维护"}]}]},{"t":"heading","d":2,"p":{"lines":[16,17]},"v":"页面乱码处理","c":[{"t":"heading","d":3,"p":{"lines":[18,19]},"v":"乱码原因","c":[{"t":"list_item","d":5,"p":{"lines":[20,21],"index":1},"v":"1. html网页编码是gbk，需要展示的内容是utf-8编码的"},{"t":"list_item","d":5,"p":{"lines":[21,22],"index":2},"v":"2. 浏览器不能自动检测网页编码，造成网页乱码"}]},{"t":"heading","d":3,"p":{"lines":[24,25]},"v":"处理方式","c":[{"t":"list_item","d":5,"p":{"lines":[26,27],"index":1},"v":"1. 编辑器中的中文字是utf-8编码的 =&gt; 修改编辑器的编码"},{"t":"list_item","d":5,"p":{"lines":[27,28],"index":2},"v":"2. 程序从数据库中调出呈现是utf-8编码的内容 =&gt; 程序查询数据库数据显示数据前进程序转码"}]}]},{"t":"heading","d":2,"p":{"lines":[29,30]},"v":"页面适配方式","c":[{"t":"heading","d":3,"p":{"lines":[31,32]},"v":"渐进增强（推荐）","c":[{"t":"list_item","d":5,"p":{"lines":[33,34],"index":1},"v":"1. 针对低版本的浏览器进行页面重构，保证基本的功能"},{"t":"list_item","d":5,"p":{"lines":[34,35],"index":2},"v":"2. 对高级浏览器进行效果、交互等方面的改进和追加功能"}]},{"t":"heading","d":3,"p":{"lines":[36,37]},"v":"优雅降级","c":[{"t":"list_item","d":5,"p":{"lines":[38,39],"index":1},"v":"1. 一开始构建完整的功能"},{"t":"list_item","d":5,"p":{"lines":[39,40],"index":2},"v":"2. 针对低版本的浏览器进行兼容"}]},{"t":"heading","d":3,"p":{"lines":[41,42]},"v":"比较","c":[{"t":"list_item","d":5,"p":{"lines":[43,44],"index":1},"v":"1. 增强意味向前看，保证基本功能正常"},{"t":"list_item","d":5,"p":{"lines":[44,45],"index":2},"v":"2. 降级等于向回看，削减用户功能"}]}]},{"t":"heading","d":2,"p":{"lines":[46,47]},"v":"src和href的区别","c":[{"t":"heading","d":3,"p":{"lines":[50,51]},"v":"src","c":[{"t":"list_item","d":5,"p":{"lines":[52,53],"index":1},"v":"1. 资源的引用：src会将其指向的资源下载并应⽤到⽂档内"},{"t":"list_item","d":5,"p":{"lines":[53,54],"index":2},"v":"2. 当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执⾏完毕"},{"t":"list_item","d":5,"p":{"lines":[54,55],"index":3},"v":"3. 推荐将JS脚本放在页面底部"}]},{"t":"heading","d":3,"p":{"lines":[56,57]},"v":"href","c":[{"t":"list_item","d":5,"p":{"lines":[58,59],"index":1},"v":"1. 超文本引用：向一些网络资源，建立和当前元素或本文档的链接关系"},{"t":"list_item","d":5,"p":{"lines":[59,60],"index":2},"v":"2. 当浏览器识别到它他指向的⽂件时，就会并⾏下载资源，不会暂停当前文档处理，常用在a，link标签上"},{"t":"list_item","d":5,"p":{"lines":[60,61],"index":3},"v":"3. 推荐放在页面顶部"}]}]},{"t":"heading","d":2,"p":{"lines":[62,63]},"v":"元素类型","c":[{"t":"list_item","d":4,"p":{"lines":[64,65],"index":1},"v":"1. 块级元素：占据其父元素（容器）的整个水平空间，垂直空间等于其内容高度"},{"t":"list_item","d":4,"p":{"lines":[65,66],"index":2},"v":"2. 行内元素：只占据它对应标签的边框所包含的空间"},{"t":"list_item","d":4,"p":{"lines":[66,67],"index":3},"v":"3. 空元素：没有内容的HTML元素，没有闭合标签"}]}]})</script>
+</body>
+</html>

@@ -1,4 +1,7 @@
 # [WebSocket](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket)
+
+[WebSocket思维导图](./mind/06-WebSocket.html)
+
 1. WebSocket是 HTML5 定义的一个新的网络传输协议
 2. 可在单个TCP连接上进行全双工通信
 3. 位于OSI模型的应用层

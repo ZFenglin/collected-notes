@@ -1,4 +1,7 @@
 # DNS
+
+[DNS思维导图](./mind/02-DNS.html)
+
 1. 域名系统(Domain Name System)
 2. 域名和IP地址互相映射的分布式数据库，便于客户端将域名转化为IP地址
 

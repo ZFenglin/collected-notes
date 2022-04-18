@@ -1,4 +1,4 @@
-# Symbol
+# [Symbol](https://www.zhangxinxu.com/wordpress/2018/04/known-es6-symbol-function/)
 
 [Symbol-思维导图](./mind/07-Symbol.html)
 
@@ -7,10 +7,27 @@
 
 ## 作用
 
-所有的Symbol都是不同的，即使传入的标识符相同
-
 1. 表示一个独一无二的值
 2. 适合作为对象私有属性
+
+## 使用
+
+### 特点
+
+1. 不能使用new命令
+2. 参数相同的Symbol是不同的
+
+### 多作为属性名限制
+
+1. 只能为公有属性
+2. 获取不能用.，而是[]
+
+### 属性获取
+
+1. 可以被Object.getOwnPropertySymbols()获取
+2. 不能被for...in，for...of遍历
+3. 不能被Object.keys()或者Object.getOwnPropertyNames()返回
+4. JSON.stringify()会忽略
 
 ## 内置Symbol常量
 

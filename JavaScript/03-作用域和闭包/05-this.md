@@ -1,5 +1,7 @@
 # this
 
+[this-思维导图](./mind/05-this.html)
+
 ## this概念
 
 ### this和词法作用域不要混淆

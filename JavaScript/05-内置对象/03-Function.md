@@ -1,5 +1,7 @@
 # Function
 
+[Function-思维导图](./mind/03-Function.html)
+
 ## 概念
 
 ### 函数是一等公民

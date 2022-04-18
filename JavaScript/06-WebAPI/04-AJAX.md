@@ -1,4 +1,7 @@
 # [AJAX](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data#xmlhttprequest)
+
+[AJAX-思维导图](./mind/04-AJAX.html)
+
 1. Asynchronous JavaScript and XML，即异步的JS和XML
 2. 不重新加载整个页面的情况下，与服务器交换数据并更新部分网页内容
 

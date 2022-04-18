@@ -1,5 +1,7 @@
 # Promise
 
+[Promise-思维导图](./mind/02-Promise.html)
+
 ## Promise概念
 
 ### 三个状态

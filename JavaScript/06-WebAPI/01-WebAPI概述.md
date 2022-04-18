@@ -1,5 +1,7 @@
 # WebAPI概述
 
+[WebAPI概述-思维导图](./mind/01-WebAPI概述.html)
+
 ## [WebAPI](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs)
 
 ### API（Application Programming Interface）

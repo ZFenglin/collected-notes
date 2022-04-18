@@ -1,5 +1,7 @@
 # Map和Set
 
+[Map和Set-思维导图](./mind/04-Map和Set.html)
+
 ## [Map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
 1. 对象保存键值对

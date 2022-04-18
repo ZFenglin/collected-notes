@@ -9,3 +9,4 @@
 
 1. [CSS](./CSS/index.md)
 2. [HTML](./HTML/index.md)
+3. [JavaScript](./JavaScript/index.md)

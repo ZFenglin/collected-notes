@@ -1,6 +1,6 @@
  # HTTP
 
- [HTTP思维导图](./mind/04-HTTP.html)
+ [HTTP-思维导图](./mind/04-HTTP.html)
 
 1. 超文本传输协议（Hyper Text Transfer Protocol，HTTP）
 2. 一个简单的请求-响应协议，它通常运行在TCP之上

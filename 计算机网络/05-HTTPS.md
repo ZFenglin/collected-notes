@@ -1,6 +1,6 @@
 # HTTPS
 
-[HTTPS思维导图](./mind/05-HTTPS.html)
+[HTTPS-思维导图](./mind/05-HTTPS.html)
 
 ## 相关概念
 

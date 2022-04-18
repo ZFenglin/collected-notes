@@ -156,16 +156,20 @@ navigator.geolocation.getCurrentPosition(showPosition)
 
 ## Web存储
 
-新增sessionStorage和localStorage存储方式
+01. 新增sessionStorage和localStorage存储方式
+02. [详见浏览器原理/本地存储](../浏览器原理/09-本地存储.md)
 
 ## 离线存储
 
-可以在离线状态下访问应用数据的存储
+01. 可以在离线状态下访问应用数据的存储
+02. [详见离线存储](./04-离线存储.md)
 
 ## websocket
 
-使用TCP的全双工通信
+01. 使用TCP的全双工通信
+02. [详见计算机网络/WebSocket](../计算机网络/06-WebSocket.md)
 
 ## Web worker
 
-开辟新线程处理JS的接口
+01. 开辟新线程处理JS的接口
+02. [详见浏览器原理/进程与线程](../浏览器原理/02-进程和线程.md)

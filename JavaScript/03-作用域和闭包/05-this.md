@@ -141,6 +141,8 @@ bar.call(obj2); // 2, 不是 3 ！
 
 ## 相关题目
 
+题目一
+
 ```js
 // 隐式绑定，只看方法从哪获取的
 var length = 1
@@ -152,4 +154,27 @@ var arr = [foo, 2, 3, 4]
 arr[0]() // 隐式绑定 this -> arr2 -> 4
 var fn = arr[0]
 fn() // 默认绑定 this -> window -> 1
+```
+
+题目二
+
+```js
+var length = 1
+
+function fn() {
+    console.log(this.length)
+}
+var obj = {
+    length: 100,
+    action: function(callback) {
+        callback() // window => 1
+        arguments[0]() // arguments => 5
+        var foo = arguments[0]
+        foo() // window => 1
+        this.foo2 = arguments[0]
+        this.foo2() // obj => 100
+    }
+}
+var arr1 = [1, 2, 3, 4]
+obj.action(fn, ...arr1)
 ```

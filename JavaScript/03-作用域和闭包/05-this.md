@@ -87,9 +87,8 @@ var obj = {
 // 1 awesome 2 awesome 3 awesome
 ```
 
-#### call，apply和bind原理
+#### call，apply和bind原理：[详见JavaScript/手写代码/函数相关](/JavaScript/08-代码手写/03-函数相关.md)
 
-详见手写代码/函数相关
 1. call传入两个参数(context, ...args)
    1. context因为默认绑定存在，未设置则window
    2. 否则将context.fn设置为this，并执行返回res（记得delete删除fn）
@@ -98,24 +97,12 @@ var obj = {
    1. 首先判断context，当this instanceof Fn时，则context为this，否则不变
    2. 利用apply绑定context执行，（记得传入的参数合并bind和Fn的共同参数）
 
-### new绑定
+### new绑定：[详见JavaScript/手写代码/对象相关](/JavaScript/08-代码手写/01-对象相关.md)
 
 1. 首先创建了一个新的空对象
 2. 设置原型，将对象的原型设置为函数的 prototype 对象
 3. 让函数的 this 指向这个对象，执行构造函数的代码（为这个新对象添加属性）
 4. 判断函数的返回值类型，如果是值类型，返回创建的对象。如果是引用类型，就返回这个引用类型的对象
-
-```js
-function _new(fn, args) {
-    if (typeof fn !== 'function') {
-        throw TypeError('fn is not function')
-    }
-    let obj = new Object()
-    obj.__proto__ = fn.prototype
-    let res = fn.apply(obj, args)
-    return typeof res == 'object' ? res : obj
-}
-```
 
 ## 箭头函数
 

@@ -1,7 +1,5 @@
 # output
 
-[output-思维导图](./mind/03-output.html)
-
 如何输出结果，在webpack经过一系列处理后，如何输出最终想要的代码
 
 ## 整体配置

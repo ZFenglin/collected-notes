@@ -1,7 +1,5 @@
 # BOM
 
-[BOM-思维导图](./mind/03-BOM.html)
-
 Browser Object Model(BOM)，浏览器本身的一些信息的设置和获取的接口，都在window对象上
 
 ## screen

@@ -1,7 +1,5 @@
 # resolve
 
-[resolve-思维导图](./mind/05-resolve.html)
-
 配置寻找模块的规则
 
 ## 整体配置

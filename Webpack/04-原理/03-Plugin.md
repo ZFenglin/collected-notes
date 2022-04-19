@@ -1,7 +1,5 @@
 # Plugin
 
-[Plugin-思维导图](./mind/03-Plugin.html)
-
 ## Plugin概念
 
 1. Plugin更加灵活，适用于各种场景

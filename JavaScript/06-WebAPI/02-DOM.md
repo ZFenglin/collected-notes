@@ -1,7 +1,5 @@
 # [DOM](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents)
 
-[DOM-思维导图](./mind/02-DOM.html)
-
 ## DOM概念
 
 Document Object Model(DOM)，即HTML和XML文档的编程接口

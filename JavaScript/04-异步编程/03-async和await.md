@@ -1,7 +1,5 @@
 # async和await
 
-[async和await-思维导图](./mind/03-async和await.html)
-
 async和await是ES2017添加，一种对Promise和generator封装的语法糖
 
 ## 相互关系

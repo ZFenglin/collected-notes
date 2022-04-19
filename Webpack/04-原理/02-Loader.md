@@ -1,7 +1,5 @@
 # [Loader](https://www.teqng.com/2021/08/11/%E5%A4%9A%E5%9B%BE%E8%AF%A6%E8%A7%A3%EF%BC%8C%E4%B8%80%E6%AC%A1%E6%80%A7%E6%90%9E%E6%87%82webpack-loader/)
 
-[Loader-思维导图](./mind/02-Loader.html)
-
 ## Loader概念
 
 导出函数的 JavaScript 模块

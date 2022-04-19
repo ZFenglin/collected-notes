@@ -1,7 +1,5 @@
 # Proxy与Reflect
 
-[Proxy与Reflect-思维导图](./mind/06-Proxy与Reflect.html)
-
 ## [Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 
 用于创建一个对象的代理对象，实现基本操作的拦截和自定义

@@ -1,7 +1,5 @@
 # devServer
 
-[devServer-思维导图](./mind/06-devServer.html)
-
 DevServer相关的配置
 
 ## 整体配置

@@ -1,7 +1,5 @@
 # HTML相关
 
-[HTML相关-思维导图](./mind/01-HTML相关.html)
-
 ## HTML定义
 
 1. HTML 是一种符合 XML 标准

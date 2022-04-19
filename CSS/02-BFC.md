@@ -1,7 +1,4 @@
 # [BFC](https://zhuanlan.zhihu.com/p/25321647)
-
-[BFC-思维导图](./mind/02-BFC.html)
-
 1. Block Format Context：块级格式化上下文
 2. 独立的渲染区域
 3. 内部元素按照容器规则进行摆放

@@ -1,18 +1,16 @@
 # Promise
 
-[Promise-思维导图](./mind/02-Promise.html)
-
 ## Promise概念
 
 ### 三个状态
 
 1. pending（待定）
-2. fullfilled（兑现，也有resolved）
+2. fullfilled（兑现）
 3. rejected（拒绝）
 
 ### 两个过程
 
-1. pending => resolve（触发onFulfilled）
+1. pending => fullfilled（触发onFulfilled）
 2. pending => rejected（触发onRejected）
 
 #### 过程特点
@@ -40,21 +38,21 @@ resovle触发的回调
 
 #### .catch
 
-reject触发的回调，或者执行代码异常也会触发
+1. reject触发的回调
+2. 或者执行代码异常也会触发
 
 #### .finally
 
-resolve和reject都会触发
+1. resolve和reject都会触发
 
 ### 静态方法(Promise)
 
 #### Promise.all(iterable)
 
-所有的promise对象都成功，则触发成功，返回结果数组
+1. 所有的promise对象都成功，则触发成功，返回结果数组
+2. 任何一个promise对象失败，触发失败，返回第一个错误
 
-任何一个promise对象失败，触发失败，返回第一个错误
-
-##### Promise.all原理
+##### Promise.all原理：[详见手写代码/异步编程](../08-代码手写/04-异步编程.md)
 
 1. 返回一个Promise
    1. 维护一个结果数组promisesResults
@@ -62,26 +60,22 @@ resolve和reject都会触发
       1. 成功时，看promisesResults的长度，判断是否完全处理完，看是否触发resolve(promisesResults)
       2. 失败直接reject(res)
 
-详见手写代码/异步编程
-
 #### Promise.allSettled(iterable)
 
-所有promises都已敲定，无论错误失败都返回结果数组
+1. 所有promises都已敲定，无论错误失败都返回结果数组
 
 #### Promise.any(iterable)
 
-任何一个promise对象成功，返回第一个成功对象结果
+1. 任何一个promise对象成功，返回第一个成功对象结果
 
 #### Promise.race(iterable)
 
-任何一个promise对象成功或失败，返回第一个失败或成功对象结果
+1. 任何一个promise对象成功或失败，返回第一个失败或成功对象结果
 
-##### Promise.race原理
+##### Promise.race原理：[详见手写代码/异步编程](../08-代码手写/04-异步编程.md)
 
 1. 与Promise.all差不多，Promise.resolve(promise)外部差不多，没有需要维护的数组
 2. then内部则是谁先触发谁resolve(res)或reject(res)
-
-详见手写代码/异步编程
 
 ##### Promise.race实现执行中断
 
@@ -93,11 +87,13 @@ Promise.race([promise1, timeOutPromise(5000)]).then(res => {})
 
 #### Promise.reject(reason)
 
-返回一个状态为失败的promise对象
+1. 返回一个状态为失败的promise对象
 
 #### Promise.resolve(value)
 
-返回一个状态由给定value决定的promise对象
+2. 返回一个状态由给定value决定的promise对象
+
+##### 返回值value处理
 
 1. value为带有then方法的对象：返回的Promise对象的最终状态由then方法执行决定
 2. value为其他：返回的Promise对象状态为fulfilled，并且将该value传递给对应的then方法
@@ -136,9 +132,7 @@ return new Promise().then(() {}).then(() {})
 new Promise().then(() {}).then(() {})
 ```
 
-## Promise原理
-
-详见手写代码/异步编程
+## Promise原理：[详见手写代码/异步编程](../08-代码手写/04-异步编程.md)
 
 1. 利用数组保存回调resolveCallbacks与rejectCallbacks
 2. 在下一个循环执行resolve和reject

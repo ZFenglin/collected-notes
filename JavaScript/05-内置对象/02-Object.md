@@ -1,7 +1,5 @@
 # Object
 
-[Object-思维导图](./mind/02-Object.html)
-
 一种无序的数据集合，其键值必须为String或Symbol或数值
 
 ## 访问属性

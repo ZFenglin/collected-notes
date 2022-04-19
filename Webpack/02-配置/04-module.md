@@ -1,7 +1,5 @@
 # module
 
-[module-思维导图](./mind/04-module.html)
-
 配置模块相关
 
 ## 整体配置

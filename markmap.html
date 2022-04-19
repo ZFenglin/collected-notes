@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>思维导图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #mindmap {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/style.css">
+</head>
+
+<body>
+
+    <svg id="mindmap"></svg>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-lib"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-view"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.2.0/dist/index.umd.min.js"></script>
+    <script>
+        const buildToolbar = () => {
+            setTimeout(() => {
+                const {
+                    markmap,
+                    mm
+                } = window;
+                const toolbar = new markmap.Toolbar();
+                toolbar.attach(mm);
+                const el = toolbar.render();
+                el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+                document.body.append(el);
+            });
+        }
+        function getData(url) {
+            const promise = new Promise(function (resolve, reject) {
+                const xhr = new XMLHttpRequest()
+                xhr.open('GET', url, true)
+                xhr.onreadystatechange = function () {
+                    if (this.readyState !== 4) return
+                    if (this.status === 200) {
+                        resolve(this.response)
+                    } else {
+                        reject(new Error(this.statusText))
+                    }
+                }
+                xhr.onerror = function () {
+                    reject(new Error(this.statusText))
+                }
+                xhr.send(null)
+            })
+            return promise
+        }
+        async function getMarkmapData(url, Transformer) {
+            const markdown = await getData(url)
+            const transformer = new Transformer();
+            const { root, features } = transformer.transform(markdown);
+            const { styles, scripts } = transformer.getUsedAssets(features);
+            return {
+                root,
+                styles,
+                scripts
+            }
+        }
+    </script>
+    <script>
+        let url = window.localStorage.getItem('markmap')
+        if (url) {
+            (async (getMarkmap, url) => {
+                const markmap = getMarkmap()
+                const {
+                    Markmap,
+                    Transformer,
+                    loadCSS,
+                    loadJS
+                } = markmap;
+                // 获取文档资源和解析
+                const { root, styles, scripts } = await getMarkmapData(url, Transformer)
+                // 界面渲染
+
+                if (styles) loadCSS(styles);
+                if (scripts) loadJS(scripts, { getMarkmap: () => markmap });
+                setTimeout(() => {
+                    window.mm = Markmap.create('#mindmap', void 0, root);
+                    buildToolbar()
+                }, 500)
+            })(() => window.markmap, url)
+        }
+    </script>
+</body>
+
+</html>

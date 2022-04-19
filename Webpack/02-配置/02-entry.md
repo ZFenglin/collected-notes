@@ -1,7 +1,5 @@
 # entry
 
-[entry-思维导图](./mind/02-entry.html)
-
 entry 表示入口
 
 ## entry特点

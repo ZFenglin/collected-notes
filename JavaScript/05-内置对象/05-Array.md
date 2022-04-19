@@ -1,7 +1,5 @@
 # Array
 
-[Array-思维导图](./mind/05-Array.html)
-
 有序的数据集合
 
 ## 数组方法

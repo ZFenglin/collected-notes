@@ -87,7 +87,7 @@ var obj = {
 // 1 awesome 2 awesome 3 awesome
 ```
 
-#### call，apply和bind原理：[详见JavaScript/手写代码/函数相关](/JavaScript/08-代码手写/03-函数相关.md)
+#### call，apply和bind原理：[详见JavaScript/手写代码/函数相关](../08-代码手写/03-函数相关.md)
 
 1. call传入两个参数(context, ...args)
    1. context因为默认绑定存在，未设置则window
@@ -97,7 +97,7 @@ var obj = {
    1. 首先判断context，当this instanceof Fn时，则context为this，否则不变
    2. 利用apply绑定context执行，（记得传入的参数合并bind和Fn的共同参数）
 
-### new绑定：[详见JavaScript/手写代码/对象相关](/JavaScript/08-代码手写/01-对象相关.md)
+### new绑定：[详见JavaScript/手写代码/对象相关](../08-代码手写/01-对象相关.md)
 
 1. 首先创建了一个新的空对象
 2. 设置原型，将对象的原型设置为函数的 prototype 对象

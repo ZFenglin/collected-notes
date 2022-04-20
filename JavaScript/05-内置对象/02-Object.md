@@ -41,7 +41,7 @@ obj['key']
 1. 第一个参数是指定的原型对象
 2. 第二个参数是可选参数，给新对象自身添加新属性以及描述器
 
-#### Object.create(null)作用
+#### Object.create(null)
 
 1. 使用字面量创建会有很多对象内置写好的原型，而Object.create(null)是使用null作为原型
 2. 这种创建出来的对象相对较干净，不用担心重名和被原生原型影响，可以用作数据字典
@@ -91,16 +91,13 @@ let obj2 = JSON.parse(JSON.stringify(obj1));
 
 #### lodash的_.cloneDeep方法
 
-### 深浅拷贝实现
+### 深浅拷贝实现：[详见手写代码/对象相关](../08-代码手写/01-对象相关.md)
 
 1. 判断newObj的类型，数组还是对象，设置空值
 2. for...in遍历obj，hasOwnProperty过滤原型属性
 3. newObj赋值，当设置的值为对象并且deep为true，则嵌套调用objectCopy
 
-详见手写代码/对象相关
-
 ## 删除对象delete
 
-但是这种删除方式性能不好
-1. 推荐使用设置undefined或null替代
+1. 但是这种删除方式性能不好，推荐使用设置undefined或null替代
 2. 大量增删，推荐Map

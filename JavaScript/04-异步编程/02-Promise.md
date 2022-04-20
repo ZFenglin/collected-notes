@@ -102,10 +102,11 @@ Promise.race([promise1, timeOutPromise(5000)]).then(res => {})
 
 ![Promise执行过程](assets/02-Promises执行过程.png)
 
-### Promise执行方法判断
+### 执行方法判断
 
-1. 首先按照Promise的状态（resolved或rejected）触发then或者catch
-2. then和catch后续触发则是按照以下情况
+1. fullfilled时则不触发
+2. resolved或rejectet触发then或者catch
+3. then和catch后续触发则是按照以下情况
    1. 当没有设定状态时，默认状态是resolved，触发最近的then
    2. 当内部报错时，默认状态为rejected，触发最近的catch
 
@@ -117,18 +118,15 @@ Promise.race([promise1, timeOutPromise(5000)]).then(res => {})
 #### then与catch的注册时机
 
 ```js
-// 所有then同时注册
-// 1. 先创建Promise实例
+// 先创建Promise实例，所有then同步注册
 let p = new Promise()
 p.then(() {})
 p.then(() {})
-// 2. return直接返回Promise实例
-return new Promise().then(() {}).then(() {})
-```
 
-```js
-// 按照回调执行后注册
-// 会等待第一个then执行完后再注册第二个
+// 2. return直接返回Promise实例，外层then则需要等待内部处理完成才能注册
+return new Promise().then(() {}).then(() {})
+
+// 3.正常注册，会等待第一个then执行完后再注册第二个
 new Promise().then(() {}).then(() {})
 ```
 

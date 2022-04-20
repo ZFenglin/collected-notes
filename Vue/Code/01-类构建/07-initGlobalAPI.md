@@ -86,11 +86,9 @@ export default ({
 
 ## Vue.util
 
-存在warn、extend、mergeOptions和defineReactive
-
-vue.warn为Vue的报错log提示，生产模式下不可用，此处不详细说明
-
-Vue.defineReactive，就是响应式处理的对应方法
+1. 存在warn、extend、mergeOptions和defineReactive
+2. vue.warn为Vue的报错log提示，生产模式下不可用，此处不详细说明
+3. Vue.defineReactive，就是响应式处理的对应方法，详见[Vue/响应式原理/响应式处理](../02-响应式原理/01-响应式处理.md)
 
 ### Vue.util.extend
 
@@ -168,9 +166,8 @@ const defaultStrat = function(parentVal, childVal) {
 
 ### Vue.options属性设置
 
-1. 上面设置了components、filters和directive，外加_base
-2. _base就是简单的Vue对象
-3. 而components、filters和directive用户自定义的全局属性，先设置号空对象
+1. 创建_base和赋值了简单的Vue对象
+2. 创建components、filters和directive用户自定义的全局属性
 
 ### components、filters和directive对应方法注册
 
@@ -270,4 +267,4 @@ export function initMixin(Vue) {
 ## 其它
 
 1. Vue.set、Vue.delete、Vue.nextTick和Vue.observable，这些就是Vue响应式和异步更新中对应的同名方法
-2. initExtend，设置Vue.extend，用于组件配置部分，详情见组件化
+2. initExtend，设置Vue.extend，用于组件配置部分，详情见[Vue/组件化/组件配置](../04-组件化/01-组件配置.md)

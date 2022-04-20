@@ -44,15 +44,14 @@ export function installRenderHelpers(target: any) {
 
 ## `$nextTick` 原理
 
-用于处理实例异步更新后执行的方法
+1. 用于处理实例异步更新后执行的方法
+2. nextTick见[Vue/响应式原理/异步更新](../02-响应式原理/04-异步更新.md)
 
 ```js
 Vue.prototype.$nextTick = function(fn: Function) {
     return nextTick(fn, this)
 }
 ```
-
-nextTick见响应式原理的异步更新
 
 ## _render原理
 

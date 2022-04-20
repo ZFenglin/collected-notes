@@ -20,7 +20,7 @@ export function eventsMixin(Vue) {
 
 ## `$on` 原理
 
-1. vm._events上获取key未event的数组，不存在的创建空数组
+1. 获取`vm._events[event]`数组，不存在的创建空数组
 2. event的数组push传入的fn
 
 ```js
@@ -111,7 +111,8 @@ Vue.prototype.$off = function(event, fn) {
 
 ## `$emit` 原理
 
-取出vm._events的key为event的cbs，遍历执行
+1. 获取`vm._events[event]`回调数组cbs
+2. 遍历执行cbs
 
 ```js
 Vue.prototype.$emit = function(event) {

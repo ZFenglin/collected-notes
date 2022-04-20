@@ -48,7 +48,7 @@ Vue.prototype._update = function(vnode, hydrating) {
 ```
 
 1. 而执行真正执行挂载更新的是__patch__方法
-2. patch的挂载则是在公共mount声明之前，patch相关请见编译与挂载的元素patch处理
+2. patch的挂载则是在公共mount声明之前，patch相关请见[Vue/编译与挂载/元素patch处理](../03-编译与挂载/07-元素patch处理.md)
 
 ## `$forceUpdate` 原理
 

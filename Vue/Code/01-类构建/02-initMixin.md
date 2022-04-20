@@ -43,8 +43,9 @@ export function initMixin(Vue) {
 
 ## initLifecycle
 
-1. 寻找不是抽象组件的父组件，给父组件添加 `$children`
-2. 设置当前组件的 `$parent` 和 `$root`
+1. 组件父子关系设置
+2. 寻找不是抽象组件的父组件，给父组件添加 `$children`
+3. 设置当前组件的 `$parent` 和 `$root`
 
 ```js
 export function initLifecycle(vm) {
@@ -68,9 +69,9 @@ export function initLifecycle(vm) {
 
 ## initEvents
 
-处理组件间事件的发布订阅
-1. vm._events的空对象设置
-2. updateComponentListeners(vm, vm.$options._parentListeners)
+1. 处理组件间事件的发布订阅
+2. vm._events的空对象设置
+3. updateComponentListeners(vm, vm.$options._parentListeners)
 
 ```js
 export function initEvents(vm) {
@@ -130,8 +131,9 @@ export function initInjections(vm) {
 }
 ```
 
-1. inject的获取就是不断访问当前实例上的$parent
-2. 直到实例的provider有inject对应的key
+1. resolveInject获取当前实例的inject的对应的provider
+2. inject的获取就是不断访问当前实例上的$parent
+3. 直到实例的provider有inject对应的key
 
 ```js
 export function resolveInject(inject, vm) {
@@ -166,12 +168,12 @@ export function resolveInject(inject, vm) {
 
 ## initState
 
-判断vue的options是否存在对应的属性，决定是否进行相关处理
-1. initProps
-2. initMethods
-3. initData
-4. initComputed
-5. initWatch
+1. 判断vue的options是否存在对应的属性，决定是否进行相关处理
+2. initProps
+3. initMethods
+4. initData
+5. initComputed
+6. initWatch
 
 ```js
 export function initState(vm) {
@@ -199,9 +201,10 @@ export function initState(vm) {
 
 ### initProps
 
-props初始化，在当前实例的_props上设置传入值
-1. 创建vm._props，并对propsOptions遍历将对应的key和value响应式定义到它身上
-2. 当对应的值不存在在vm上，则proxy代理
+1. props绑定到vm._props
+2. props初始化，在当前实例的_props上设置传入值
+3. 创建vm._props，对propsOptions遍历将对应的key和value响应式定义到它身上
+4. 当对应的值不存在在vm上，则proxy代理
 
 ```js
 function initProps(vm, propsOptions) {
@@ -232,8 +235,8 @@ function initProps(vm, propsOptions) {
 
 ### initMethods
 
-1. 获取methods绑定this至vm的处理函数
-2. 将函数赋值到vm对应的key上
+1. method直接绑定的vm上
+2. 获取methods绑定this至vm的处理函数
 
 ```js
 function initMethods(vm, methods) {
@@ -243,14 +246,13 @@ function initMethods(vm, methods) {
 }
 ```
 
-### initData、initComputed 和 initWatch
-
-详细见响应式原理中的响应式原理和computed和watch
+### initData、initComputed 和 initWatch：详见[Vue/Code/响应式原理/响应式处理](../02-响应式原理/01-响应式处理.md)和[Vue/Code/响应式原理/computed和watch](../02-响应式原理/03-computed和watch.md)
 
 ## initProvide
 
-1. 简单处理provider赋值，如果是function则获取执行结果，将值设置到vm._provided上
-2. 此处可以看出provider并不是响应式的数据
+1. provider绑定到vm._provided
+2. 简单处理provider赋值，如果是function则获取执行结果，将值设置到vm._provided上
+3. 此处可以看出provider对于当前实例不会做响应式处理
 
 ```js
 export function initProvide(vm) {

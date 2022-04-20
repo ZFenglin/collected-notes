@@ -4,7 +4,8 @@
 
 ## watch
 
-1. watch的处理只是在当前的实例上利用$watch创建新的watcher
+1. watch的处理只是在当前的实例上利用`$watch`创建新的watcher
+2. `$watch`[详见Vue/Code/类构建/stateMixin](../01-类构建/03-stateMixin.md)
 
 ```js
 // 按照不同的handler，处理后调用createWatcher创建对应watcher
@@ -77,7 +78,8 @@ function initComputed(vm, computed) {
 
 ### computed定义
 
-defineComputed
+#### defineComputed
+
 1. 按照用户定义方式决定如何处理获取get
 2. 利用Object.defineProperty将对应的computed定义到vm上
 
@@ -112,7 +114,9 @@ function createGetterInvoker(fn) {
 }
 ```
 
-createComputedGetter用于创建computed使用的get
+#### createComputedGetter
+
+用于创建computed使用的get
 1. 获取key对应watcher
 2. 判断是否是脏数据，从而决定是否执行evaluate更新
 3. 判断target是存在，进行depend收集处理

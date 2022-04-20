@@ -2,7 +2,8 @@
 
 ## [Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 
-用于创建一个对象的代理对象，实现基本操作的拦截和自定义
+01. 用于创建一个对象的代理对象
+02. 实现基本操作的拦截和自定义
 
 ### Proxy使用
 
@@ -46,5 +47,5 @@ const p = new Proxy(target, handler)
 
 ### Reflect作用
 
-01. Reflect封装了一系列对对象的底层操作，可以用作Proxy处理对象的默认实现
+01. Reflect封装了一系列对对象的底层操作，可以用作Proxy处理对象的默认实现，例如Reflect.get等
 02. 提供了一套用于操作对象的方法，以后可能取代in，delete等方法

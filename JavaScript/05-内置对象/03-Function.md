@@ -18,22 +18,20 @@
 
 ## [箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
-() => { statements }
-
 ### 箭头函数特点
 
 1. 都是匿名函数，设计时就认定为一种更加纯粹的函数
-2. 没有属于自己的arguments、super、new.target
-3. 不可以作为generator函数使用
-4. 箭头函数内部使用this时看上去更像闭包，Babel的编译结果就是闭包处理
-5. 箭头函数内部没有自己this
-6. 没有自己的显示原型prototype
-7. 箭头函数不能使用new
-8. 不能用call/apply/bind去改变this指向只能传递参数
+   1. 没有属于自己的arguments、super、new.target
+   2. 不可以作为generator函数使用
+   3. 没有自己的显示原型prototype
+2. 箭头函数内部没有自己this，声明时获取
+   1. 箭头函数内部使用this时看上去更像闭包，Babel的编译结果就是闭包处理
+   2. 不能用call/apply/bind去改变this指向只能传递参数
+3. 箭头函数不能使用new
 
 ### 箭头函数可以使用Function方法的原因
 
-1. 箭头函数的__protp__等价于Function.prototype
+1. 箭头函数的`__protp__`等价于Function.prototype
 2. 方法的Function.prototype具有函数的方法
 
 ## 严格模式（use strict）
@@ -67,7 +65,7 @@ ECMAscript5 添加的（严格模式）运行模式
 
 ### 相关概念
 
-#### 使用函数式编程的原因
+#### 使用原因
 
 1. 随React的流行越受到关注，并且vue3开始拥抱函数式编程
 2. 可以抛弃this
@@ -75,7 +73,7 @@ ECMAscript5 添加的（严格模式）运行模式
 4. 测试和并行处理方便
 5. 很多库方便函数式开发
 
-#### 目前有哪些编程范式
+#### 编程范式
 
 1. 面向过程：按照步骤实现
 2. 面向对象：事物抽象为类和对象，通过封装，继承，多态演示联系
@@ -105,9 +103,7 @@ ECMAscript5 添加的（严格模式）运行模式
 1. 函数依赖外部状态，无法保证输出相同则会有副作用
 2. 纯函数存在硬编码问题
 
-#### 闭包和柯里化
-
-详细见闭包文档
+#### 闭包和柯里化：[详见JavaScript/作用域和闭包/闭包](../03-作用域和闭包/03-闭包.md)
 
 ### 函数组合
 

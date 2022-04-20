@@ -4,8 +4,6 @@
 
 ## [XMLHttpRequest](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest)
 
-### Promise封装XHR（详细见手写代码/应用场景）
-
 ### xhr.open的参数
 
 #### 必填
@@ -39,9 +37,12 @@
 4. 3（下载中）
 5. 4（下载操作已完成）
 
-#### xhr.status（转台吗
+#### xhr.status
 
-响应中的数字状态码
+1. 响应中的数字状态码
+2. [详细见计算机网络/状态码](../../计算机网络/07-状态码.md)
+
+### Promise封装XHR：[详细见JavaScript/手写代码/应用场景](../08-代码手写/06-应用场景.md)
 
 ## [Fetch](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)
 
@@ -54,4 +55,4 @@
 1. input（获取资源的 URL或者Request对象）
 2. init（请求的设置，请求方式，请求数据等）
 
-### Fetch封装类（详细见手写代码应用场景）
+### Fetch封装类：[详细见JavaScript/手写代码/应用场景](../08-代码手写/06-应用场景.md)

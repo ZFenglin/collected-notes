@@ -1,15 +1,16 @@
 # [DOM](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents)
 
-## DOM概念
+## 概念
 
-Document Object Model(DOM)，即HTML和XML文档的编程接口
+1. Document Object Model(DOM)
+2. HTML和XML文档的编程接口
 
-### DOM与HTML区别
+### 与HTML区别
 
 1. XML是一直可扩展的标记语言，HTML就是提前设置好标签规范的XML
 2. 浏览器解析HTML文档，处理为JS能理解的形式，即一个节点对象树
 
-## DOM操作方式
+## 操作方式
 
 ### 节点获取
 
@@ -59,7 +60,7 @@ div.removeChild(child[0])
 1. property是对节点对象的属性进行修改，可能引起重排和重绘
 2. attribute是对HTML标签进行修改，会修改HTML文档，必定会触发重排和重绘，频繁使用影响性能
 
-## DOM性能优化
+## 性能优化
 
 DOM操作十分占据性能，应减少对DOM树的更改
 

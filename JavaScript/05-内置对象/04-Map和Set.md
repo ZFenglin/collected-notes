@@ -8,8 +8,11 @@
 
 ### Map操作方法
 
-1. size： map.size 返回Map结构的成员总数
-2. set(key, value)：设置键名key对应的键值value，然后返回整个Map结构，如果key已经有值，则键值会被更新，否则就新生成该键（因为返回的是当前Map对象，所以可以链式调用）
+1. size：返回Map结构的成员总数
+2. set(key, value)：设置键名key对应的键值value，然后返回整个Map结构
+   1. 如果key已经有值，则键值会被更新
+   2. 否则就新生成该键
+   3. 因为返回的是当前Map对象，所以可以链式调用
 3. get(key)：该方法读取key对应的键值，如果找不到key，返回undefined
 4. has(key)：该方法返回一个布尔值，表示某个键是否在当前Map对象中
 5. delete(key)：该方法删除某个键，返回true，如果删除失败，返回false
@@ -40,8 +43,7 @@
 
 1. 对象是值的集合
 2. 元素是唯一的
-
-set操作方法其实差不多，但是要注意set的添加是add，并且返回Set对象，说明可以链式调用
+3. set操作方法其实差不多，但是要注意set的添加是add，并且返回Set对象，说明可以链式调用
 
 ## WeakMap/WeakSet（仅说明WeakMap）
 
@@ -57,7 +59,8 @@ set操作方法其实差不多，但是要注意set的添加是add，并且返�
 
 ### 存在方法
 
-1. set(key, value)：设置键名key对应的键值value，然后返回整个Map结构，如果key已经有值，则键值会被更新，否则就新生成该键（因为返回的是当前Map对象，所以可以链式调用）
-2. get(key)：该方法读取key对应的键值，如果找不到key，返回undefined
-3. has(key)：该方法返回一个布尔值，表示某个键是否在当前Map对象中
-4. delete(key)：该方法删除某个键，返回true，如果删除失败，返回false
+1. set(key, value)
+2. get(key)
+3. has(key)
+4. delete(key)
+5. 不需要clear是因为WeakMap弱引用

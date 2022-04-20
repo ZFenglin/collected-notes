@@ -52,7 +52,7 @@ resovle触发的回调
 1. 所有的promise对象都成功，则触发成功，返回结果数组
 2. 任何一个promise对象失败，触发失败，返回第一个错误
 
-##### Promise.all原理：[详见手写代码/异步编程](../08-代码手写/04-异步编程.md)
+##### Promise.all原理：[详见JavaScript/手写代码/异步编程](../08-代码手写/04-异步编程.md)
 
 1. 返回一个Promise
    1. 维护一个结果数组promisesResults
@@ -72,7 +72,7 @@ resovle触发的回调
 
 1. 任何一个promise对象成功或失败，返回第一个失败或成功对象结果
 
-##### Promise.race原理：[详见手写代码/异步编程](../08-代码手写/04-异步编程.md)
+##### Promise.race原理：[详见JavaScript/手写代码/异步编程](../08-代码手写/04-异步编程.md)
 
 1. 与Promise.all差不多，Promise.resolve(promise)外部差不多，没有需要维护的数组
 2. then内部则是谁先触发谁resolve(res)或reject(res)
@@ -130,7 +130,7 @@ return new Promise().then(() {}).then(() {})
 new Promise().then(() {}).then(() {})
 ```
 
-## Promise原理：[详见手写代码/异步编程](../08-代码手写/04-异步编程.md)
+## Promise原理：[详见JavaScript/手写代码/异步编程](../08-代码手写/04-异步编程.md)
 
 1. 利用数组保存回调resolveCallbacks与rejectCallbacks
 2. 在下一个循环执行resolve和reject

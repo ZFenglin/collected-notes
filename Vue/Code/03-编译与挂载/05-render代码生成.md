@@ -35,7 +35,10 @@ with(this) {
 }
 ```
 
-这个_c等方法，在renderMixin时会调用installRenderHelpers时向Vue.prototype上增加对应的标签处理方法
+#### 渲染处理方法获取
+
+1. _c在initMixin中的_init的initRender中设置，详见[Vue/Code/类构建/initMixin](../01-类构建/02-initMixin.md)
+2. 其它的则是在renderMixin中调用installRenderHelper设置，详见[Vue/Code/类构建/renderMixin](../01-类构建/06-renderMixin.md)
 
 ## 代码生成入口
 

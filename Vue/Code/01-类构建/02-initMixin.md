@@ -264,3 +264,7 @@ export function initProvide(vm) {
     }
 }
 ```
+
+## vm.$mount
+
+处理组件的render获取和挂载，详见[Vue/Code/编译与原理/处理入口](../03-编译与挂载/01-处理入口.md)

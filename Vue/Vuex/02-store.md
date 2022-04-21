@@ -4,8 +4,8 @@
 
 1. constructor构建基本的store实例
 2. state设置获取方法
-3. commit提交处理
-4. action提交处理
+3. mutation提交commit处理
+4. action提交dispatch处理
 5. 监听处理
 6. 模块化处理（说模块化的时候在详细解释）
 

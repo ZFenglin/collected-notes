@@ -42,14 +42,17 @@ export default class VueRouter {
 
 1. 基本配置
 2. 钩子收集
-3. 匹配器matcher创建
+3. 匹配器matcher创建，详见[Vue/VueRouter/匹配器](./03-匹配器.md)
 4. 模式mode判断
 5. 按照模式创建对应的history
+   1. History为基类，详见[Vue/VueRouter/History](./04-History.md)
+   2. HashHistory，详见[Vue/VueRouter/HashHistory](./05-HashHistory.md)
+   3. HTML5History，详见[Vue/VueRouter/HTML5History](./06-HTML5History.md)
 
 ```js
   constructor(options) {
       // 收集vue实例，初始化使用
-      this.app = null
+      this.app = null1
       this.apps = []
       // 基本配置
       this.options = options
@@ -111,6 +114,7 @@ get currentRoute() {
 2. 实例注册销毁history钩子
 3. 实例已经处理过了，返回
 4. 路由监听的初始化跳转处理
+5. history监听注册
 
 ```js
 // 初始化处理，给vue实例注册对应的钩子

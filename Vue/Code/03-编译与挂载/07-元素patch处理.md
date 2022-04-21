@@ -1,12 +1,14 @@
-## 元素patch处理
+# 元素patch处理
+1. vnode生成后，等待组件执行patch进行元素挂载
+1. createPatchFunction中，当sameVnode(oldVnode, vnode)时则会执行patchVnode，决定如何去处理节点
+2. patchVnode中，当新旧节点不同，但是都具有子节点时，则会调用updateChildren处理子节点的diff比较
 
-vnode生成后，等待组件执行patch进行元素挂载
+## createPatchFunction
 
-而createPatchFunction返回patch方法
-
-1. 如果vnode未定义，则直接返回，若存在oldVnode，则同时销毁oldVnode
-2. 若oldVnode未定义（很可能是组件挂载，或初始化），则直接createElm创建新元素
-3. oldVnode存在，则分条件判断如何更新
+1. createPatchFunction新旧节点是否存在比较
+2. 如果vnode未定义，则直接返回，若存在oldVnode，则同时销毁oldVnode
+3. 若oldVnode未定义（很可能是组件挂载，或初始化），则直接createElm创建新元素
+4. oldVnode存在，则分条件判断如何更新
    1. 新旧节点sameVnode相同，则执行patchVnode，用diff处理
    2. 否则替换当前元素
       1. 获取当前旧节点和他的父亲
@@ -72,17 +74,18 @@ export function createPatchFunction(backend) {
 
 ## patchVnode
 
-1. 新旧节点一致，则直接返回
-2. 异步组件处理
-3. 静态组件直接返回
-4. 组件prepatch钩子触发
-5. 节点比对
+1. patchVnode用于新旧节点属性比较
+2. 新旧节点一致，则直接返回
+3. 异步组件处理
+4. 静态组件直接返回
+5. 组件prepatch钩子触发
+6. 节点比对
    1. 非文本标签处理
       1. 新旧孩子都有，调用updateChildren使用diff更新孩子
       2. 仅有新孩子，直接添加新孩子
       3. 仅有旧孩子，直接删除旧孩子
    2. 文本标签，则直接替换
-6. postpatch钩子触发
+7. postpatch钩子触发
 
 ```js
   function patchVnode(
@@ -163,24 +166,20 @@ export function createPatchFunction(backend) {
 
 ## updateChildren
 
-在元素挂载中提及了，当sameVnode(oldVnode, vnode)时则会执行patchVnode，决定如何去处理节点
-
-patchVnode中，当新旧节点不同，但是都具有子节点时，则会调用updateChildren处理子节点的diff比较
-
-子节点diff处理
-1. 旧节点为空处理
-2. 头头相同，头节点后移
-3. 尾尾相同，尾节点前移
-4. 头尾相同，右移，旧头节点移动至旧尾节点后，头节点后移，尾节点前移
-5. 尾头相同，左移，旧尾节点移动至旧头节点前，头节点后移，尾节点前移
-6. 乱序处理
+1. updateChildren用于子节点diff处理
+2. 旧节点为空处理
+3. 头头相同，头节点后移
+4. 尾尾相同，尾节点前移
+5. 头尾相同，右移，旧头节点移动至旧尾节点后，头节点后移，尾节点前移
+6. 尾头相同，左移，旧尾节点移动至旧头节点前，头节点后移，尾节点前移
+7. 乱序处理
    1. 获取旧节点映射oldKeyToIdx
    2. 获取映射中与新头节点key相同的值
    3. 是否存在映射的值
       1. 不存在直接创建节点，并插到旧头节点之前
       2. 存在，则获取节点，看节点是否相同分别处理
    4. 新头节点index后移
-7. 剩余节点处理
+8. 剩余节点处理
    1. 新节点剩余，添加新节点
    2. 旧节点剩余，删除旧节点
 

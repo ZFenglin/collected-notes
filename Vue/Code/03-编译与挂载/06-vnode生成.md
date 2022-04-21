@@ -4,7 +4,8 @@ render代码生成后，执行得到vnode
 
 ## 执行代码设置
 
-_c是执行initMixin中的initRender时处理
+1. _c是执行initMixin中的initRender时处理，详见[Vue/Code/类构建/initMixin](../01-类构建/02-initMixin.md)
+    
 
 ```js
 export function initRender(vm) {
@@ -15,7 +16,7 @@ export function initRender(vm) {
 }
 ```
 
-而其他的则是在renderMixin中installRenderHelpers设置
+2. 其他的则是在renderMixin中installRenderHelpers设置，详见[Vue/Code/类构建/renderMixin](../01-类构建/06-renderMixin.md)
 
 ```js
 export function installRenderHelpers(target: any) {
@@ -28,9 +29,12 @@ export function installRenderHelpers(target: any) {
 }
 ```
 
-这里我们只详细介绍createElement的执行
+## Vnode创建
 
-## createElement
+### createElement
+
+1. createElement处理传入参数
+2. 执行_createElement创建Vnode
 
 ```js
 export function createElement(context, tag, data, children, normalizationType, alwaysNormalize) {
@@ -46,7 +50,18 @@ export function createElement(context, tag, data, children, normalizationType, a
 }
 ```
 
-_createElement正真负责vnode创建
+### _createElement
+
+1. 异常拦截，返回空Vnode
+   1. observed的data对象拦截
+   2. tag获取和异常拦截
+2. vnode创建
+   1. tag为字符串
+      1. 正常节点直接创建新的VNode实例
+      2. 组件调用createComponent创建
+      3. 其他的也是创建新的VNode实例
+   2. tag为函数，则是组件，直接执行createComponent
+3. vnode返回判断
 
 ```js
 export function _createElement(context, tag, data, children, normalizationType) {
@@ -108,14 +123,7 @@ Vue.js 中 Virtual DOM 是借鉴了一个开源库 snabbdom，并增加了Vue的
 export default class VNode {
     // ...
     constructor(
-        tag,
-        data,
-        children,
-        text,
-        elm,
-        context,
-        componentOptions,
-        asyncFactory
+        //...
     ) {
         this.tag = tag
         this.data = data

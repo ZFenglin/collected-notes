@@ -15,7 +15,8 @@ module.exports = {
 
 ## rules
 
-配置lodader
+1. 配置loader
+2. loader相关，详见[Webpack/原理/Loader](../04-原理/02-Loader.md)
 
 ```js
 module.exports = {

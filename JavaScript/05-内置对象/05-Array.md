@@ -9,7 +9,8 @@
 1. map
 2. filter
 3. concat（数组浅拷贝）
-4. slice
+4. join（数组的toString就是调用数组的join）
+5. slice
    1. 切片数组，可用作数组浅拷贝
    2. 参数
       1. start

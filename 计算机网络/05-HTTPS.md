@@ -43,9 +43,9 @@ MD5，SHA1，SHA256
 
 ### TLS/SSL概念
 
-1. SSL 为安全套接层（Secure Sockets Laye）
-2. 传输层安全性协议（Transport Layer Securit）
-3. SSL为TLS的继任者
+1. 安全套接字层（Secure Sockets Laye）
+2. 安全传输层协议（Transport Layer Securit）
+3. 两者为并列关系，TLS为新的协议，建立在SSL3.0之上，是其后续版本
 
 ![TLS/SSL](assets/05-SSL与TSL结构图.png)
 
@@ -83,7 +83,8 @@ MD5，SHA1，SHA256
 
 ### 中间人攻击
 
-1. 公钥可能被第三方拦截并替换，然后冒充用户进行通信
+1. 公钥可能被第三方拦截并替换
+2. 攻击者可以冒充用户进行通信
 
 ### 数字证书过程
 

@@ -1,5 +1,7 @@
 # TCP和UDP
 
+[推荐配合适配观看](https://www.bilibili.com/video/BV1kV411j7hA?spm_id_from=333.337.search-card.all.click)
+
 ## TCP
 
 传输控制协议（Transmission Control Protocol）
@@ -74,6 +76,7 @@
 
 1. 面向字节流传输，应⽤程序必须以消息为单位提取数据，不能⼀次提取任意字节的数据
 2. 延迟传送算法 (Nagle算法）：多次数据发送，会缓冲起来作一次发送
+3. TCP做了分组后，只保证把应用层数据传输到位，不关心数据的解释，而消息的解释由HTTP处理
 
 #### UDP不粘包原因
 

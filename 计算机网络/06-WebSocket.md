@@ -1,7 +1,43 @@
 # [WebSocket](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket)
 1. WebSocket是 HTML5 定义的一个新的网络传输协议
 2. 可在单个TCP连接上进行全双工通信
-3. 位于OSI模型的应用层
+3. 一开始的握手需要借助HTTP请求完成
+4. 位于OSI模型的应用层
+
+## [socket](https://www.zhihu.com/question/29637351)
+
+1. socket 其实就是操作系统提供给程序员操作「网络协议栈」的接口
+2. 通过socket 的接口，来控制协议找工作，从而实现网络通信，达到跨主机通信
+3. socket没有指定传输层协议，可以TCP，也可以UDP
+
+### 结构
+
+![socket结构](assets/06-socket结构.png)
+
+### 网络编程
+
+![socket网络编程](assets/06-socket网络编程.jpg)
+
+### [socket与http](https://zhuanlan.zhihu.com/p/142650150)
+
+1. Socket是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口（API），通过Socket，才能使用TCP/IP协议
+2. Http协议即超文本传输协议，http协议是建立在TCP协议之上的一种应用
+3. socket连接即是所谓的长连接，理论上客户端和服务端一旦建立连接，则不会主动断掉
+4. http连接就是所谓的短连接，及客户端向服务器发送一次请求，服务器端相应后连接即会断掉
+
+### socket与websocket
+
+1. Socket是传输控制层协议
+2. WebSocket是应用层协议
+
+### websocket与http
+
+1. 相同点
+   1. 都是基于TCP，是可靠的的传输
+   2. 都是应用层协议
+2. 不同点
+   1. Websocket是双向通信，模拟了socket协议，而HTTP是单向的
+   2. Websocket建立链接是需要通过HTTP进行传输，链接成功后的真正传输不再使用HTTP
 
 ## 使用
 

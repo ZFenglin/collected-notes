@@ -1,3 +1,4 @@
+////////// 原理相关
 /**
  * new实现
  * @param {function} fn 
@@ -87,3 +88,75 @@ console.log(_typeOf(1), typeof 1)
 console.log(_typeOf('1'), typeof '1')
 console.log(_typeOf(true), typeof true)
 console.log(_typeOf(() => { }), typeof (() => { }))
+
+
+
+////////// 面向对象-创建对象
+// 1. 工厂模式
+function createPerson(name) {
+    let preson = {}
+    preson.name = name
+    preson.sayName = function () {
+        console.log('我叫' + this.name)
+    }
+    return preson
+}
+let fp = createPerson('zfl')
+console.log(fp) // {name: 'zfl', sayName: ƒ}
+
+// 2. 构造函数模式
+function Preson(name) {
+    this.name = name
+    this.sayName = function () {
+        console.log('我叫' + this.name)
+    }
+}
+let sp = new Preson('zfl')
+console.log(sp) // Preson {name: 'zfl', sayName: ƒ}
+
+// 3. 原型模式
+function Preson() { }
+Preson.prototype.name = 'zfl'
+Preson.prototype.sayName = function () {
+    console.log('我叫' + this.name)
+}
+let pp = new Preson('zfl')
+console.log(pp) // Preson {} 属性在__proto__里面
+
+// 4. 组合模式（最优解）
+function Preson(name) {
+    this.name = name
+}
+Preson.prototype.sayName = function () {
+    console.log('我叫' + this.name)
+}
+let cp = new Preson('zfl')
+console.log(cp) // Preson {name: 'zfl'} sayName在__proto__中
+
+// 5. 动态原型
+function Preson(name) {
+    this.name = name
+    if (typeof this.sayName !== 'function') {
+        Preson.prototype.sayName = function () {
+            console.log('我叫' + this.name)
+        }
+    }
+}
+let acp = new Preson('zfl')
+console.log(acp) // 结果和组合模式一样
+
+// 6. 寄生构造函数模式（只是工厂函数调用new）
+let pfp = new createPerson('zfl')
+console.log(pfp) // 但是返回值和工厂函数没区别
+
+// 7. 稳妥构造函数
+function secureCreatePerson(name) {
+    let preson = {}
+    preson.name = name
+    preson.sayName = function () {
+        console.log('我叫' + name) // 不使用this
+    }
+    return preson
+}
+let scp = secureCreatePerson('zfl') // 不使用new
+console.log(scp) 

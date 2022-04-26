@@ -118,7 +118,7 @@ Promise.race([promise1, timeOutPromise(5000)]).then(res => {})
 #### then与catch的注册时机
 
 ```js
-// 先创建Promise实例，所有then同步注册
+// 1. 先创建Promise实例，所有then同步注册
 let p = new Promise()
 p.then(() {})
 p.then(() {})

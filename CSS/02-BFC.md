@@ -38,16 +38,17 @@
 
 ### display
 
-1. inline-block等价于display: inline flow-root;
-2. flow-root等价于display: block flow-root
+1. inline-block
+2. flow-root
 3. table相关
 4. flex相关
 5. grid相关
 
 #### inline-block与flow-root比较
 
-1. 对外显示为block或inline
-2. 对内创建一个独立的文档布局流，即BFC
+1. inline-block等价于display: inline flow-root，展示为行内元素
+2. flow-root等价于display: block flow-root，展示为块元素
+3. 对内创建BFC
 
 ### column-count或column-width
 
@@ -55,13 +56,7 @@
 
 ## BFC作用
 
-### 避免margin重叠
-
-#### 触发方式
-
-1. 属于同一个BFC
-2. 没有被padding、border、clear或非空内容隔开
-3. 两个或两个以上垂直方向的相邻元素
+### 垂直margin重叠处理
 
 #### 计算方式
 

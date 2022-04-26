@@ -38,7 +38,7 @@ obj['key']
 
 ### Object.create()
 
-1. 第一个参数是指定的原型对象
+1. 第一个参数是指定隐式原型对象
 2. 第二个参数是可选参数，给新对象自身添加新属性以及描述器
 3. 原理[详见JavaScript/手写代码/对象相关](../08-代码手写/01-对象相关.md)
 
@@ -98,7 +98,7 @@ let obj2 = JSON.parse(JSON.stringify(obj1));
 2. for...in遍历obj，hasOwnProperty过滤原型属性
 3. newObj赋值，当设置的值为对象并且deep为true，则嵌套调用objectCopy
 
-## 删除对象delete
+## delete
 
 1. 但是这种删除方式性能不好，推荐使用设置undefined或null替代
 2. 大量增删，推荐Map

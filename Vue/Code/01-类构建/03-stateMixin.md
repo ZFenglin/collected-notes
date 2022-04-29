@@ -113,7 +113,7 @@ export function del(target, key) {
 ```js
 Vue.prototype.$watch = function(expOrFn, cb, options) {
     const vm = this
-    // 如果回调为空，则直接创建默认Watcher
+    // 如果cb是纯粹对象，则直接创建默认Watcher
     if (isPlainObject(cb)) {
         return createWatcher(vm, expOrFn, cb, options)
     }

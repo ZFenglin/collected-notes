@@ -19,7 +19,9 @@
     1. handler为数组，遍历handler，执行createWatcher(vm, key, handler[i])
     2. 否则直接执行createWatcher(vm, key, handler)
 
-### createWatcher( vm, expOrFn, handler, options)
+### 创建userWatcher
+
+#### createWatcher( vm, expOrFn, handler, options)
 
 1. handler为纯粹对象，为了获取真实处理的cb
     1. options = handler
@@ -28,7 +30,7 @@
     1. handler = vm[handler]
 3. 返回vm.$watch(expOrFn, handler, options)
 
-### Vue.prototype.$watch(expOrFn, cb, options)
+#### Vue.prototype.$watch(expOrFn, cb, options)
 
 1. cb为纯粹对象，直接返回createWatcher(vm, expOrFn, cb, options)
 2. options设置，并定义options.user为true
@@ -55,3 +57,25 @@
     1. 获取userDef并判断获取getter
     2. watchers[key] = new Watcher(vm, getter || noop, noop, { lazy: true }) // noop为无操作
     3. vm不存在key，则defineComputed(vm, key, userDef)定义到vm上
+
+### 定义computed至vm（服务端渲染部分不解析）
+
+#### defineComputed(target, key, userDef)
+
+1. 当不是服务端渲染，则shouldCache为true
+2. typeof userDef === 'function'
+    1. userDef为true
+        1. sharedPropertyDefinition.get = createComputedGetter(key)
+        2. sharedPropertyDefinition.set = noop
+    2. userDef为false
+        1. sharedPropertyDefinition.get = createComputedGetter(key)
+        2. sharedPropertyDefinition.set = userDef.set || noop
+3. Object.defineProperty(target, key, sharedPropertyDefinition)
+
+#### createComputedGetter(key)
+
+1. 返回function computedGetter()
+    1. 从_computedWatchers获取当前key对应的watcher：this._computedWatchers[key]
+    2. 脏数据执行evaluate更新数据：watcher.dirty && watcher.evaluate()
+    3. Dep.target存在则执行depend收集：Dep.target && watcher.depend()
+    4. 返回watcher.value

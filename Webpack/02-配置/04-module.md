@@ -65,18 +65,20 @@ module.exports = {
 module.exports = {
     module: {
         rules: [
-            test: /\.js/,
-            use: ['babel-loader'],
-            parser: {
-                amd: false, // 禁用 AMD
-                commonjs: false, // 禁用 CommonJS
-                system: false, // 禁用 SystemJS
-                harmony: false, // 禁 ES6 import/export
-                requireinclude: false, // 禁用 require.include
-                requireEnsure: false, // 禁用 require ens ur
-                requireContext: false, // 禁 require.context
-                browserify: false, // 禁 browserify
-                requireJs: false, //禁用 requirejs
+            {
+                test: /\.js/,
+                use: ['babel-loader'],
+                parser: {
+                    amd: false, // 禁用 AMD
+                    commonjs: false, // 禁用 CommonJS
+                    system: false, // 禁用 SystemJS
+                    harmony: false, // 禁 ES6 import/export
+                    requireinclude: false, // 禁用 require.include
+                    requireEnsure: false, // 禁用 require ens ur
+                    requireContext: false, // 禁 require.context
+                    browserify: false, // 禁 browserify
+                    requireJs: false, //禁用 requirejs
+                }
             }
         ]
     }

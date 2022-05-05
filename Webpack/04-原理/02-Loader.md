@@ -19,7 +19,7 @@ JavaScript模块导出的函数
 module.exports = fuction(source, inputSourceMap, data) {}
 ```
 
-#### 三个参数
+#### Normal Loader参数
 
 1. source：源文件内容
 2. inputSourceMap：使用的SourceMap数据
@@ -53,7 +53,7 @@ JavaScript模块导出的函数上增加的pitch属性
 module.exports.pitch = fuction(data, remainingRequest, precedingRequest) {}
 ```
 
-#### 三个参数
+#### Pitching Loader参数
 
 1. data：用于数据传递，之后的normal中可以通过this.data获取
 2. remainingRequest：剩余请求路径

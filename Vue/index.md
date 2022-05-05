@@ -2,39 +2,20 @@
 
 ## 源码解析
 
-### 类构建
+### 源码概念解析
 
-1. [构建入口](./Code/01-类构建/01-构建入口.md)
-2. [initMixin](./Code/01-类构建/02-initMixin.md)
-3. [stateMixin](./Code/01-类构建/03-stateMixin.md)
-4. [eventsMixin](./Code/01-类构建/04-eventsMixin.md)
-5. [lifecycleMixin](./Code/01-类构建/05-lifecycleMixin.md)
-6. [renderMixin](./Code/01-类构建/06-renderMixin.md)
-7. [initGlobalAPI](./Code/01-类构建/07-initGlobalAPI.md)
+1. [构建与初始化](./Principle/01-%E6%9E%84%E5%BB%BA%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.md)
+2. [响应式](./Principle/02-%E5%93%8D%E5%BA%94%E5%BC%8F.md)
+3. [依赖收集](./Principle/03-%E4%BE%9D%E8%B5%96%E6%94%B6%E9%9B%86.md)
+4. [异步更新](./Principle/04-%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0.md)
+5. [computed与watch](./Principle/05-computed%E4%B8%8Ewatch.md)
+6. [模板编译](./Principle/06-%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91.md)
+7. [元素挂载](./Principle/07-%E5%85%83%E7%B4%A0%E6%8C%82%E8%BD%BD.md)
+8. [mixin](./Principle/08-mixin.md)
+9. [component](./Principle/09-component.md)
+10. [生命周期](./Principle/10-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)
 
-### 响应式原理
-
-1. [响应式处理](./Code/02-响应式原理/01-响应式处理.md)
-2. [依赖收集](./Code/02-响应式原理/02-依赖收集.md)
-3. [computed和watch](./Code/02-响应式原理/03-computed和watch.md)
-4. [异步更新](./Code/02-响应式原理/04-异步更新.md)
-
-### 编译与挂载
-
-1. [处理入口](./Code/03-编译与挂载/01-处理入口.md)
-2. [模板编译入口](./Code/03-编译与挂载/02-模板编译入口.md)
-3. [模板解析](./Code/03-编译与挂载/03-模板解析.md)
-4. [静态节点处理](./Code/03-编译与挂载/04-静态节点处理.md)
-5. [render代码生成](./Code/03-编译与挂载/05-render代码生成.md)
-6. [vnode生成](./Code/03-编译与挂载/06-vnode生成.md)
-7. [元素patch处理](./Code/03-编译与挂载/07-元素patch处理.md)
-8. [元素生成](./Code/03-编译与挂载/08-元素生成.md)
-
-### 组件化
-
-1. [组件配置](./Code/04-组件化/01-组件配置.md)
-2. [组件生成和挂载](./Code/04-组件化/02-组件生成和挂载.md)
-3. [生命周期](./Code/04-组件化/03-生命周期.md)
+### [源码详细解析](./Code/index.md)
 
 ### Vue3
 

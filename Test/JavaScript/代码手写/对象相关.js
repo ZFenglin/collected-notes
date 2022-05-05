@@ -159,4 +159,73 @@ function secureCreatePerson(name) {
     return preson
 }
 let scp = secureCreatePerson('zfl') // 不使用new
-console.log(scp) 
+console.log(scp)
+
+////////// 面向对象-继承对象
+function Preson(name) {
+    this.name = name
+}
+Preson.prototype.sayName = function () {
+    console.log('我叫' + this.name)
+}
+
+// 1. 原型链
+function PrototypeChild(sex) {
+    this.sex = sex
+}
+PrototypeChild.prototype = new Preson('zfl')
+PrototypeChild.prototype.constructor = PrototypeChild
+const pc = new PrototypeChild('man')
+console.log(pc) // PrototypeChild {sex: 'man'} name与sayName在proto
+
+// 2. 借用构造函数
+function ConstructorChild(sex) {
+    Preson.call(this, 'zfl')
+    this.sex = sex
+}
+const cc = new ConstructorChild('man')
+console.log(cc) // ConstructorChild {sex: 'man', name: 'zfl'}，但是sayName不存在
+
+// 3. 组合继承
+function PrototypeConstructorChild(sex) {
+    Preson.call(this, 'zfl')
+    this.sex = sex
+}
+PrototypeConstructorChild.prototype = new Preson('zfl')
+PrototypeConstructorChild.prototype.constructor = PrototypeConstructorChild
+const pcc = new PrototypeConstructorChild('man')
+console.log(pcc) // PrototypeConstructorChild {name: 'zfl', sex: 'man'}，并且sayName也存在于原型上，但是有重复的name属性
+
+// 4. 原型式继承(Object.create)
+const p = new Preson('zfl')
+function creator(prototype) {
+    function Creator() { }
+    Creator.prototype = prototype
+    return new Creator()
+}
+const occ = creator(p)
+console.log(occ)
+
+// 5. 寄生式继承
+function creator(origin) {
+    let clone = Object.create(origin)
+    clone.sex = 'man'
+    return clone
+}
+const pac = creator(p)
+console.log(pac)
+
+// 6. 寄生式组合式继承（推荐）
+function inherit(children, parent) {
+    let prototype = Object.create(parent.prototype);
+    prototype.constructor = children;
+    children.prototype = prototype;
+}
+function ParasiticCompsitionChild(name, sex) {
+    Preson.call(this, name)
+    this.sex = sex
+}
+inherit(ParasiticCompsitionChild, Preson)
+const pacc = new ParasiticCompsitionChild('zfl', 'man')
+console.log(pacc)
+

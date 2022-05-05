@@ -39,7 +39,7 @@
 
 ## component挂载
 
-1. component挂载推荐先看元素挂载（详见[元素挂载](./07-%E5%85%83%E7%B4%A0%E6%8C%82%E8%BD%BD.md)）
+1. component挂载推荐先看元素挂载（详见[元素挂载](./07-元素挂载.md)）
 2. 当_createElement执行遇到组件时，会执行createComponent处理获取组件vnode
 3. 当createElm执行遇到组件，则执行createComponent创建组件元素
 4. 注意这两个createComponent并不是一个方法

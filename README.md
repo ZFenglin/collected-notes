@@ -9,8 +9,8 @@
 
 ## 前端基础
 
-1. [CSS](./CSS/index.md)
-2. [HTML](./HTML/index.md)
+1. [HTML](./HTML/index.md)
+2. [CSS](./CSS/index.md)
 3. [JavaScript](./JavaScript/index.md)
 
 ## 前端框架

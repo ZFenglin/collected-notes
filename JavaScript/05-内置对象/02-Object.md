@@ -83,7 +83,7 @@ let copyObj = {
 
 ### 深拷贝
 
-####  JSON.stringify()
+#### JSON.stringify()
 
 ```js
 // 拷贝的对象中如果有函数，undefined，symbol，则会丢失
@@ -98,7 +98,56 @@ let obj2 = JSON.parse(JSON.stringify(obj1));
 2. for...in遍历obj，hasOwnProperty过滤原型属性
 3. newObj赋值，当设置的值为对象并且deep为true，则嵌套调用objectCopy
 
-## delete
+## 遍历对象
 
-1. 但是这种删除方式性能不好，推荐使用设置undefined或null替代
-2. 大量增删，推荐Map
+### 对象属性分类
+
+1. 原型属性
+2. 对象自身可枚举
+3. 对象自身不可枚举
+4. Symbol属性
+
+#### 判断是否可枚举
+
+1. Object.getOwnPropertyDescriptor()
+
+### 遍历方式
+
+#### 仅可枚举
+
+1. for...in
+    1. 遍历范围
+        1. 包含：对象自身可枚举 + 原型属性中可枚举
+        2. 不包含：对象自身不可枚举 + Symbol属性 + 原型属性中不可枚举
+        3. 利用hasOwnProperty过滤原型链属性
+    2. 遍历顺序
+        1. 大于等于0的整数，按照大小排序，小数和负数按照string处理
+        2. string按照定义顺序输出
+        3. Symbol过滤，不输出
+2. Object.keys()（ES5）
+    1. 遍历范围
+        1. 包含：对象自身可枚举
+        2. 不包含：原型属性 + 对象自身不可枚举 + Symbol属性
+    2. 遍历顺序
+        1. 与for...in相同
+
+#### 包括不可枚举
+
+1. Object.getOwnPropertyNames()（ES5）
+    1. 遍历范围
+        1. 包含：对象自身可枚举 + 对象自身不可枚举
+        2. 不包含：原型属性 + Symbol属性
+2. Object.getOwnPropertySymbols()（ES6）
+    1. 遍历范围
+        1. 包含：对象自身Symbol属性
+        2. 不包含：原型属性 + 对象自身非Symbol属性
+3. Reflect.ownKeys()（ES6）
+    1. 遍历范围
+        1. 包含：对象自身所有属性，包括不可枚举和Symbol属性
+        2. 不包含：原型属性
+
+## 属性删除
+
+1. 利用delete操作符可以删除对象中属性
+2. 但是这种删除方式性能不好，推荐使用设置undefined或null替代
+3. 大量增删，推荐Map替代Object

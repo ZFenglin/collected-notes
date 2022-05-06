@@ -229,3 +229,66 @@ inherit(ParasiticCompsitionChild, Preson)
 const pacc = new ParasiticCompsitionChild('zfl', 'man')
 console.log(pacc)
 
+////////// 其它
+/**
+ * 对象拷贝
+ * @param {*} obj 
+ * @param {*} deep 
+ */
+function copy(obj, deep = false) {
+    if (!isObject(obj)) return obj
+    const res = obj instanceof Array ? [] : {}
+    for (const key in obj) {
+        if (Object.hasOwnProperty.call(obj, key)) {
+            const element = obj[key]
+            res[key] = (deep && isObject(element)) ? copy(element, deep) : element
+        }
+    }
+    return res
+}
+function isObject(obj) {
+    return obj && typeof obj === 'object'
+}
+
+let obj = {
+    a: 1,
+    b: '2',
+    c: {
+        d: 1
+    }
+}
+const co = copy(obj)
+const dco = copy(obj, true)
+co.c.d = 2
+dco.c.d = 3
+console.log(obj, co, dco)
+
+/**
+ * 对象是否循环引用
+ * @param {*} obj 
+ */
+function isCycleObject(obj, parentSet) {
+    const set = parentSet || new Set()
+    if (isObject(obj)) {
+        for (const key in obj) {
+            if (Object.hasOwnProperty.call(obj, key)) {
+                const element = obj[key]
+                if (isObject(element)) {
+                    if (set.has(element)) {
+                        return true
+                    } else {
+                        set.add(element)
+                        if (isObject(element)) {
+                            return isCycleObject(element, set)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return false
+}
+
+const a = {}
+a.b = a
+console.log(isCycleObject(a))

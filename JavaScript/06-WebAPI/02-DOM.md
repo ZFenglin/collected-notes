@@ -60,6 +60,18 @@ div.removeChild(child[0])
 1. property是对节点对象的属性进行修改，可能引起重排和重绘
 2. attribute是对HTML标签进行修改，会修改HTML文档，必定会触发重排和重绘，频繁使用影响性能
 
+## 页面加载监听
+
+1. window.addEventListener（'load', function(){}）
+    1. 页面全部资源加载完才会执行
+2. ducument.addEventListener（'DOMContentLoaded', function(){}）
+    1. DOM渲染完可执行
+    2. defer在这个之前执行
+3. window.addEventListener("pageshow", function(){})
+    1. 每次加载都会执行，无论是首次还是再次
+4. window.addEventListener("onunload", function(){})
+    1. 页面销毁
+
 ## 性能优化
 
 DOM操作十分占据性能，应减少对DOM树的更改

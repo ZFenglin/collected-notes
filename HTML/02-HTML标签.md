@@ -141,7 +141,7 @@ content 参数有以下几种：
 
 使用语法如下
 
-```
+```attribute
 sizes="[media query] [length], [media query] [length] ... "
 ```
 

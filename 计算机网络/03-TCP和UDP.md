@@ -2,13 +2,13 @@
 
 [推荐配合适配观看](https://www.bilibili.com/video/BV1kV411j7hA?spm_id_from=333.337.search-card.all.click)
 
-## TCP
+## TCP（电话）
 
 传输控制协议（Transmission Control Protocol）
 
 ### TCP特点
 
-####  面向连接
+#### 面向连接
 
 1. 发送数据之前必须在两端通过三次握手建立连接
 
@@ -89,7 +89,7 @@
 2. 关闭Nagle算法(不推荐)
 3. 封包/拆包：在每个数据包的前后添加特征数据，接收数据后根据特征数据分割数据包
 
-## UDP
+## UDP（寄信）
 
 用户数据报协议（User Datagram Protocol）
 
@@ -104,7 +104,6 @@
 1. 不保证交付成功
 2. 无交付顺序（无序发送）
 3. 无拥塞控制
-   
 
 #### 单播/多播/广播
 

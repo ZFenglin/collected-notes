@@ -1,4 +1,5 @@
 # [WebSocket](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket)
+
 1. WebSocket是 HTML5 定义的一个新的网络传输协议，位于应用层
 2. 可在单个TCP连接上进行全双工通信
 3. 一开始的握手需要借助HTTP请求完成
@@ -19,7 +20,7 @@
 
 ### [socket与http](https://zhuanlan.zhihu.com/p/142650150)
 
-1. Socket是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口（API），通过Socket，才能使用TCP/IP协议
+1. Socket本身并不是协议，是一个调用接口（API），通过Socket可以使用TCP和UDP
 2. Http协议即超文本传输协议，http协议是建立在TCP协议之上的一种应用
 3. socket连接即是所谓的长连接，理论上客户端和服务端一旦建立连接，则不会主动断掉
 4. http连接就是所谓的短连接，及客户端向服务器发送一次请求，服务器端相应后连接即会断掉
@@ -81,7 +82,7 @@ socket.send("Hello WebSockets!");
 
 1. 服务器使用流信息向服务器推送信息
 
-### WebSocket 
+### WebSocket
 
 1. 该协议允许由服务器主动的向客户端推送信息
 

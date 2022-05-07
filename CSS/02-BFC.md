@@ -1,58 +1,44 @@
 # [BFC](https://zhuanlan.zhihu.com/p/25321647)
+
 1. Block Format Context：块级格式化上下文
 2. 独立的渲染区域
 3. 内部元素按照容器规则进行摆放
 4. 内部元素的处理不会影响外部元素，也不会被外部影响
+5. BFC与GPU加速开启的图层不相同
 
 ## [BFC特性](https://segmentfault.com/a/1190000009545742)
 
-内部元素的处理不会影响外部元素，也不会被外部影响
-
-### 对内
-
-1. 内部盒子垂直方向上自上而下排列
-2. 内部元素的 margin-left 和容器的左 border 相接触
-3. 同一BFC的盒子的垂直外边距会重叠
-
-### 对外
-
-1. 不会与浮动元素重叠，可以用于清除浮动或者对兄弟元素设定BFC防止其被之前浮动元素覆盖
-2. 计算BFC高度，浮动元素也会参与计算
+1. 内部元素的处理不会影响外部元素，也不会被外部影响
+2. 对内
+    1. 内部的Box会在垂直方向自上而下排列
+    2. 内部的Box的 margin-left 和BFC容器的 border-left 相接触，除非内部内部的Box具有自己的BFC
+    3. 属于同一个BFC的两个相邻Box的垂直margin会发生重叠
+3. 对外
+    1. BFC的区域不会与float box重叠
+    2. 计算BFC高度，浮动元素也会参与计算
 
 ## 创建BFC
 
-### 根元素html
+1. 根元素或其它包含它的元素
+2. 浮动
+    1. float 不是 none
+3. 绝对定位的元素
+    1. position: absolute
+    2. position: fixed
+4. 非块级元素
+    1. inline-block
+    2. flow-root
+    3. table相关
+    4. flex相关
+    5. grid相关
+5. 块级元素
+    1. overflow不是visible
 
-### position
-
-1. absolute
-2. fixed
-
-### float
-
-1. 除none
-
-### overflow
-
-1. 除visible和clip
-
-### display
-
-1. inline-block
-2. flow-root
-3. table相关
-4. flex相关
-5. grid相关
-
-#### inline-block与flow-root比较
+### inline-block与flow-root比较
 
 1. inline-block等价于display: inline flow-root，展示为行内元素
 2. flow-root等价于display: block flow-root，展示为块元素
 3. 对内创建BFC
-
-### column-count或column-width
-
-1. 除了auto
 
 ## BFC作用
 

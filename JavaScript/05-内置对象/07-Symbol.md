@@ -1,4 +1,5 @@
 # [Symbol](https://www.zhangxinxu.com/wordpress/2018/04/known-es6-symbol-function/)
+
 1. symbol 是一种基本数据类型
 2. Symbol()函数会返回symbol类型的值，该类型具有静态属性和静态方法
 

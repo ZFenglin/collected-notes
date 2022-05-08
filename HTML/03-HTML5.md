@@ -137,14 +137,6 @@
 04. 复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）
 05. 不适合游戏应用
 
-## 地理定位
-
-Geolocation（地理定位）用于定位用户的位置
-
-```js
-navigator.geolocation.getCurrentPosition(showPosition)
-```
-
 ## Web-API
 
 ### history
@@ -153,6 +145,14 @@ navigator.geolocation.getCurrentPosition(showPosition)
 02. forward
 03. back
 04. pushstate
+
+### 地理定位
+
+Geolocation（地理定位）用于定位用户的位置
+
+```js
+navigator.geolocation.getCurrentPosition(showPosition)
+```
 
 ## Web存储
 

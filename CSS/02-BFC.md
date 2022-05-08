@@ -13,32 +13,34 @@
     1. 内部的Box会在垂直方向自上而下排列
     2. 内部的Box的 margin-left 和BFC容器的 border-left 相接触，除非内部内部的Box具有自己的BFC
     3. 属于同一个BFC的两个相邻Box的垂直margin会发生重叠
+    4. 计算BFC高度，浮动元素也会参与计算
 3. 对外
     1. BFC的区域不会与float box重叠
-    2. 计算BFC高度，浮动元素也会参与计算
 
 ## 创建BFC
 
 1. 根元素或其它包含它的元素
-2. 浮动
-    1. float 不是 none
-3. 绝对定位的元素
-    1. position: absolute
-    2. position: fixed
-4. 非块级元素
-    1. inline-block
-    2. flow-root
-    3. table相关
-    4. flex相关
-    5. grid相关
-5. 块级元素
-    1. overflow不是visible
+2. float 不是 none
+3. position
+    1. absolute
+    2. fixed
+4. diplay
+    1. 外部显示类型
+        1. flow-root
+        2. table
+        3. flex
+        4. grid
+    2. 内外同时设置的盒子
+        1. inline-block
+        2. inline-table
+        3. inline-flex
+        4. inline-grid
+5. overflow不是visible
 
 ### inline-block与flow-root比较
 
-1. inline-block等价于display: inline flow-root，展示为行内元素
-2. flow-root等价于display: block flow-root，展示为块元素
-3. 对内创建BFC
+1. flow-root会对内创建BFC
+2. inline-block等价于display: inline flow-root，展示为行内元素
 
 ## BFC作用
 

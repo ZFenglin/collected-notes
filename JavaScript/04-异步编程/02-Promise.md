@@ -15,8 +15,8 @@
 
 #### 过程特点
 
-3. 变化不可逆
-4. 结果事件将会放在微任务队列中等待执行
+1. 变化不可逆
+2. 结果事件将会放在微任务队列中等待执行
 
 ## Promise方法
 
@@ -91,7 +91,7 @@ Promise.race([promise1, timeOutPromise(5000)]).then(res => {})
 
 #### Promise.resolve(value)
 
-2. 返回一个状态由给定value决定的promise对象
+1. 返回一个状态由给定value决定的promise对象
 
 ##### 返回值value处理
 

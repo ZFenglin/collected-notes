@@ -22,10 +22,10 @@
 ### 箭头函数特点
 
 1. 都是匿名函数，设计时就认定为一种更加纯粹的函数
-   1. 没有属于自己的arguments、super、new.target
+   1. 没有属于自己的arguments、super
    2. 不可以作为generator函数使用
    3. 没有自己的显式原型prototype
-2. 箭头函数内部没有自己this，声明时获取
+2. 箭头函数内部没有自己this，声明时获取上级this
    1. 箭头函数内部使用this时看上去更像闭包，Babel的编译结果就是闭包处理
    2. 不能用call/apply/bind去改变this指向
 3. 箭头函数不能使用new

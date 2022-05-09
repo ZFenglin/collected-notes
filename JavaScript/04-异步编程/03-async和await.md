@@ -54,7 +54,8 @@ for (variable of iterable) {
 
 1. 目标具有Symbol.iterator属性，才可以被遍历
 2. 类数组对象则直接Array.from转成数组
-3. 给对象添加一个Symbol.iterator属性
+3. 对象增加Symbol.iterator方法，返回具有next方法的对象并且对象next方法返回具有value和done的对象
+4. 利用生成器，由于执行 Generator 函数实际返回的是一个遍历器，因此可以把 Generator 赋值给对象的Symbol.iterator属性，从而使得该对象具有 Iterator 接口
 
 #### for...of与for...in差异
 
@@ -67,11 +68,6 @@ for (variable of iterable) {
 3. 数组遍历
    1. for…in 会返回数组中所有可枚举的属性(包括原型链上可枚举的属性)
    2. for…of 只返回数组的下标对应的属性值
-
-### 实现迭代器接口
-
-1. 对象增加Symbol.iterator方法，返回具有next方法的对象并且对象next方法返回具有value和done的对象
-2. 利用生成器，由于执行 Generator 函数实际返回的是一个遍历器，因此可以把 Generator 赋值给对象的Symbol.iterator属性，从而使得该对象具有 Iterator 接口
 
 ## [Generator](https://www.cnblogs.com/rogerwu/p/10764046.html)
 

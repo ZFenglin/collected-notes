@@ -34,15 +34,3 @@
 4. 事件绑定
 5. 监听事件
 6. 本地存储
-
-### 页面加载事件监听
-
-```js
-// load
-// 页面全部资源加载完才会执行
-window.addEventListener('load', function() {})
-
-// DOM渲染完可执行
-// defer属性的JS标签在这之前执行
-ducument.addEventListener('DOMContentLoaded', function() {})
-```

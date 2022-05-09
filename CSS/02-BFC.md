@@ -25,16 +25,9 @@
     1. absolute
     2. fixed
 4. diplay
-    1. 外部显示类型
-        1. flow-root
-        2. table
-        3. flex
-        4. grid
+    1. 内部显示类型
     2. 内外同时设置的盒子
-        1. inline-block
-        2. inline-table
-        3. inline-flex
-        4. inline-grid
+    3. 详见[CSS/盒模型](./04-盒模型.md)
 5. overflow不是visible
 
 ### inline-block与flow-root比较

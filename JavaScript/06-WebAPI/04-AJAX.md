@@ -53,6 +53,7 @@
 1. 一种替代XMLHttpRequest更简单的API
 2. fetch()返回一个Promise对象
 3. 响应状态码的异常不会导致reject，需要在then中手动处理
+4. fetch不是ajax的进一步封装，而是原生js，没有使用XMLHttpRequest对象
 
 ### Fetch参数
 

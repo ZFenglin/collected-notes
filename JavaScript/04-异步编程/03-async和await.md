@@ -1,6 +1,8 @@
 # async和await
 
-async和await是ES2017添加，一种对Promise和generator封装的语法糖
+1. async和await是ES2017添加，一种对Promise和generator封装的语法糖
+2. await等到的不是一个 Promise 对象，那 await 表达式的运算结果就是它等到的东西
+3. 等到的是一个 Promise 对象，它会阻塞后面的代码，等着 Promise 对象 resolve，并获取resolve 的值
 
 ## 相互关系
 

@@ -1,8 +1,4 @@
-# 异步编程
-
-## 回调函数与定时器
-
-```js
+////////// 回调函数与定时器
 /**
  * requestAnimationFrame模拟定时器
  * @param {*} cb 
@@ -22,13 +18,12 @@ function _setInterval(cb, wait) {
     loop()
     return timer
 }
-```
 
-## Promise
+_setInterval((res) => console.log('tag', res), 1000)
 
-### 手写promise
+////////// Promise
 
-```js
+// 1. 手写Promise
 class _Promise {
     static PENDING = '待定'
     static FULFILLED = '兑现'
@@ -102,11 +97,8 @@ class _Promise {
         return this.then(null, onRejected)
     }
 }
-```
 
-### 手写Promise.all
-
-```js
+// 2. 手写Promise.all
 Promise._all = function (promises) {
     return new Promise((resolve, reject) => {
         if (!Array.isArray(promises)) {
@@ -115,7 +107,6 @@ Promise._all = function (promises) {
         let count = 0
         let allRes = []
         for (let index = 0; index < promises.length; index++) {
-            // 用Promise.resolve包裹传入promise参数，防止传入普通函数报错
             const promise = promises[index]
             Promise.resolve(promise).then(
                 res => {
@@ -132,11 +123,27 @@ Promise._all = function (promises) {
         }
     })
 }
-```
 
-### 手写Promise.race
+let pa1 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve(1)
+    }, 1000)
+})
+let pa2 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve(2)
+    }, 2000)
+})
+let pa3 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve(3)
+    }, 3000)
+})
+Promise._all([pa3, pa1, pa2]).then(res => {
+    console.log(res)
+})
 
-```js
+// 3. 手写Promise.race
 Promise._race = function (promises) {
     return new Promise((resolve, reject) => {
         if (!Array.isArray(promises)) {
@@ -155,13 +162,32 @@ Promise._race = function (promises) {
         }
     })
 }
-```
 
-## Generator
+let pr1 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve(1)
+    }, 1000)
+})
+let pr2 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve(2)
+    }, 2000)
+})
+let pr3 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve(3)
+    }, 3000)
+})
+Promise._race([pr3, pr1, pr2]).then(res => {
+    console.log(res)
+})
 
-### 生成器执行器
 
-```js
+/**
+ * 生成器执行器
+ * @param {*} generator 
+ * @returns 
+ */
 function co(generator) {
     const iterator = generator();
     return new Promise(function (resolve, reject) {
@@ -180,4 +206,20 @@ function co(generator) {
         }
     })
 }
-```
+
+function readFile(url) {
+    return new Promise(function (resolve, reject) {
+        fs.readFile(url, function (error, data) {
+            if (error) reject(error);
+            resolve(data)
+        })
+    })
+}
+function* gen() {
+    var f1 = yield readFile('./a.txt');
+    console.log(f1)
+    var f2 = yield readFile('./b.txt');
+    console.log(f2)
+
+}
+co(gen)

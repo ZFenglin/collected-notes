@@ -46,7 +46,7 @@
 1. 响应中的数字状态码
 2. 详见[计算机网络/状态码](../../计算机网络/07-状态码.md)
 
-### Promise封装XHR：详见[JavaScript/手写代码/应用场景](../08-代码手写/06-应用场景.md)
+### Promise封装XHR：详见[JavaScript/手写代码/应用场景](../08-代码手写/05-应用场景.md)
 
 ## [Fetch](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)
 
@@ -60,4 +60,4 @@
 1. input（获取资源的 URL或者Request对象）
 2. init（请求的设置，请求方式，请求数据等）
 
-### Fetch封装类：详见[JavaScript/手写代码/应用场景](../08-代码手写/06-应用场景.md)
+### Fetch封装类：详见[JavaScript/手写代码/应用场景](../08-代码手写/05-应用场景.md)

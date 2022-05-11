@@ -134,8 +134,9 @@ new Promise().then(() {}).then(() {})
 
 1. 利用数组保存回调resolveCallbacks与rejectCallbacks
 2. 在下一个循环执行resolve和reject
-3. 按照执行结果是否instanceof _Promise，决定是否继续执行then
-4. then返回一个_Promise对象，并且then需要具有承前启后的作用
+3. then返回一个Promise对象，并且then需要具有承前启后的作用
    1. 承前：前一个promise完成后，调用resolve变更状态，并且resolve会依次调用callbacks里的回调
-   2. 启后：如果返回值不是Promise，则直接执行resolve或reject结束Promise，否则处理结果的then
-5. catch返回一个只注册onRejected的then的执行结果
+   2. 启后
+      1. 如果返回值是Promise，则处理返回值的then
+      2. 如果返回值不是Promise，则直接执行resolve或reject结束Promise
+4. catch返回一个只注册onRejected的then的执行结果

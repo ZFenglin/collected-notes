@@ -13,17 +13,17 @@ obj['key']
 
 ## 对象特性
 
-### 对象拓展：不可增加属性
+### 禁止扩展：保留已有属性并禁止添加
 
 1. Object.isExtensible()
 2. Object.preventExtensions()
 
-### 对象密封：不可增删属性，同时不可以修改已有属性的可枚举性、可配置性、可写性
+### 对象密封：preventExtensions基础上，将属性标记为configurable:false
 
 1. Object.isSealed()
 2. Object.seal()
 
-### 对象冻结：密封基础上增加了不可修改，冻结只能浅层冻结
+### 对象冻结：seal的基础上，将属性标记为writable:false
 
 1. Object.isFrozen()
 2. Object.freeze()

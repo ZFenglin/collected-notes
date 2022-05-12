@@ -30,7 +30,7 @@ install的作用就是让Vue.use触发，并在Vue上安装Router
 4. Vue.mixin为组件在beforeCreate时注册相关属性和destroyed销毁实例
 5. `$router`和`$route`定义
 6. RouterView和RouterLink组件注册，原理见[Vue/VueRouter/Component处理](./07-Component处理.md)
-7.  路由钩子合并策略设置（等价于created的合并策略，即借用生命周期的合并策略）
+7. 路由钩子合并策略设置（等价于created的合并策略，即借用生命周期的合并策略）
 
 ```js
 // vue-router/src/install.js

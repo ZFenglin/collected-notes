@@ -52,7 +52,7 @@ export default class VueRouter {
 ```js
   constructor(options) {
       // 收集vue实例，初始化使用
-      this.app = null1
+      this.app = null
       this.apps = []
       // 基本配置
       this.options = options

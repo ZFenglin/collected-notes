@@ -72,7 +72,7 @@ function replaceHash(path) {
 }
 ```
 
-## HashHistory
+## class HashHistory
 
 专门处理Hash模式下的路由方法执行
 

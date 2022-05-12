@@ -35,14 +35,9 @@
 
 ## VueRouter
 
-1. [install](./VueRouter/01-install.md)
-2. [VueRouter](./VueRouter/02-VueRouter.md)
-3. [匹配器](./VueRouter/03-匹配器.md)
-4. [History](./VueRouter/04-History.md)
-5. [HashHistory](./VueRouter/05-HashHistory.md)
-6. [HTML5History](./VueRouter/06-HTML5History.md)
-7. [Component处理](./VueRouter/07-Component处理.md)
-8. [面试题](./VueRouter/00-面试题.md)
+1. [VueRouter](./VueRouter/00-VueRouter.md)
+2. [面试题](./VueRouter/00-面试题.md)
+3. [详细解析](./VueRouter/index.md)
 
 ## Vuex
 

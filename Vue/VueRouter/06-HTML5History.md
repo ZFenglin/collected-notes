@@ -16,7 +16,7 @@ export function getLocation(base) {
 }
 ```
 
-## HTML5History
+## class HTML5History
 
 处理h5下的路由跳转
 

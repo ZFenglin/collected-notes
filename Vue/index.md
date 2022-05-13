@@ -2,7 +2,7 @@
 
 ## 源码解析
 
-### 源码概念解析
+### 概念解析（[代码解析](./Principle/Code/index.md))
 
 1. [构建与初始化](./Principle/01-构建与初始化.md)
 2. [响应式](./Principle/02-响应式.md)
@@ -15,29 +15,27 @@
 9. [component](./Principle/09-component.md)
 10. [生命周期](./Principle/10-生命周期.md)
 
-### [源码详细解析](./Code/index.md)
-
 ### Vue3
 
-1. [相关概念](./Code/05-Vue3/01-相关概念.md)
-2. [响应式系统更新](./Code/05-Vue3/02-响应式系统更新.md)
-3. [CompositionAPI](./Code/05-Vue3/03-CompositionAPI.md)
-4. [vite](./Code/05-Vue3/04-vite.md)
+1. [相关概念](./Principle/Vue3/01-相关概念.md)
+2. [响应式系统更新](./Principle/Vue3/02-响应式系统更新.md)
+3. [CompositionAPI](./Principle/Vue3/03-CompositionAPI.md)
+4. [vite](./Principle/Vue3/04-vite.md)
 
 ### 面试题
 
-1. [基本概念](./Code/00-面试题/01-基本概念.md)
-2. [使用方式](./Code/00-面试题/02-使用方式.md)
-3. [类构建](./Code/00-面试题/03-类构建.md)
-4. [响应式原理](./Code/00-面试题/04-响应式原理.md)
-5. [编译与挂载](./Code/00-面试题/05-编译与挂载.md)
-6. [组件化](./Code/00-面试题/06-组件化.md)
+1. [基本概念](./Principle/面试题/01-基本概念.md)
+2. [使用方式](./Principle/面试题/02-使用方式.md)
+3. [类构建](./Principle/面试题/03-类构建.md)
+4. [响应式原理](./Principle/面试题/04-响应式原理.md)
+5. [编译与挂载](./Principle/面试题/05-编译与挂载.md)
+6. [组件化](./Principle/面试题/06-组件化.md)
 
 ## VueRouter
 
-1. [VueRouter](./VueRouter/00-VueRouter.md)
+1. [VueRouter](./VueRouter/01-VueRouter.md)
 2. [面试题](./VueRouter/00-面试题.md)
-3. [详细解析](./VueRouter/index.md)
+3. [详细解析](./VueRouter/Code/index.md)
 
 ## Vuex
 

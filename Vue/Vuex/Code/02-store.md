@@ -60,6 +60,7 @@ constructor(options = {}) {
 ## resetStoreVM
 
 resetStoreVM用于重置store处理的vm实例
+
 1. 相关属性声明和computed创建
 2. 创建新实例vm接收data和computed
 3. 严格模式启动
@@ -160,13 +161,13 @@ commit(_type, _payload, _options) {
 ## dispatch
 
 1. 参数处理
-2.  获取entry
-3.  actionSubscribers的before钩子触发
-4.  entry按其长度使用Promise.all封装还是直接执行获取result
-5.  返回promise封装result的执行
-   1. 执行result，并用then处理后续
-   2. 成功，actionSubscribers的after钩子触发，resolve(res)
-   3. 失败，actionSubscribers的error钩子触发，reject(error)
+2. 获取entry
+3. actionSubscribers的before钩子触发
+4. entry按其长度使用Promise.all封装还是直接执行获取result
+5. 返回promise封装result的执行
+    1. 执行result，并用then处理后续
+    2. 成功，actionSubscribers的after钩子触发，resolve(res)
+    3. 失败，actionSubscribers的error钩子触发，reject(error)
 
 ```js
 dispatch(_type, _payload) {

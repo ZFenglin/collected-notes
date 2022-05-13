@@ -39,12 +39,6 @@
 
 ## Vuex
 
-1. [install](./Vuex/01-install.md)
-2. [store](./Vuex/02-store.md)
-3. [模块化](./Vuex/03-模块化.md)
-4. [命名空间](./Vuex/04-命名空间.md)
-5. [模块注册](./Vuex/05-模块注册.md)
-6. [严格模式](./Vuex/06-严格模式.md)
-7. [插件](./Vuex/07-插件.md)
-8. [辅助函数](./Vuex/08-辅助函数.md)
-9. [面试题](./Vuex/00-面试题.md)
+1. [Vuex](./Vuex/01-Vuex.md)
+2. [面试题](./Vuex/00-面试题.md)
+3. [详细解析](./Vuex/Code/index.md)

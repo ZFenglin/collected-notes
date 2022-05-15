@@ -48,6 +48,14 @@ obj['key']
 2. 这种创建出来的对象相对较干净，不用担心重名和被原生原型影响，可以用作数据字典
 3. 减少了hasOwnProperty的性能损失
 
+#### Object.setPrototypeOf(Bar.prototype, Foo.prototype)
+
+1. ES6新增，标准并且可靠的方法来修改关联
+2. Object.create()会使被赋值的函数原型被替代
+3. Object.setPrototypeOf则是只是建立链接关系
+4. 但是Object.setPrototypeOf兼容性不太好
+5. 忽略掉Object.create方法带来的轻微性能损失，它更短而且可读性更高
+
 ## 遍历对象
 
 ### 对象属性分类

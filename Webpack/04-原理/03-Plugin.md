@@ -19,19 +19,32 @@
 
 ## Plugin的基本结构
 
+```js
+class XxxPlugin {
+   constructor(options){
+
+   }
+    apply(compiler){
+        compiler.plugin('事件名称', (compilation,callback)=>{})
+    }
+}
+```
+
 ### constructor：构造函数中获取用户传入的配置
 
 ### apply
 
 1. apply方法用于为插件实例传入compiler对象
 2. 得到compiler对象后
-   1. 可以通过compiler.plugin('事件名称', 回调函数)监听广播事件
+   1. compiler.plugin('事件名称', 回调函数)监听广播事件
    2. 也可以操作Webpack
 
 #### compiler.plugin的回调函数的回调参数
 
 1. compilation
 2. callback（插件执行完需要执行，否则流程将卡在这里）
+
+## 插件常用API
 
 ### 事件流监听和广播
 
@@ -44,8 +57,6 @@ compiler.apply('event-name', params)
 // 监听事件
 compiler.plugin('event-name', function(params) {})
 ```
-
-## 插件常用API
 
 ### 读取资源，代码块，模块和依赖
 

@@ -2,7 +2,7 @@
 
 这个相关的问题推荐看以下笔记
 
-1. [JavaScript/作用域和闭包/this](../03-作用域和闭包/05-this.md)
+1. [JavaScript/作用域和闭包/this](../03-作用域和上下文/05-this.md)
 2. 记住new绑定 > 显式绑定 > 隐式绑定 > 默认绑定，为指定就是默认绑定window，但是严格模式时undefined
 
 ## 01

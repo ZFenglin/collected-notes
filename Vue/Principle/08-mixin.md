@@ -25,22 +25,14 @@
     2. 按照策略合并options：options[key] = strat(parent[key], child[key], vm, key)
 7. 返回options
 
-### Vue.extend、Vue.mixin、mixins与extends的优先级
+### 合并策略
 
-1. Vue.extend用于创建一个组件构造
-2. Vue.mixin为Vue的构造器添加基础配置
-3. mixins传入数组，实例的多继承
-4. extends传入对象或方法，实例的单继承
-5. 全局Vue.mixin > Vue.extend > 组件Vue.mixin > extends > mixins，即先注册先执行
-
-## 合并策略
-
-### defaultStrat(parentVal, childVal)
+#### defaultStrat(parentVal, childVal)
 
 1. 默认的合并策略：childVal优先
 2. childVal === undefined ? parentVal : childVal
 
-### mergeAssets(parentVal, childVal, vm, key)
+#### mergeAssets(parentVal, childVal, vm, key)
 
 1. assets合并策略：创建一个对象，将parentVal设置为`__proto__`，childVal浅复制到对象
     1. component
@@ -50,7 +42,7 @@
 3. childVal存在，则执行extend(res, childVal)，将childVal的属性通过for...in循环定义到res，即浅拷贝
 4. 返回res
 
-### mergeHook(parentVal, childVal)
+#### mergeHook(parentVal, childVal)
 
 1. 钩子的合并策略：将parentVal与childVal合并到一个数组中
     1. 生命周期钩子函数
@@ -60,3 +52,11 @@
 3. parentVal不存在，则Array.isArray(childVal) ? childVal : [childVal]
 4. childVal不存在，返回parentVal
 5. 利用dedupeHooks将res复制一份并返回
+
+## Vue.extend、Vue.mixin、mixins与extends的优先级
+
+1. Vue.extend用于创建一个组件构造
+2. Vue.mixin为Vue的构造器添加基础配置
+3. mixins传入数组，实例的多继承
+4. extends传入对象或方法，实例的单继承
+5. 全局Vue.mixin > Vue.extend > 组件Vue.mixin > extends > mixins，即先注册先执行

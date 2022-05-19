@@ -1,6 +1,12 @@
 # VueRouter
 
-1. 核心就是按照路径变化，找到对应组件，并显式再router-view中
+1. 匹配器负责将routes展开，形成路由与对应key的映射
+2. History使用push，调用transitionTo进行路由跳转
+    1. 路径location从映射中获取route，并比较route是否更新决定更新路由
+    2. route确定更新后，执行confirmTransition触发路由钩子并confirmTransition的传入完成回调
+    3. onComplete回调updateRoute更新route，从而触发页面刷新，然后触发transitionTo传入的回调
+        1. addEventListener监听触发transitionTo的回调不会路径更新
+        2. push获取repalce的transitionTo的回调会处理路径更新
 
 ## install(Vue)
 
@@ -145,14 +151,14 @@
         1. eventType= supportsPushState ? 'popstate' :'hashchange'
         2. handleRoutingEvent则是当hash值变化，再执行this.transitionTo(getHash(), ...)
 4. push(location, onComplete, onAbort)
-    1. 执行this.transitionTo进行跳转处理
+    1. 执行this.transitionTo进行跳转处理，完成回调会执行pushHash触发路径更新
 
 ### HTML5History extends History
 
 1. HTML5History和HashHistory一样，也需要处理对应的方法
 2. getCurrentLocation返回getLocation(this.base)
 3. setupListeners注册popstate监听，变动执行this.transitionTo
-4. push处理也是执行this.transitionTo
+4. push处理也是执行this.transitionTo，完成回调会执行pushState触发路径更新
 
 ## Component处理
 

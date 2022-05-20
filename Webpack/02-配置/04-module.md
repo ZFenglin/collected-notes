@@ -1,7 +1,5 @@
 # module
 
-配置模块相关
-
 ## 整体配置
 
 ```js
@@ -13,10 +11,7 @@ module.exports = {
 }
 ```
 
-## rules
-
-1. 配置loader
-2. loader相关，详见[Webpack/原理/Loader](../04-原理/02-Loader.md)
+## rules：配置loader，详见[Webpack/原理/Loader](../04-原理/02-Loader.md)
 
 ```js
 module.exports = {
@@ -56,10 +51,7 @@ module.exports = {
 3. 执行顺序：默认从右往左（配置enforce可以更改）
    1. post：最后
    2. pre：最前
-
-### parser：更加细粒度地配置那些模块语法被解析
-
-可以精确到语法层面
+4. parser：更加细粒度地配置那些模块语法被解析
 
 ```js
 module.exports = {

@@ -9,7 +9,8 @@ entry 表示入口
 
 ## entry类型
 
-类型可以是string，object，array
+1. string和array（单入口）：生成一个chunk，名称为main
+2. object（多入口）：可能生成多个chunk，名称为key值
 
 ```js
 module.exports = {
@@ -30,8 +31,3 @@ module.exports = {
     },
 }
 ```
-
-### entry对应的chunk名称
-
-1. string和array：生成一个chunk，名称为main
-2. object：可能生成多个chunk，名称为key值

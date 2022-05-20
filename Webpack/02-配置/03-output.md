@@ -30,9 +30,7 @@ module.exports = {
 }
 ```
 
-## path：输出文件存放的目录
-
-必须是string类型的绝对路径
+## path：输出文件存放的目录（strig绝对路径）
 
 ```js
 module.exports = {
@@ -47,10 +45,9 @@ module.exports = {
 ```js
 module.exports = {
     output: {
-        filename: 'bundle.js', // 完整的名称，单个文件可以设置为静态
-        filename: '[name].js', // 在配置多个entry时，通过名称模板为不同的entry生成不同的文件名称
-        filename: '[chunkhash].js', // 根据文件内容的hash值生成文件的名称，用于浏览器长时间缓存文件
-        filename: '[hash:8].js', // 其中hash相关的变量长度可以指定
+        filename: 'bundle.js', // 静态的固定名称
+        filename: '[name].js', // 可以通过内置变量设置动态名称
+        filename: '[hash:8].js', // hash相关动态名称长度可以指定
     },
 }
 ```
@@ -64,8 +61,6 @@ module.exports = {
 
 ## chunkFilename：没有配置入口的Chunk的输出名称
 
-与filename类似
-
 ```js
 module.exports = {
     output: {
@@ -77,9 +72,8 @@ module.exports = {
 
 ## publicPath：配置发布到线上资源的URL前缀
 
-项目可能会构建一些需要异步加载的资源，这些资源的加载需要对应的URL地址
-
-但是使用需要注意，路径不一致会造成404
+1. 打包资源增加固定前缀
+2. 注意路径问题，不然会404
 
 ```js
 module.exports = {
@@ -91,20 +85,15 @@ module.exports = {
 }
 ```
 
-当放到CDN上时，如上面的设置路径
-
-此时线上的HTML的地址需要改为
-
 ```html
+<!-- 线上的HTML的地址需要改为 -->
 <script src='https://cdn.example.com/assets/a_12345678.js'></script>
 ```
 
-## library
-
-1. 导出库的名称，为string类型
-1. 不填它时，默认的输出格式是匿名的立即执行函数
+## library：导出库的名称
 
 ```js
+// 默认的输出格式是匿名的立即执行函数
 module.exports = {
     output: {
         library: 'MyLibrary',
@@ -112,9 +101,7 @@ module.exports = {
 }
 ```
 
-## libraryTarget
-
-导出库的类型，为枚举类型，默认是var
+## libraryTarget：导出库的类型
 
 ### var（默认）
 

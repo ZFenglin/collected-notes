@@ -33,12 +33,10 @@ module.exports = {
 
 ## port：服务监听端口
 
-默认8080
-
 ```js
 module.exports = {
     devServer: {
-        port: 8080,
+        port: 8080, // 默认
     },
 }
 ```
@@ -61,9 +59,8 @@ npx webpack serve --host 0.0.0.0
 
 ## static：配置从目录提供静态文件的选项
 
-配置项允许配置从目录提供静态文件的选项（默认是 'public' 文件夹）
-
 ```js
+// 默认是 'public' 文件夹
 module.exports = {
     devServer: {
         // 禁用
@@ -89,8 +86,6 @@ npx webpack serve --static assets --static css
 
 ## headers：注入响应头
 
-在HTTP响应中注入一些HTTP响应头
-
 ```js
 module.exports = {
     //...
@@ -108,9 +103,7 @@ module.exports = {
 }
 ```
 
-## proxy：代理接口
-
-解决请求跨域问题
+## proxy：代理接口（跨域）
 
 ```js
 module.exports = {
@@ -126,8 +119,6 @@ module.exports = {
 ```
 
 ## mock：before和after钩子实现数据模拟
-
-利用提供的钩子处理请求接口数据返回
 
 ```js
 module.exports = {

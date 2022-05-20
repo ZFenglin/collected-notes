@@ -1,43 +1,32 @@
 # Plugin
 
-## Plugin概念
+## loader和plugin的区别
 
-1. Plugin更加灵活，适用于各种场景
-2. Plugin监听Webpack运行周期中所广播的事件，利用Webpack提供的API进行改变输出结果
+1. 作用不同
+    1. Loader的作⽤是让webpack拥有了加载和解析⾮JavaScript⽂件的能⼒
+    2. Plugin 可以监听Webpack构建流程的事件，在合适的时机通过 Webpack 提供的 API 改变输出结果
 
-### loader和plugin的区别
-
-#### 作用不同
-
-1. Loader的作⽤是让webpack拥有了加载和解析⾮JavaScript⽂件的能⼒
-2. Plugin 可以监听Webpack构建流程的事件，在合适的时机通过 Webpack 提供的 API 改变输出结果
-
-#### 用法不同
-
-1. Loader在module.rules中配置，作为模块解析的规则存在
-2. 每个Plugin在plugins中创建实例并单独配置
+2. 用法不同
+    1. Loader在module.rules中配置，作为模块解析的规则存在
+    2. 每个Plugin在plugins中创建实例并单独配置
 
 ## Plugin的基本结构
 
 ```js
 class XxxPlugin {
-   constructor(options){
-
-   }
+   constructor(options){} // 构造函数中获取用户传入的配置
     apply(compiler){
         compiler.plugin('事件名称', (compilation,callback)=>{})
     }
 }
 ```
 
-### constructor：构造函数中获取用户传入的配置
-
 ### apply
 
 1. apply方法用于为插件实例传入compiler对象
 2. 得到compiler对象后
    1. compiler.plugin('事件名称', 回调函数)监听广播事件
-   2. 也可以操作Webpack
+   2. 操作Webpack，改变输出结果
 
 #### compiler.plugin的回调函数的回调参数
 

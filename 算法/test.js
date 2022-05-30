@@ -9,7 +9,7 @@ ArrayList.prototype.swap = function (m, n) {
     this.array[m] = this.array[n]
     this.array[n] = temp
 }
-
+// 冒泡
 ArrayList.prototype.bubbleSort = function () {
     let j = this.array.length - 1
     while (j) {
@@ -23,7 +23,7 @@ ArrayList.prototype.bubbleSort = function () {
         j--
     }
 }
-
+// 选择
 ArrayList.prototype.selectionSort = function () {
     let length = this.array.length
     let j = 0
@@ -38,7 +38,7 @@ ArrayList.prototype.selectionSort = function () {
         j++
     }
 }
-
+// 插入
 ArrayList.prototype.insertionSort = function () {
     let length = this.array.length
     // 外层循环：向前面有序的进行插入
@@ -53,6 +53,28 @@ ArrayList.prototype.insertionSort = function () {
         this.array[j] = temp
     }
 }
+// 希尔
+ArrayList.prototype.shellSort = function () {
+    let length = this.array.length
+    // 初始化增量设置
+    let gap = Math.floor(length / 2)
+    // while循环处理，同时gap缩小
+    while (gap >= 1) {
+        // gap分割列表，并按照插入排序处理
+        for (let i = gap; i < length; i++) {
+            let temp = this.array[i]
+            let j = i
+            while (this.array[j - gap] > temp && j > gap - 1) {
+                this.array[j] = this.array[j - gap]
+                j -= gap
+            }
+            // 将j位置的元素赋值给temp
+            this.array[j] = temp
+        }
+        // gap更新
+        gap = Math.floor(gap / 2)
+    }
+}
 
 
 let list = new ArrayList()
@@ -62,5 +84,5 @@ list.insert(67)
 list.insert(23)
 list.insert(11)
 
-list.insertionSort()
+list.shellSort()
 console.log(list.toString())

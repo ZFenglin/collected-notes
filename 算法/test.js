@@ -56,23 +56,25 @@ ArrayList.prototype.insertionSort = function () {
 // 希尔
 ArrayList.prototype.shellSort = function () {
     let length = this.array.length
-    // 初始化增量设置
-    let gap = Math.floor(length / 2)
+    // 获取gap，默认模式
+    let getGap = (num) => Math.floor(num / 2)
+    // 初始化gap
+    let gap = getGap(length)
     // while循环处理，同时gap缩小
     while (gap >= 1) {
-        // gap分割列表，并按照插入排序处理
+        // gap间隔的插入排序处理
         for (let i = gap; i < length; i++) {
             let temp = this.array[i]
             let j = i
-            while (this.array[j - gap] > temp && j > gap - 1) {
+            while (j > gap - 1 && this.array[j - gap] > temp) {
                 this.array[j] = this.array[j - gap]
                 j -= gap
             }
             // 将j位置的元素赋值给temp
             this.array[j] = temp
         }
-        // gap更新
-        gap = Math.floor(gap / 2)
+        // 更新gap
+        gap = getGap(gap)
     }
 }
 

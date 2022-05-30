@@ -39,6 +39,21 @@ ArrayList.prototype.selectionSort = function () {
     }
 }
 
+ArrayList.prototype.insertionSort = function () {
+    let length = this.array.length
+    // 外层循环：向前面有序的进行插入
+    for (let i = 0; i < length; i++) {
+        let temp = this.array[i]
+        let j = i
+        // 内存循环：获取i元素，和有序的进行比较插入
+        while (j > 0 && this.array[j - 1] > temp) {
+            this.array[j] = this.array[j - 1]
+            j--
+        }
+        this.array[j] = temp
+    }
+}
+
 
 let list = new ArrayList()
 list.insert(239)
@@ -47,5 +62,5 @@ list.insert(67)
 list.insert(23)
 list.insert(11)
 
-list.selectionSort()
+list.insertionSort()
 console.log(list.toString())

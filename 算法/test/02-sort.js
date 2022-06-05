@@ -81,17 +81,16 @@ ArrayList.prototype.shellSort = function () {
 //  1. 枢纽
 ArrayList.prototype.median = function (left, right) {
     let center = Math.floor((left + right) / 2)
+    // 利用冒泡排序修改三个节点顺序
     if (this.compare(left, center)) this.swap(left, center)
     if (this.compare(center, right)) this.swap(center, right)
-    if (this.compare(left, right)) this.swap(left, right)
+    if (this.compare(left, center)) this.swap(left, center)
+    // 将枢纽放到倒数第二位
     this.swap(center, right - 1)
     return this.array[right - 1]
 
 }
 // 2. 排序
-ArrayList.prototype.quickSort = function () {
-    this.quick(0, this.array.length - 1)
-}
 ArrayList.prototype.quick = function (left, right) {
     // 结束条件
     if (left >= right) return
@@ -100,9 +99,9 @@ ArrayList.prototype.quick = function (left, right) {
     // 左右判断两边交换
     var i = left
     var j = right - 1
-    while (true) {
-        while (this.array[++i] < pivot) { }
-        while (this.array[--j] > pivot) { }
+    while (i < j) {
+        while (this.array[i] < pivot) { i++ }
+        while (this.array[j] >= pivot) { j-- }
         if (i < j) {
             this.swap(i, j)
         } else {
@@ -115,13 +114,16 @@ ArrayList.prototype.quick = function (left, right) {
     this.quick(left, i - 1)
     this.quick(i + 1, right)
 }
+ArrayList.prototype.quickSort = function () {
+    this.quick(0, this.array.length - 1)
+}
 
 
 let list = new ArrayList()
-list.insert(239)
-list.insert(89)
 list.insert(67)
 list.insert(23)
+list.insert(89)
+list.insert(239)
 list.insert(11)
 
 list.quickSort()

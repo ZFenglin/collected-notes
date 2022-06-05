@@ -77,6 +77,44 @@ ArrayList.prototype.shellSort = function () {
         gap = getGap(gap)
     }
 }
+// 快速
+//  1. 枢纽
+ArrayList.prototype.median = function (left, right) {
+    let center = Math.floor((left + right) / 2)
+    if (this.compare(left, center)) this.swap(left, center)
+    if (this.compare(center, right)) this.swap(center, right)
+    if (this.compare(left, right)) this.swap(left, right)
+    this.swap(center, right - 1)
+    return this.array[right - 1]
+
+}
+// 2. 排序
+ArrayList.prototype.quickSort = function () {
+    this.quick(0, this.array.length - 1)
+}
+ArrayList.prototype.quick = function (left, right) {
+    // 结束条件
+    if (left >= right) return
+    // 获取枢纽
+    var pivot = this.median(left, right)
+    // 左右判断两边交换
+    var i = left
+    var j = right - 1
+    while (true) {
+        while (this.array[++i] < pivot) { }
+        while (this.array[--j] > pivot) { }
+        if (i < j) {
+            this.swap(i, j)
+        } else {
+            break
+        }
+    }
+    // 将枢纽放在正确位置
+    this.swap(i, right - 1)
+    // 分而治之
+    this.quick(left, i - 1)
+    this.quick(i + 1, right)
+}
 
 
 let list = new ArrayList()
@@ -86,5 +124,5 @@ list.insert(67)
 list.insert(23)
 list.insert(11)
 
-list.shellSort()
+list.quickSort()
 console.log(list.toString())

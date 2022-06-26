@@ -323,6 +323,38 @@ function Set() {
         }
         return unionSet
     }
+    Set.prototype.intersection = function (otherSet) {
+        var intersectionSet = new Set()
+        var values = this.values()
+        for (let i = 0; i < values.length; i++) {
+            var item = values[i]
+            if (otherSet.has(item)) {
+                intersectionSet.add(item)
+            }
+        }
+        return intersectionSet
+    }
+    Set.prototype.difference = function (otherSet) {
+        var differenceSet = new Set()
+        var values = this.values()
+        for (let i = 0; i < values.length; i++) {
+            var item = values[i]
+            if (!otherSet.has(item)) {
+                differenceSet.add(item)
+            }
+        }
+        return differenceSet
+    }
+    Set.prototype.subset = function (otherSet) {
+        var values = this.values()
+        for (let i = 0; i < values.length; i++) {
+            const item = values[i];
+            if (!otherSet.has(item)) {
+                return false
+            }
+        }
+        return true
+    }
 }
 
 

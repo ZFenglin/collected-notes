@@ -359,10 +359,6 @@
 
 
 // 哈希表
-
-console.log(hashFunction('abc', 7))
-console.log(hashFunction('cba', 7))
-// 哈希类
 function HashTable() {
     // 属性
     this.storage = []
@@ -387,7 +383,7 @@ function HashTable() {
         }
         for (let i = 0; i < bucket.length; i++) {
             const tuple = bucket[i]
-            if (tuple[0] == key) {
+            if (tuple[0] === key) {
                 tuple[1] = value
                 return
             }
@@ -395,20 +391,101 @@ function HashTable() {
         }
         bucket.push([key, value])
         this.count++
+        // 扩容处理
+        if (this.count > this.limit * 0.75) {
+            const newSize = this.getPrime(this.limit * 2)
+            this.resize(newSize)
+        }
     }
     // 获取操作
     HashTable.prototype.get = function (key) {
         let index = this.hashFunction(key, this.limit)
         let bucket = this.storage[index]
-        if (!!bucket) {
+        if (!bucket) {
             return null
         }
         for (let i = 0; i < bucket.length; i++) {
             const tuple = bucket[i];
-            if (tuple[0] == key) {
+            if (tuple[0] === key) {
                 return tuple[1]
             }
         }
         return null
     }
+    // 删除操作
+    HashTable.prototype.remove = function (key) {
+        let index = this.hashFunction(key, this.limit)
+        let bucket = this.storage[index]
+        if (!bucket) {
+            return null
+        }
+        for (let i = 0; i < bucket.length; i++) {
+            const tuple = bucket[i];
+            if (tuple[0] === key) {
+                bucket.splice(i, 1)
+                this.count--
+                if (this.limit > 7 && this.count < this.limit * 0.25) {
+                    const newSize = this.getPrime(Math.floor(this.limit / 2))
+                    this.resize(newSize)
+                }
+                return tuple[1]
+            }
+        }
+        return null
+    }
+    // 判断是否为空
+    HashTable.prototype.isEmpty = function () {
+        return this.count === 0
+    }
+    // 获取长度
+    HashTable.prototype.size = function () {
+        return this.countß
+    }
+    // 扩容
+    HashTable.prototype.resize = function (newLimit) {
+        let oldStorage = this.storage
+        this.storage = []
+        this.count = 0
+        this.limit = newLimit
+        for (let i = 0; i < oldStorage.length; i++) {
+            const bucket = oldStorage[i];
+            if (bucket === null) {
+                continue
+            }
+            for (let j = 0; j < bucket.length; j++) {
+                const tuple = bucket[j];
+                this.put(tuple[0], tuple[1])
+            }
+        }
+    }
+    // 判断质数
+    HashTable.prototype.isPrime = function (num) {
+        // 又一个数必定低于平方根的结果
+        var temp = parseInt(Math.sqrt(num))
+        for (let i = 2; i <= temp; i++) {
+            if (num % i === 0) {
+                return false
+            }
+        }
+        return true
+    }
+    // 获取质数的方法
+    HashTable.prototype.getPrime = function (num) {
+        while (!this.isPrime(num)) {
+            num++
+        }
+        return num
+    }
 }
+
+let ht = new HashTable()
+// ht.put('abc', 111)
+// ht.put('bac', 222)
+// ht.put('cba', 333)
+// console.log(ht.get('bac'))
+// ht.put('bac', 444)
+// console.log(ht.get('bac'))
+// console.log(ht.remove('bac'))
+// console.log(ht.get('bac'))
+
+

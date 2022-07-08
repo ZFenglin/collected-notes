@@ -108,12 +108,12 @@ function BinarySearchTree() {
         return false
     }
     // 删除
-    BinarySearchTree.prototype.remove = function () {
+    BinarySearchTree.prototype.remove = function (key) {
         // 寻找删除节点
         let current = this.root
         let parent = null
         let isLeft = true
-        while (parent.key !== key) {
+        while (current.key !== key) {
             parent = current
             if (key < current.key) {
                 isLeft = true
@@ -125,7 +125,7 @@ function BinarySearchTree() {
             if (!current) return false
         }
         // 处理节点删除
-        if (!!current.left && !!current.right) { // 叶子节点
+        if (!current.left && !current.right) { // 叶子节点
             if (current === this.root) {
                 this.root = null
             } else if (isLeft) {
@@ -149,7 +149,15 @@ function BinarySearchTree() {
             } else {
                 parent.right = current.right
             }
+        } else { // 左右节点都存在
+            let node = current.right
+            while (node.left) {
+                node = node.left
+            }
+            this.remove(node.key)
+            current.key = node.key
         }
+        return current
     }
 }
 
@@ -171,11 +179,18 @@ bst.insert(20)
 bst.insert(18)
 bst.insert(25)
 bst.insert(6)
+
+bst.remove(9)
+bst.remove(7)
+bst.remove(15)
+
 var str = ""
-// bst.postOrderTraversal(function (key) {
-//     str += key + " "
-// })
-// console.log(str)
+bst.postOrderTraversal(function (key) {
+    str += key + " "
+})
+
+
+console.log(str)
 
 // console.log(bst.max())
 // console.log(bst.min())
